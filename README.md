@@ -1,10 +1,22 @@
+ACA HAY GATO ENCERRADO
+
 link a enunciado: https://sites.google.com/site/programacionui/material/tps/escape-del-laberinto
 
 Contexto
 
--Un laberinto se compone de muchas habitaciones -Siempre hay una única habitación inicial y una única habitación final -En cada habitación se pueden realizar muchas acciones (las que la habitación admita) -Las acciones permitidas las podemos categorizar en: -moverse a una habitación permitida ==> Cuando nos movemos pasamos a esa habitación -Agarrar un item (se agrega al inventario) ==> Cada jugador tiene un inventario asociado al laberinto que está queriendo resolver, cuando el juego inicia el inventario está vacío y se va llenando al agarrar items de las habitaciones. El inventario tiene un máximo de 15 items (cada unidad cuenta como un item, por ejemplo si tenemos 2 martillos ocupamos 2 lugares en el inventario) -Usar item ==> Los items con los que cuenta el jugador en su inventario pueden ser usados, si la habitación admite el uso de un determinado item luego de producirse su uso se habilita otra acción y el item es destruido. Por ejemplo... si usamos la pala en una habitación que lo admitía ahora se habilitará la acción correspondiente (por ejemplo, poder moverse a otra habitación) y se pierde la pala usada (esto hace que se elimine del inventario). -Salir del laberinto ==> esta acción solo esta disponible en la habitación final, si salimos del laberinto entonces terminamos el nivel! (ganamos!)
+-Un laberinto se compone de muchas habitaciones.
+-Siempre hay una única habitación inicial y una única habitación final.
+-En cada habitación se pueden realizar muchas acciones (las que la habitación admita).
+-Las acciones permitidas las podemos categorizar en: 
+  -moverse a una habitación permitida ==> Cuando nos movemos pasamos a esa habitación.
+  -Agarrar un item (se agrega al inventario) ==> Cada jugador tiene un inventario asociado al laberinto que está queriendo resolver, cuando el juego inicia el inventario está vacío y se va llenando al agarrar items de las habitaciones. El inventario tiene un máximo de 15 items (cada unidad cuenta como un item, por ejemplo si tenemos 2 martillos ocupamos 2 lugares en el inventario) 
+  -Usar item ==> Los items con los que cuenta el jugador en su inventario pueden ser usados, si la habitación admite el uso de un determinado item luego de producirse su uso se habilita otra acción y el item es destruido. Por ejemplo... si usamos la pala en una habitación que lo admitía ahora se habilitará la acción correspondiente (por ejemplo, poder moverse a otra habitación) y se pierde la pala usada (esto hace que se elimine del inventario).
+  -Salir del laberinto ==> esta acción solo esta disponible en la habitación final, si salimos del laberinto entonces terminamos el nivel! (ganamos!)
 
--Aclaraciones: -No pueden usarse items no permitidos por las habitaciones, por ejemplo si mi habitación permite usar item: pala (únicamente), seguro que no va a tener efecto alguno usar el item: llave -No es necesario asegurar que el laberinto tenga solución -Un laberinto puede ser abandonado por el jugador si decide darse por vencido -El inventario que posee el jugador está asociado al laberinto que está resolviendo, los items NO pueden compartirse entre laberintos
+-Aclaraciones: 
+  -No pueden usarse items no permitidos por las habitaciones, por ejemplo si mi habitación permite usar item: pala (únicamente), seguro que no va a tener efecto alguno usar el item: llave.
+  -No es necesario asegurar que el laberinto tenga solución -Un laberinto puede ser abandonado por el jugador si decide darse por vencido.
+  -El inventario que posee el jugador está asociado al laberinto que está resolviendo, los items NO pueden compartirse entre laberintos.
 
 -Ejemplo
 
