@@ -1,9 +1,10 @@
-package ar.edu.unq.ciu.gato_encerrado_dominio.test
+package ar.edu.unq.ciu.gato_encerrado_dominio.test.admin
 
-import ar.edu.unq.ciu.gato_encerrado_dominio.Habitacion
+
 import org.junit.Before
 import org.junit.Test
 import static org.junit.Assert.*;
+import ar.edu.unq.ciu.gato_encerrado_dominio.Habitacion
 
 class TestHabitacionFinal {
 	
