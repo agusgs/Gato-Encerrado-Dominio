@@ -8,7 +8,7 @@ import ar.edu.unq.ciu.gato_encerrado_dominio.Laberinto
 import org.junit.Before
 
 abstract class LaberintoSetUp {
-	
+		
 	protected Laberinto unLaberinto
 	
 	Habitacion habitacionCero	
@@ -50,15 +50,10 @@ abstract class LaberintoSetUp {
 		
 		unLaberinto = new Laberinto("Laberinto del Minotauro")
 		
-		unItemCuchillo = new Item()
-		unItemPala = new Item()
-		unItemMadera = new Item()
-		unItemPiedra = new Item()
-		
-		accionAgarrarUno = new AccionAgarrar(unItemCuchillo)
-		accionAgarrarDos = new AccionAgarrar(unItemPala)
-		accionAgarrarCinco = new AccionAgarrar(unItemMadera)
-		accionAgarrarSiete = new AccionAgarrar(unItemPiedra)
+		unItemCuchillo = new Item
+		unItemPala = new Item
+		unItemMadera = new Item
+		unItemPiedra = new Item
 		
 		habitacionCero = new Habitacion
 		habitacionUno = new Habitacion
@@ -73,6 +68,16 @@ abstract class LaberintoSetUp {
 		
 		habitacionCero.esInicial = true
 		habitacionNueve.esFinal = true
+		
+		accionAgarrarUno = new AccionAgarrar(unItemCuchillo)
+		accionAgarrarDos = new AccionAgarrar(unItemPala)
+		accionAgarrarCinco = new AccionAgarrar(unItemMadera)
+		accionAgarrarSiete = new AccionAgarrar(unItemPiedra)
+		
+		habitacionUno.agregarAccion(accionAgarrarUno)
+		habitacionDos.agregarAccion(accionAgarrarDos)
+		habitacionCinco.agregarAccion(accionAgarrarCinco)
+		habitacionSiete.agregarAccion(accionAgarrarSiete)
 		
 		habitacionCero.agregarPuenteA(1)
 		habitacionCero.agregarPuenteA(2)
