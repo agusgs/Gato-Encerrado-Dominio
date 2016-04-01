@@ -35,7 +35,7 @@ class Laberinto {
 	 * PARAM: indexNuevaUbicacion numero de la habitacion a la que se quiere avanzar
 	 */
 	def void moverHabitacionActualA(int indexNuevaUbicacion) {
-		var Habitacion hab = this.getHabitacion(indexHabitacionActual)
+		var Habitacion hab = this.getHabitacion(posicionActual())
 		if (hab.mePuedoMoverAHabitacion(indexNuevaUbicacion))
 			indexHabitacionActual = indexNuevaUbicacion
 		//else ..... DEFINIR SI DEBO CONTEMPLAR ESTA OPCIoN.... lanzar excepcion o que
@@ -58,6 +58,10 @@ class Laberinto {
 			this.inventario.agregarItem(accion)
 		}
 			
+	}
+	
+	def Habitacion getHabitacionActual(){
+		this.getHabitacion(this.posicionActual)
 	}
 	
 }

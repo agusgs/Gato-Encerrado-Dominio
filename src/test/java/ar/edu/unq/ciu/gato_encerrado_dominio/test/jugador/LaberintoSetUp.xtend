@@ -10,7 +10,9 @@ import org.junit.Before
 abstract class LaberintoSetUp {
 		
 	protected Laberinto unLaberinto
+	protected Laberinto otroLaberinto
 	
+	Habitacion habitacionUnica	
 	Habitacion habitacionCero	
 	Habitacion habitacionUno
 	Habitacion habitacionDos
@@ -49,6 +51,7 @@ abstract class LaberintoSetUp {
 	def void setUp(){
 		
 		unLaberinto = new Laberinto("Laberinto del Minotauro")
+		otroLaberinto = new Laberinto("Laberinto Casa")
 		
 		unItemCuchillo = new Item
 		unItemPala = new Item
@@ -68,6 +71,11 @@ abstract class LaberintoSetUp {
 		
 		habitacionCero.esInicial = true
 		habitacionNueve.esFinal = true
+		
+		habitacionUnica = new Habitacion
+		habitacionUnica .esInicial = true
+		habitacionUnica.esFinal = true
+		otroLaberinto.agregarHabitacion(habitacionUnica)
 		
 		accionAgarrarUno = new AccionAgarrar(unItemCuchillo)
 		accionAgarrarDos = new AccionAgarrar(unItemPala)
