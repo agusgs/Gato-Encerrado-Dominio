@@ -6,7 +6,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class Inventario {
 	
-	ArrayList<Item> items
+	ArrayList<Accion> items
 	int maxCantidad
 	
 	new(){
@@ -14,7 +14,7 @@ class Inventario {
 		this.maxCantidad = 15
 	}
 	
-	def agregarItem(Item i) {
+	def agregarItem(Accion i) {
 		this.items.add(i)
 	}
 	

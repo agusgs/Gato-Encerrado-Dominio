@@ -32,6 +32,7 @@ class Laberinto {
 	
 	/**
 	 * PRE: la habitacion hacia donde nos movemos debe ser valida
+	 * PARAM: indexNuevaUbicacion numero de la habitacion a la que se quiere avanzar
 	 */
 	def void moverHabitacionActualA(int indexNuevaUbicacion) {
 		var Habitacion hab = this.getHabitacion(indexHabitacionActual)
@@ -48,11 +49,13 @@ class Laberinto {
 		this.inventario = new Inventario()
 	}
 	
-	def tomarItem(int indexHab) {
-		var hab = getHabitacion(indexHab)
+	/**
+	 * Se quita el elemento de la habitacion y se agrega al inventario
+	 */
+	def tomarItem(Habitacion hab) {
 		if (!hab.acciones.isEmpty){
-			var accion = hab.acciones.remove(0)
-			//this.inventario.agregarItem(accion.getItem)
+			var Accion accion = hab.acciones.remove(0)
+			this.inventario.agregarItem(accion)
 		}
 			
 	}

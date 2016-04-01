@@ -19,6 +19,10 @@ class Habitacion {
 		this.esInicial = false
 	}
 	
+	def agregarAccionMover(AccionMover accion) {
+		this.movimientos.add(accion)
+	}
+	
 	def agregarAccion(Accion accion) {
 		this.acciones.add(accion)
 	}

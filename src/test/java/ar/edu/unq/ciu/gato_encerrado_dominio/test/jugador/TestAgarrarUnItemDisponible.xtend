@@ -19,7 +19,7 @@ class TestAgarrarUnItemDisponible extends LaberintoSetUp {
 		var hab = unLaberinto.getHabitacion(i)
 		assertEquals(hab.acciones.size(),1)
 		
-		unLaberinto.tomarItem(i)
+		unLaberinto.tomarItem(hab)
 		assertEquals(hab.acciones.size(),0)
 		assertEquals(unLaberinto.getInventario().items.size(),1)
 		
