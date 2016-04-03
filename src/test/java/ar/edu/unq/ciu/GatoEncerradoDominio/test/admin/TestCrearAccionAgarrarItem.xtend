@@ -1,13 +1,13 @@
-package ar.edu.unq.ciu.gato_encerrado_dominio.test.admin
+package ar.edu.unq.ciu.GatoEncerradoDominio.test.admin
 
 import org.junit.Before
 import org.junit.Test
 
 import static org.junit.Assert.*;
-import ar.edu.unq.ciu.gato_encerrado_dominio.Accion
-import ar.edu.unq.ciu.gato_encerrado_dominio.Habitacion
-import ar.edu.unq.ciu.gato_encerrado_dominio.AccionAgarrar
-import ar.edu.unq.ciu.gato_encerrado_dominio.Item
+import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
+import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
+import ar.edu.unq.ciu.GatoEncerradoDominio.AccionAgarrar
+import ar.edu.unq.ciu.GatoEncerradoDominio.Item
 
 class TestCrearAccionAgarrarItem {
 	

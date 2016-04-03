@@ -1,4 +1,4 @@
-package ar.edu.unq.ciu.gato_encerrado_dominio
+package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors

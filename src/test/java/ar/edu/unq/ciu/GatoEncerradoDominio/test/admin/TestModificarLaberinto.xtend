@@ -1,10 +1,10 @@
-package ar.edu.unq.ciu.gato_encerrado_dominio.test.admin
+package ar.edu.unq.ciu.GatoEncerradoDominio.test.admin
 
 import org.junit.Before
 import org.junit.Test
 import static org.junit.Assert.*;
-import ar.edu.unq.ciu.gato_encerrado_dominio.Habitacion
-import ar.edu.unq.ciu.gato_encerrado_dominio.Laberinto
+import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
+import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
 
 class TestModificarLaberinto {
 	

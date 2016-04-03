@@ -1,10 +1,10 @@
-package ar.edu.unq.ciu.gato_encerrado_dominio.test.jugador
+package ar.edu.unq.ciu.GatoEncerradoDominio.test.jugador
 
-import ar.edu.unq.ciu.gato_encerrado_dominio.Accion
-import ar.edu.unq.ciu.gato_encerrado_dominio.AccionAgarrar
-import ar.edu.unq.ciu.gato_encerrado_dominio.Habitacion
-import ar.edu.unq.ciu.gato_encerrado_dominio.Item
-import ar.edu.unq.ciu.gato_encerrado_dominio.Laberinto
+import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
+import ar.edu.unq.ciu.GatoEncerradoDominio.AccionAgarrar
+import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
+import ar.edu.unq.ciu.GatoEncerradoDominio.Item
+import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
 import org.junit.Before
 
 abstract class LaberintoSetUp {

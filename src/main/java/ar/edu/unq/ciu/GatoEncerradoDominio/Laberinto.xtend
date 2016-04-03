@@ -1,4 +1,4 @@
-package ar.edu.unq.ciu.gato_encerrado_dominio
+package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.ArrayList
@@ -12,7 +12,12 @@ class Laberinto {
 	ArrayList<Habitacion> habitaciones
 	int indexHabitacionActual
 	Inventario inventario
-	
+
+    new(){
+        this.habitaciones = new ArrayList()
+        this.indexHabitacionActual = 0
+        this.inventario = null
+    }
 	new (String n){
 		this.nombre = n
 		this.habitaciones = new ArrayList()

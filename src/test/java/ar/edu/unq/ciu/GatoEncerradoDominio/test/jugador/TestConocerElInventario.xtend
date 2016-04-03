@@ -1,6 +1,6 @@
-package ar.edu.unq.ciu.gato_encerrado_dominio.test.jugador
+package ar.edu.unq.ciu.GatoEncerradoDominio.test.jugador
 
-import ar.edu.unq.ciu.gato_encerrado_dominio.Inventario
+import ar.edu.unq.ciu.GatoEncerradoDominio.Inventario
 import static org.junit.Assert.*;
 import org.junit.Test
 
