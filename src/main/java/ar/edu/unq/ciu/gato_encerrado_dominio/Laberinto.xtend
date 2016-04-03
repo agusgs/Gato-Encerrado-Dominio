@@ -1,9 +1,11 @@
 package ar.edu.unq.ciu.gato_encerrado_dominio
 
-import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.ArrayList
+import org.uqbar.commons.utils.Observable
 
 @Accessors
+@Observable
 class Laberinto {
 	
 	String nombre
