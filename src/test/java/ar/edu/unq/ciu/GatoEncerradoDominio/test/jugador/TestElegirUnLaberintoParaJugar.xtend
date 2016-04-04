@@ -9,7 +9,7 @@ class TestElegirUnLaberintoParaJugar extends LaberintoSetUp {
 	 * 
 	 */
 	@Test
-	def testElegirUnLaberintoParaJugar(){
+	def void testElegirUnLaberintoParaJugar(){
 		unLaberinto.comenzarJuego()
 		//NO SÈ COMO ASSERTAR  !!!!!!!!!!
 	}
