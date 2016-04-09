@@ -3,12 +3,11 @@ package ar.edu.unq.ciu.GatoEncerradoDominio
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
-class AccionMover{
+class AccionMover extends Accion{
 	
-	int indexSiguienteHabitacion
+	Habitacion hab
 	
-	new(int unaHabitacion) {
-		this.indexSiguienteHabitacion = unaHabitacion
+	new() {
 	}
 	
 }

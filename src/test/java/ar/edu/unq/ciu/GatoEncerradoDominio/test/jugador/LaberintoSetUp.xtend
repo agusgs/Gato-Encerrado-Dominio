@@ -87,18 +87,6 @@ abstract class LaberintoSetUp {
 		habitacionCinco.agregarAccion(accionAgarrarCinco)
 		habitacionSiete.agregarAccion(accionAgarrarSiete)
 		
-		habitacionCero.agregarPuenteA(1)
-		habitacionCero.agregarPuenteA(2)
-		
-		habitacionUno.agregarPuenteA(0)
-		habitacionUno.agregarPuenteA(3)
-		
-		habitacionTres.agregarPuenteA(1)
-		habitacionTres.agregarPuenteA(6)
-		
-		habitacionCuatro.agregarPuenteA(7)
-		
-		habitacionSiete.agregarPuenteA(4)
 		
 		unLaberinto.agregarHabitacion(habitacionCero)
 		unLaberinto.agregarHabitacion(habitacionUno)

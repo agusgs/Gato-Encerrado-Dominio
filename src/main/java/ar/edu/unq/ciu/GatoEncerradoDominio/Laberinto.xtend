@@ -41,11 +41,14 @@ class Laberinto {
 	 * PRE: la habitacion hacia donde nos movemos debe ser valida
 	 * PARAM: indexNuevaUbicacion numero de la habitacion a la que se quiere avanzar
 	 */
+	
 	def void moverHabitacionActualA(int indexNuevaUbicacion) {
+		/*
 		var Habitacion hab = this.getHabitacion(posicionActual())
 		if (hab.mePuedoMoverAHabitacion(indexNuevaUbicacion))
 			indexHabitacionActual = indexNuevaUbicacion
 		//else ..... DEFINIR SI DEBO CONTEMPLAR ESTA OPCIoN.... lanzar excepcion o que
+		*/
 	}
 	
 	def Habitacion getHabitacion(int index){
