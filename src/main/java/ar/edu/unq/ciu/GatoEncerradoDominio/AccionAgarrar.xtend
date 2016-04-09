@@ -6,7 +6,10 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class AccionAgarrar extends Accion {
 	
 	Item item
-	
+	new(){
+
+	}
+
 	new(Item unItem) {
 		item = unItem
 	}

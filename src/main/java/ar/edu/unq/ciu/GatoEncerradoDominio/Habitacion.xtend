@@ -3,18 +3,21 @@ package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
+import java.util.List
 
 @Accessors
+@Observable
 class Habitacion {
 	
 	Boolean esInicial
 	Boolean esFinal
-	ArrayList<Accion> acciones
-	ArrayList<AccionMover> movimientos
+	List<Accion> acciones
+	List<AccionMover> movimientos
 	
 	new (){
-		this.acciones = new ArrayList
-		this.movimientos = new ArrayList
+		this.acciones = new ArrayList<Accion>
+		this.movimientos = new ArrayList<AccionMover>
 		this.esFinal = false
 		this.esInicial = false
 	}

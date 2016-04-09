@@ -5,6 +5,10 @@ import org.uqbar.commons.utils.Observable
 
 @Accessors
 @Observable
-class AccionUsar {
+class AccionUsar extends Accion{
+
+    new(){
+
+    }
 
 }
