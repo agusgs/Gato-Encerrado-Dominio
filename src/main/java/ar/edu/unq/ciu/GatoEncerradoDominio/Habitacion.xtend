@@ -7,35 +7,35 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class Habitacion {
 	
-	Boolean esInicial
-	Boolean esFinal
+	Boolean isInicial
+	Boolean isFinal
+	Boolean isActual
 	ArrayList<Accion> acciones
 	
 	new (){
-		this.acciones = new ArrayList
-		this.esFinal = false
-		this.esInicial = false
+		acciones = new ArrayList
+		isFinal = false
+		isInicial = false
+		isActual = false
 	}
 	
 	def agregarAccion(Accion accion) {
-		this.acciones.add(accion)
+		acciones.add(accion)
 	}
 	
-/*
-	def Boolean mePuedoMoverAHabitacion(int i) {		
-		for (AccionMover am : movimientos) {
-			if (am.indexSiguienteHabitacion.equals(i)){
-				return true
-			}
-		}
-		false
+	def usarAccionAgarrar(Accion accion){
+		accion.usarAccion
+		acciones.add(accion)
 	}
-
 	
-	def void agregarPuenteA(int i) {
-		this.movimientos.add(new AccionMover(i))
+	def usarAccionMover(Accion accion){
+		setIsActual(false)
+		accion.usarAccion
+		acciones.remove(accion)
 	}
-	 
-	*/
 	
+	def usarAccionUsar(Accion accion){
+		accion.usarAccion
+		acciones.remove(accion)
+	}
 }

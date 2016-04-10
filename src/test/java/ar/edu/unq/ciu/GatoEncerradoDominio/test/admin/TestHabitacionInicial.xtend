@@ -16,11 +16,11 @@ class TestHabitacionInicial {
 	@Before
 	def void setUp(){
 		unaHabitacion = new Habitacion
-		unaHabitacion.setEsInicial(true)
+		unaHabitacion.setIsInicial(true)
 	}
 	
 	@Test 
 	def void testHabitacionInicial() {
-		assertTrue(unaHabitacion.getEsInicial)
+		assertTrue(unaHabitacion.getIsInicial)
 	}
 }

@@ -22,7 +22,7 @@ class Jugador {
 	
 	def abandonarLaberinto(Laberinto laberinto) {
 		this.laberintoActual = null
-		if(laberinto.getHabitacionActual().esFinal)
+		if(laberinto.getHabitacionActual().isFinal)
 			this.laberintosSuperados.add(laberinto)
 		else
 			this.laberintosAbandonados.add(laberinto)
