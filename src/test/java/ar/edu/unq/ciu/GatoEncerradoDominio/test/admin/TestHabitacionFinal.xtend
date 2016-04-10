@@ -13,11 +13,11 @@ class TestHabitacionFinal {
 	@Before
 	def void setUp(){
 		unaHabitacion = new Habitacion
-		unaHabitacion.setEsFinal(true)
+		unaHabitacion.setIsFinal(true)
 	}
 	
 	@Test 
 	def void testHabitacionInicial() {
-		assertTrue(unaHabitacion.getEsFinal)
+		assertTrue(unaHabitacion.getIsFinal)
 	}
 }

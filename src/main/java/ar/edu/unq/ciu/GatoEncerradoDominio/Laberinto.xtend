@@ -10,18 +10,15 @@ class Laberinto {
 	
 	String nombre
 	ArrayList<Habitacion> habitaciones
-	int indexHabitacionActual
 	Inventario inventario
 
     new(){
         this.habitaciones = new ArrayList()
-        this.indexHabitacionActual = 0
         this.inventario = null
     }
 	new (String n){
 		this.nombre = n
 		this.habitaciones = new ArrayList()
-		this.indexHabitacionActual = 0
 		this.inventario = null
 	}
 	
@@ -32,43 +29,24 @@ class Laberinto {
 	def quitarHabitacion(Habitacion unaHabitacion) {
 		this.habitaciones.remove(unaHabitacion)
 	}
-	
-	def int posicionActual() {
-		indexHabitacionActual
+			
+	def Habitacion getHabitacionInicial(){
+		for(Habitacion hab: habitaciones){
+			if(hab.isInicial)
+				return hab	
+		}
 	}
-	
-	/**
-	 * PRE: la habitacion hacia donde nos movemos debe ser valida
-	 * PARAM: indexNuevaUbicacion numero de la habitacion a la que se quiere avanzar
-	 */
-	def void moverHabitacionActualA(int indexNuevaUbicacion) {
-		var Habitacion hab = this.getHabitacion(posicionActual())
-		if (hab.mePuedoMoverAHabitacion(indexNuevaUbicacion))
-			indexHabitacionActual = indexNuevaUbicacion
-		//else ..... DEFINIR SI DEBO CONTEMPLAR ESTA OPCIoN.... lanzar excepcion o que
-	}
-	
-	def Habitacion getHabitacion(int index){
-		this.habitaciones.get(index)
-	}
-	
+
 	def comenzarJuego() {
 		this.inventario = new Inventario()
-	}
-	
-	/**
-	 * Se quita el elemento de la habitacion y se agrega al inventario
-	 */
-	def tomarItem(Habitacion hab) {
-		if (!hab.acciones.isEmpty){
-			var Accion accion = hab.acciones.remove(0)
-			this.inventario.agregarItem(accion)
-		}
-			
+		getHabitacionInicial.setIsActual(true)
 	}
 	
 	def Habitacion getHabitacionActual(){
-		this.getHabitacion(this.posicionActual)
+		for(Habitacion hab: habitaciones){
+			if(hab.isActual)
+				return hab	
+		}
 	}
 	
 }

@@ -2,62 +2,46 @@ package ar.edu.unq.ciu.GatoEncerradoDominio.test.jugador
 
 import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
 import ar.edu.unq.ciu.GatoEncerradoDominio.AccionAgarrar
+import ar.edu.unq.ciu.GatoEncerradoDominio.AccionUsar
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
-import ar.edu.unq.ciu.GatoEncerradoDominio.Item
 import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
 import org.junit.Before
+import ar.edu.unq.ciu.GatoEncerradoDominio.AccionMover
 
 abstract class LaberintoSetUp {
 		
 	protected Laberinto unLaberinto
 	protected Laberinto otroLaberinto
 	
-	Habitacion habitacionUnica	
-	Habitacion habitacionCero	
-	Habitacion habitacionUno
-	Habitacion habitacionDos
-	Habitacion habitacionTres
-	Habitacion habitacionCuatro
-	Habitacion habitacionCinco
-	Habitacion habitacionSeis
-	Habitacion habitacionSiete
-	Habitacion habitacionOcho
-	Habitacion habitacionNueve
+	protected Habitacion habitacionUnica	
+	protected Habitacion habitacionCero	
+	protected Habitacion habitacionUno
+	protected Habitacion habitacionDos
+	protected Habitacion habitacionTres
+	protected Habitacion habitacionCuatro
+	protected Habitacion habitacionCinco
+	protected Habitacion habitacionSeis
+	protected Habitacion habitacionSiete
+	protected Habitacion habitacionOcho
+	protected Habitacion habitacionNueve
 	
-	Item unItemCuchillo
-	Item unItemPala
-	Item unItemMadera
-	Item unItemPiedra
+	Accion unItemCuchillo
+	Accion unItemPala
+	Accion unItemMadera
+	Accion unItemPiedra
 	
-	Accion accionAgarrarUno
+	protected Accion accionAgarrarUno
 	Accion accionAgarrarDos
 	Accion accionAgarrarCinco
 	Accion accionAgarrarSiete
-	
-	Accion accionMoverTres
-	Accion accionMoverCinco
-	Accion accionMoverSeis
-	Accion accionMoverNueve
-	
-	Accion accionUsarItemTres
-	Accion accionUsarItemCuatro
-	Accion accionUsarItemSeis
-	Accion accionUsarItemNueve
-	
-	/**
-	 * Se construye el laberinto de ejemplo que se da en el enunciado para utilizarlo en los test
-	 */
+	protected AccionMover accionMoverTres
+
 	@Before
 	def void setUp(){
 		
 		unLaberinto = new Laberinto("Laberinto del Minotauro")
 		otroLaberinto = new Laberinto("Laberinto Casa")
-		
-		unItemCuchillo = new Item
-		unItemPala = new Item
-		unItemMadera = new Item
-		unItemPiedra = new Item
-		
+
 		habitacionCero = new Habitacion
 		habitacionUno = new Habitacion
 		habitacionDos = new Habitacion
@@ -68,37 +52,33 @@ abstract class LaberintoSetUp {
 		habitacionSiete = new Habitacion
 		habitacionOcho = new Habitacion
 		habitacionNueve = new Habitacion
+
+		unItemCuchillo = new AccionMover(habitacionTres)
+		unItemPala = new AccionUsar
+		unItemMadera = new AccionMover
+		unItemPiedra = new AccionUsar
 		
-		habitacionCero.esInicial = true
-		habitacionNueve.esFinal = true
+		habitacionCero.isInicial = true
+		habitacionNueve.isFinal = true
 		
 		habitacionUnica = new Habitacion
-		habitacionUnica .esInicial = true
-		habitacionUnica.esFinal = true
+		habitacionUnica.isInicial = true
+		habitacionUnica.isFinal = true
 		otroLaberinto.agregarHabitacion(habitacionUnica)
 		
 		accionAgarrarUno = new AccionAgarrar(unItemCuchillo)
 		accionAgarrarDos = new AccionAgarrar(unItemPala)
 		accionAgarrarCinco = new AccionAgarrar(unItemMadera)
 		accionAgarrarSiete = new AccionAgarrar(unItemPiedra)
+		accionMoverTres = new AccionMover
+		accionMoverTres.setHabitacion(habitacionTres)
+		habitacionCero.agregarAccion(accionMoverTres)
 		
-		habitacionUno.agregarAccion(accionAgarrarUno)
+		habitacionCero.agregarAccion(accionAgarrarUno)
 		habitacionDos.agregarAccion(accionAgarrarDos)
 		habitacionCinco.agregarAccion(accionAgarrarCinco)
 		habitacionSiete.agregarAccion(accionAgarrarSiete)
 		
-		habitacionCero.agregarPuenteA(1)
-		habitacionCero.agregarPuenteA(2)
-		
-		habitacionUno.agregarPuenteA(0)
-		habitacionUno.agregarPuenteA(3)
-		
-		habitacionTres.agregarPuenteA(1)
-		habitacionTres.agregarPuenteA(6)
-		
-		habitacionCuatro.agregarPuenteA(7)
-		
-		habitacionSiete.agregarPuenteA(4)
 		
 		unLaberinto.agregarHabitacion(habitacionCero)
 		unLaberinto.agregarHabitacion(habitacionUno)

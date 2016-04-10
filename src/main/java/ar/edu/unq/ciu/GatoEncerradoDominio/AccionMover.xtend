@@ -5,13 +5,17 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class AccionMover extends Accion{
 	
-	int indexSiguienteHabitacion
+	Habitacion habitacion
 
-	new(){
+	new() {
 	}
 
-	new(int unaHabitacion) {
-		this.indexSiguienteHabitacion = unaHabitacion
+	new(Habitacion unaHabitacion) {
+		habitacion = unaHabitacion
+	}
+
+	override usarAccion() {
+		habitacion.setIsActual(true)
 	}
 	
 }

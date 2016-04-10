@@ -11,13 +11,13 @@ class TestCrearAccionMoverAOtraHabitacion {
 	
 	Habitacion unaHabitacion;
 	Habitacion otraHabitacion;
-	AccionMover unaAccionIrOtraHabitacion;
+	Accion unaAccionIrOtraHabitacion;
 	
 	@Before
 	def void setUp(){
 		unaHabitacion = new Habitacion
 		otraHabitacion = new Habitacion
-		unaAccionIrOtraHabitacion = new AccionMover(1)
+		unaAccionIrOtraHabitacion = new AccionMover()
 	}
 	
 	/**
@@ -27,9 +27,9 @@ class TestCrearAccionMoverAOtraHabitacion {
 	 */
 	@Test 
 	def void testHabitacionInicial() {
-		assertEquals(unaHabitacion.getMovimientos.size(),0)
-		unaHabitacion.agregarAccionMover(unaAccionIrOtraHabitacion)
-		assertEquals(unaHabitacion.getMovimientos.size(),1)
+		assertEquals(unaHabitacion.getAcciones.size(),0)
+		unaHabitacion.agregarAccion(unaAccionIrOtraHabitacion)
+		assertEquals(unaHabitacion.getAcciones.size(),1)
 	}
 		
 }

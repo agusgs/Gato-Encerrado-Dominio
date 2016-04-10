@@ -10,43 +10,35 @@ import java.util.List
 @Observable
 class Habitacion {
 	
-	Boolean esInicial
-	Boolean esFinal
+	Boolean isInicial
+	Boolean isFinal
+	Boolean isActual
 	List<Accion> acciones
-	List<AccionMover> movimientos
 	
 	new (){
-		this.acciones = new ArrayList<Accion>
-		this.movimientos = new ArrayList<AccionMover>
-		this.esFinal = false
-		this.esInicial = false
-	}
-	
-	def agregarAccionMover(AccionMover accion) {
-		this.movimientos.add(accion)
+		acciones = new ArrayList
+		isFinal = false
+		isInicial = false
+		isActual = false
 	}
 	
 	def agregarAccion(Accion accion) {
-		this.acciones.add(accion)
+		acciones.add(accion)
 	}
 	
-	def Boolean mePuedoMoverAHabitacion(int i) {
-		/*
-		this.movimientos.forEach[m|
-			if m.indexSiguienteHabitacion.equals(i)
-		]
-		*/
-		
-		for (AccionMover am : movimientos) {
-			if (am.indexSiguienteHabitacion.equals(i)){
-				return true
-			}
-		}
-		false
+	def usarAccionAgarrar(Accion accion){
+		accion.usarAccion
+		acciones.add(accion)
 	}
 	
-	def void agregarPuenteA(int i) {
-		this.movimientos.add(new AccionMover(i))
+	def usarAccionMover(Accion accion){
+		setIsActual(false)
+		accion.usarAccion
+		acciones.remove(accion)
 	}
 	
+	def usarAccionUsar(Accion accion){
+		accion.usarAccion
+		acciones.remove(accion)
+	}
 }
