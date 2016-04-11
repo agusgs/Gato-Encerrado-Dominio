@@ -49,5 +49,8 @@ class Laberinto {
 				return hab	
 		}
 	}
-	
+
+    def cantidadDeHabitaciones(){
+        return habitaciones.size
+    }
 }
