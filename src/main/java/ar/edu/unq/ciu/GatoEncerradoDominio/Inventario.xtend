@@ -1,12 +1,13 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
+import java.util.List
 import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class Inventario {
 	
-	ArrayList<Accion> items
+	List<Accion> items
 	int maxCantidad
 	
 	new(){
