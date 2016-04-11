@@ -18,7 +18,7 @@ class TestCrearAccionUsarItem {
 	def void setUp(){
 		unItemLlave = new AccionMover()
 		unaAccionUsarElem = new AccionUsar(unItemLlave)
-		unaHabitacion = new Habitacion
+		unaHabitacion = new Habitacion("unaHabitacion")
 	}
 	
 	@Test 

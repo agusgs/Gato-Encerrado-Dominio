@@ -11,12 +11,23 @@ class Habitacion {
 	Boolean isFinal
 	Boolean isActual
 	ArrayList<Accion> acciones
+	String descripcionHabitacion
 	
-	new (){
+	
+	new(){
+		descripcionHabitacion = "defecto"
 		acciones = new ArrayList
 		isFinal = false
 		isInicial = false
-		isActual = false
+		isActual = false 
+	}
+	
+	new(String descripcion){
+		descripcionHabitacion = descripcion
+		acciones = new ArrayList
+		isFinal = false
+		isInicial = false
+		isActual = false 
 	}
 	
 	def agregarAccion(Accion accion) {
