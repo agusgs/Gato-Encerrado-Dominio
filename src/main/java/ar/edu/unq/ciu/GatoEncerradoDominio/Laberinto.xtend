@@ -2,6 +2,7 @@ package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.ArrayList
+import java.util.List
 import org.uqbar.commons.utils.Observable
 
 @Accessors
@@ -9,11 +10,11 @@ import org.uqbar.commons.utils.Observable
 class Laberinto {
 	
 	String nombre
-	ArrayList<Habitacion> habitaciones
+	List<Habitacion> habitaciones
 	Inventario inventario
 
     new(){
-        this.habitaciones = new ArrayList()
+        this.habitaciones = new ArrayList<Habitacion>()
         this.inventario = null
     }
 	new (String n){
@@ -25,7 +26,7 @@ class Laberinto {
 	def agregarHabitacion(Habitacion unaHabitacion) {
 		this.habitaciones.add(unaHabitacion)
 	}
-	
+
 	def quitarHabitacion(Habitacion unaHabitacion) {
 		this.habitaciones.remove(unaHabitacion)
 	}

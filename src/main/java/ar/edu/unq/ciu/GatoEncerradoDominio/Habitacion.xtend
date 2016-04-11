@@ -1,6 +1,5 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
-
 import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
@@ -10,6 +9,7 @@ import java.util.List
 @Observable
 class Habitacion {
 	
+	String nombre
 	Boolean isInicial
 	Boolean isFinal
 	Boolean isActual
