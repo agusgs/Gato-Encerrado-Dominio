@@ -8,14 +8,14 @@ import org.uqbar.commons.utils.Observable
 class AccionMover extends Accion{
 	
 	Habitacion habitacion
-	
+
 	new() {
 	}
-	
+
 	new(Habitacion unaHabitacion) {
 		habitacion = unaHabitacion
 	}
-	
+
 	override usarAccion() {
 		habitacion.setIsActual(true)
 	}
