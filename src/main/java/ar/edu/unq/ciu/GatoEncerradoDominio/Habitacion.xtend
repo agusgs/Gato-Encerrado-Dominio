@@ -1,16 +1,19 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
-
 import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
+import java.util.List
 
 @Accessors
+@Observable
 class Habitacion {
 	
+	String nombre
 	Boolean isInicial
 	Boolean isFinal
 	Boolean isActual
-	ArrayList<Accion> acciones
+	List<Accion> acciones
 	
 	new (){
 		acciones = new ArrayList
@@ -37,5 +40,9 @@ class Habitacion {
 	def usarAccionUsar(Accion accion){
 		accion.usarAccion
 		acciones.remove(accion)
+	}
+
+	def quitarAccion(Accion unaAccion){
+		acciones.remove(unaAccion)
 	}
 }

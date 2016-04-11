@@ -8,17 +8,18 @@ import org.uqbar.commons.utils.Observable
 class AccionUsar extends Accion{
 	
 	Item item
-	
+	String nombre
+
 	new(){
 	}
-	
+
 	new(Accion unItem) {
 		//item = unItem
 	}
-	
+
 	override usarAccion() {
 		item.getAccion.usarAccion
 	}
-	
+
 
 }

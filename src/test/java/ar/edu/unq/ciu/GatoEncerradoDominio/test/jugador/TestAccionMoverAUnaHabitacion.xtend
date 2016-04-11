@@ -7,7 +7,6 @@ class TestAccionMoverAUnaHabitacion extends LaberintoSetUp {
 	
 	@Test
 	def void testMover(){
-		
 		unLaberinto.comenzarJuego
 		assertEquals(unLaberinto.getHabitacionActual,habitacionCero)
 		habitacionCero.usarAccionMover(accionMoverTres)
