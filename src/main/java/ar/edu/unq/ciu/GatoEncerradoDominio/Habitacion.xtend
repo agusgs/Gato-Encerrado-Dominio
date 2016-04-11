@@ -41,4 +41,8 @@ class Habitacion {
 		accion.usarAccion
 		acciones.remove(accion)
 	}
+
+	def quitarAccion(Accion unaAccion){
+		acciones.remove(unaAccion)
+	}
 }

@@ -1,9 +1,12 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.UserException
+import static org.uqbar.commons.model.ObservableUtils.*
+
 import java.util.ArrayList
 import java.util.List
-import org.uqbar.commons.utils.Observable
 
 @Accessors
 @Observable
@@ -22,7 +25,15 @@ class Laberinto {
 		this.habitaciones = new ArrayList()
 		this.inventario = null
 	}
-	
+
+    def setNombre(String nombreNuevo){
+        if (nombreNuevo == "")
+            throw new UserException("Debe completar el nombre del Laberinto")
+
+        this.nombre = nombreNuevo
+        firePropertyChanged(this, "nombre", this.nombre)
+    }
+
 	def agregarHabitacion(Habitacion unaHabitacion) {
 		this.habitaciones.add(unaHabitacion)
 	}
@@ -44,8 +55,7 @@ class Laberinto {
 	}
 	
 	def Habitacion getHabitacionActual(){
-		for(Habitacion hab: habitaciones){
-			if(hab.isActual)
+		for(Habitacion hab: habitaciones){if(hab.isActual)
 				return hab	
 		}
 	}

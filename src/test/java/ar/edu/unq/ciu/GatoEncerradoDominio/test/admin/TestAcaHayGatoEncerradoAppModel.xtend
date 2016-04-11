@@ -20,6 +20,7 @@ class TestAcaHayGatoEncerradoAppModel {
         appModel.setLaberintoSeleccionado(lab1)
 
         var cantAntesDeCrearHabitacion = appModel.getLaberintoSeleccionado.cantidadDeHabitaciones()
+        appModel.nuevaHabitacion = "hab1"
         appModel.crearHabitacion()
         var cantDespuesDeCrearHabitacion = appModel.getLaberintoSeleccionado.cantidadDeHabitaciones()
 
