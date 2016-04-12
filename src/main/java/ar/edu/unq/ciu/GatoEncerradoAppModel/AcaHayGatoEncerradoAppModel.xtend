@@ -1,4 +1,4 @@
-package ar.edu.unq.ciu.GatoEncerradoDominio
+package ar.edu.unq.ciu.GatoEncerradoAppModel
 
 import org.eclipse.xtend.lib.annotations.Accessors
 
@@ -13,15 +13,15 @@ import java.util.ArrayList
 @Observable
 class AcaHayGatoEncerradoAppModel {
 
-    List<Laberinto> laberintos
-    Laberinto laberintoSeleccionado
-    Habitacion habitacionSeleccionada
-    Accion accionSeleccionada
+    List<ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto> laberintos
+    ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto laberintoSeleccionado
+    ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion habitacionSeleccionada
+    ar.edu.unq.ciu.GatoEncerradoDominio.Accion accionSeleccionada
     String nuevaHabitacion
     String nuevoLaberinto
 
     new(){
-        laberintos = new ArrayList<Laberinto>()
+        laberintos = new ArrayList<ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto>()
     }
 
     def crearHabitacion(){
@@ -29,7 +29,7 @@ class AcaHayGatoEncerradoAppModel {
         if(nuevaHabitacion == null)
             throw new UserException("El nombre de la habitacion no puede estar vacio")
 
-        var habitacionNueva = new Habitacion
+        var habitacionNueva = new ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 
         habitacionNueva.setNombre(nuevaHabitacion)
 
@@ -51,7 +51,7 @@ class AcaHayGatoEncerradoAppModel {
         if(nuevoLaberinto == null)
             throw new UserException("El nombre del laberinto no puede estar vacio")
 
-        var laberintoNuevo = new Laberinto
+        var laberintoNuevo = new ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
         laberintoNuevo.setNombre(nuevoLaberinto)
         laberintos.add(laberintoNuevo)
         laberintoSeleccionado = laberintoNuevo

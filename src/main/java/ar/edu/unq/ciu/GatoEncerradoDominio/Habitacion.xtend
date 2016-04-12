@@ -4,6 +4,7 @@ import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import java.util.List
+import static org.uqbar.commons.model.ObservableUtils.*
 
 @Accessors
 @Observable
@@ -31,7 +32,8 @@ class Habitacion {
 	}
 	
 	def agregarAccion(Accion accion) {
-		acciones.add(accion)
+		acciones.add(accion)		
+		firePropertyChanged(this, "acciones", this.acciones)
 	}
 	
 	def usarAccionAgarrar(Accion accion){

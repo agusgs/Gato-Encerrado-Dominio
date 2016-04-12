@@ -15,6 +15,10 @@ class AccionMover extends Accion{
 	new(Habitacion unaHabitacion) {
 		habitacion = unaHabitacion
 	}
+	
+	override getNombre() {
+		"Ir a " + habitacion.nombre
+	}
 
 	override usarAccion() {
 		habitacion.setIsActual(true)
