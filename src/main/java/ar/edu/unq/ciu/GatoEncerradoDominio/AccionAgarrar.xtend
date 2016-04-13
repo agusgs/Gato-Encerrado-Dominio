@@ -8,7 +8,6 @@ import org.uqbar.commons.utils.Observable
 class AccionAgarrar extends Accion {
 	
 	Item item
-	String nombre
 
 	new() {
 	}
