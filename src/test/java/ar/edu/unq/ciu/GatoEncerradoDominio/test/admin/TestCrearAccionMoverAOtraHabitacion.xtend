@@ -15,8 +15,8 @@ class TestCrearAccionMoverAOtraHabitacion {
 	
 	@Before
 	def void setUp(){
-		unaHabitacion = new Habitacion
-		otraHabitacion = new Habitacion
+		unaHabitacion = new Habitacion("unaHabitcion")
+		otraHabitacion = new Habitacion("otraHabitacion")
 		unaAccionIrOtraHabitacion = new AccionMover()
 	}
 	

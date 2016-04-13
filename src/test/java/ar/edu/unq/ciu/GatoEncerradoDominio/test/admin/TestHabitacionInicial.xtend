@@ -15,7 +15,7 @@ class TestHabitacionInicial {
 	
 	@Before
 	def void setUp(){
-		unaHabitacion = new Habitacion
+		unaHabitacion = new Habitacion("unaHabitacion")
 		unaHabitacion.setIsInicial(true)
 	}
 	

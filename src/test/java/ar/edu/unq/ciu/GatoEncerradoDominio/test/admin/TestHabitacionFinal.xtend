@@ -12,7 +12,7 @@ class TestHabitacionFinal {
 	
 	@Before
 	def void setUp(){
-		unaHabitacion = new Habitacion
+		unaHabitacion = new Habitacion("unaHabitacion")
 		unaHabitacion.setIsFinal(true)
 	}
 	

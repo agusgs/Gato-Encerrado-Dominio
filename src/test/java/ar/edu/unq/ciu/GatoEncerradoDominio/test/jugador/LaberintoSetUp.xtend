@@ -42,16 +42,16 @@ abstract class LaberintoSetUp {
 		unLaberinto = new Laberinto("Laberinto del Minotauro")
 		otroLaberinto = new Laberinto("Laberinto Casa")
 
-		habitacionCero = new Habitacion
-		habitacionUno = new Habitacion
-		habitacionDos = new Habitacion
-		habitacionTres = new Habitacion
-		habitacionCuatro = new Habitacion
-		habitacionCinco = new Habitacion
-		habitacionSeis = new Habitacion
-		habitacionSiete = new Habitacion
-		habitacionOcho = new Habitacion
-		habitacionNueve = new Habitacion
+		habitacionCero = new Habitacion("cero")
+		habitacionUno = new Habitacion("uno")
+		habitacionDos = new Habitacion("dos")
+		habitacionTres = new Habitacion("tres")
+		habitacionCuatro = new Habitacion("cuatro")
+		habitacionCinco = new Habitacion("cinco")
+		habitacionSeis = new Habitacion("seis")
+		habitacionSiete = new Habitacion("siete")
+		habitacionOcho = new Habitacion("ocho")
+		habitacionNueve = new Habitacion("nueve")
 
 		unItemCuchillo = new AccionMover(habitacionTres)
 		unItemPala = new AccionUsar
@@ -61,7 +61,7 @@ abstract class LaberintoSetUp {
 		habitacionCero.isInicial = true
 		habitacionNueve.isFinal = true
 		
-		habitacionUnica = new Habitacion
+		habitacionUnica = new Habitacion("unica")
 		habitacionUnica.isInicial = true
 		habitacionUnica.isFinal = true
 		otroLaberinto.agregarHabitacion(habitacionUnica)
