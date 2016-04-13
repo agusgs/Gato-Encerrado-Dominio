@@ -20,6 +20,9 @@ class TestAcaHayGatoEncerradoAppModel {
         appModel.setLaberintoSeleccionado(lab1)
         appModel.nuevaHabitacion = null
 
+        var habitacionSeleccionadaAntes = appModel.habitacionSeleccionada
+        var cantidadDeHabitacionesAntes = appModel.laberintoSeleccionado.cantidadDeHabitaciones
+
         var String exeption = null
 
         try {
@@ -29,6 +32,8 @@ class TestAcaHayGatoEncerradoAppModel {
         }
 
         assertEquals(exeption, "El nombre de la habitacion no puede estar vacio")
+        assertEquals(appModel.habitacionSeleccionada, habitacionSeleccionadaAntes)
+        assertEquals(appModel.laberintoSeleccionado.cantidadDeHabitaciones, cantidadDeHabitacionesAntes)
     }
 
     @Test
@@ -37,32 +42,37 @@ class TestAcaHayGatoEncerradoAppModel {
         var appModel = new AcaHayGatoEncerradoAppModel()
         var lab1 = new Laberinto
 
-        appModel.setLaberintos(newArrayList(lab1))
-        appModel.setLaberintoSeleccionado(lab1)
+        appModel.laberintos = newArrayList(lab1)
+        appModel.laberintoSeleccionado = lab1
 
         var cantAntesDeCrearHabitacion = appModel.getLaberintoSeleccionado.cantidadDeHabitaciones()
+
         appModel.nuevaHabitacion = "hab1"
         appModel.crearHabitacion()
+
         var cantDespuesDeCrearHabitacion = appModel.getLaberintoSeleccionado.cantidadDeHabitaciones()
 
         assertEquals((cantDespuesDeCrearHabitacion - cantAntesDeCrearHabitacion), 1)
     }
 
-//    def crearHabitacion(){
-//
-//        if(nuevaHabitacion == null)
-//            throw new UserException("El nombre de la habitacion no puede estar vacio")
-//
-//        var habitacionNueva = new Habitacion
-//
-//        habitacionNueva.setNombre(nuevaHabitacion)
-//
-//        laberintoSeleccionado.agregarHabitacion(habitacionNueva)
-//        habitacionSeleccionada = habitacionNueva
-//        nuevaHabitacion = null
-//
-//        firePropertyChanged(this, "laberintoSeleccionado", this.laberintoSeleccionado)
-//    }
+    @Test
+    def cuandoCreoUnaHabitacionNuevaLaHabitacionSeleccionadaDebeCambiarPorUnaNueva(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+        var lab1 = new Laberinto
+
+        appModel.laberintos = newArrayList(lab1)
+        appModel.laberintoSeleccionado = lab1
+
+        var habitacionSeleccionadaAntes = appModel.habitacionSeleccionada
+
+        appModel.nuevaHabitacion = "hab1"
+        appModel.crearHabitacion()
+
+        assertNotSame(appModel.habitacionSeleccionada, habitacionSeleccionadaAntes)
+    }
+
+
 //
 //    def quitarHabitacion(){
 //        laberintoSeleccionado.quitarHabitacion(habitacionSeleccionada)
