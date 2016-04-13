@@ -19,7 +19,7 @@ class TestCrearAccionAgarrarItem {
 	def void setUp(){
 		unItemLlave = new AccionMover()
 		unaAccionAgarrarElem = new AccionAgarrar(unItemLlave)
-		unaHabitacion = new Habitacion
+		unaHabitacion = new Habitacion("cocina")
 	}
 	
 	@Test 
