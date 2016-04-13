@@ -1,13 +1,12 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio.test.admin
 
-import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
+import ar.edu.unq.ciu.GatoEncerradoAppModel.AcaHayGatoEncerradoAppModel
 import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
 import org.uqbar.commons.model.UserException
-
 import org.junit.Before
 import org.junit.Test
-import static org.junit.Assert.*;
-import ar.edu.unq.ciu.GatoEncerradoDominio.AcaHayGatoEncerradoAppModel
+
+import static org.junit.Assert.*
 
 class TestAcaHayGatoEncerradoAppModel {
 

@@ -14,8 +14,8 @@ class TestModificarLaberinto {
 	
 	@Before
 	def void setUp(){
-		unaHabitacion = new Habitacion
-		unaHabitacion = new Habitacion
+		unaHabitacion = new Habitacion("unaHabitacion")
+		otraHabitacion = new Habitacion("otraHabitacion")
 		unLaberinto = new Laberinto("Robo en el museo")
 	}
 	
