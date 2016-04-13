@@ -8,20 +8,23 @@ import org.uqbar.commons.model.UserException
 
 import java.util.List
 import java.util.ArrayList
+import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
+import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
+import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
 
 @Accessors
 @Observable
 class AcaHayGatoEncerradoAppModel {
 
-    List<ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto> laberintos
-    ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto laberintoSeleccionado
-    ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion habitacionSeleccionada
-    ar.edu.unq.ciu.GatoEncerradoDominio.Accion accionSeleccionada
+    List<Laberinto> laberintos
+    Laberinto laberintoSeleccionado
+    Habitacion habitacionSeleccionada
+    Accion accionSeleccionada
     String nuevaHabitacion
     String nuevoLaberinto
 
     new(){
-        laberintos = new ArrayList<ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto>()
+        laberintos = new ArrayList<Laberinto>()
     }
 
     def crearHabitacion(){
@@ -29,7 +32,7 @@ class AcaHayGatoEncerradoAppModel {
         if(nuevaHabitacion == null)
             throw new UserException("El nombre de la habitacion no puede estar vacio")
 
-        var habitacionNueva = new ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
+        var habitacionNueva = new Habitacion
 
         habitacionNueva.setNombre(nuevaHabitacion)
 
@@ -51,7 +54,7 @@ class AcaHayGatoEncerradoAppModel {
         if(nuevoLaberinto == null)
             throw new UserException("El nombre del laberinto no puede estar vacio")
 
-        var laberintoNuevo = new ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
+        var laberintoNuevo = new Laberinto
         laberintoNuevo.setNombre(nuevoLaberinto)
         laberintos.add(laberintoNuevo)
         laberintoSeleccionado = laberintoNuevo
