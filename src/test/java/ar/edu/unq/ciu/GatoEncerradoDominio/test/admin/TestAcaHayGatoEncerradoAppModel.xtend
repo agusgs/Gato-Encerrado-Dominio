@@ -11,13 +11,13 @@ import static org.junit.Assert.*
 class TestAcaHayGatoEncerradoAppModel {
 
     @Test
-    def cuandoCreoUnaHabitacionConNombreVacioDebeArrojarUnaUserExeptionYNoCrearLaHabitacion(){
+    def noSeDebePoderCrearUnaHabitacionSinNombre(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
         var lab1 = new Laberinto
 
-        appModel.setLaberintos(newArrayList(lab1))
-        appModel.setLaberintoSeleccionado(lab1)
+        appModel.laberintos = newArrayList(lab1)
+        appModel.laberintoSeleccionado = lab1
         appModel.nuevaHabitacion = null
 
         var habitacionSeleccionadaAntes = appModel.habitacionSeleccionada
@@ -69,17 +69,88 @@ class TestAcaHayGatoEncerradoAppModel {
         appModel.nuevaHabitacion = "hab1"
         appModel.crearHabitacion()
 
-        assertNotSame(appModel.habitacionSeleccionada, habitacionSeleccionadaAntes)
+        assertFalse(appModel.habitacionSeleccionada == habitacionSeleccionadaAntes)
     }
 
+    @Test
+    def noSeDebePoderQuitarUnaHabitacionDeUnLaberintoQueNoTenga(){
 
-//
-//    def quitarHabitacion(){
-//        laberintoSeleccionado.quitarHabitacion(habitacionSeleccionada)
-//
-//        firePropertyChanged(this, "laberintoSeleccionado", this.laberintoSeleccionado)
-//    }
-//
+        var appModel = new AcaHayGatoEncerradoAppModel()
+        var lab1 = new Laberinto
+
+        appModel.laberintos = newArrayList(lab1)
+        appModel.laberintoSeleccionado = lab1
+
+        var String exeption = null
+
+        try {
+            appModel.quitarHabitacion()
+        } catch(UserException e) {
+            exeption = e.message
+        }
+
+        assertEquals(exeption, "El laberinto seleccionado no tiene habitaciones para quitar")
+    }
+
+    @Test
+    def noSeDebePoderQuitarUnaHabitacionSiNoHayUnaHabitacionSeleccionada(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+        var lab1 = new Laberinto
+
+        appModel.laberintos = newArrayList(lab1)
+        appModel.laberintoSeleccionado = lab1
+        appModel.nuevaHabitacion = "hab1"
+        appModel.crearHabitacion()
+        appModel.habitacionSeleccionada = null
+
+        var String exeption = null
+
+        try {
+            appModel.quitarHabitacion()
+        } catch(UserException e) {
+            exeption = e.message
+        }
+
+        assertEquals(exeption, "Tiene que haber una habitacion seleccionada para poder quitarla")
+    }
+
+    @Test
+    def siQuitoUnaHabitacionDelLaberintoSeleccionadoEstaNoDebeQuedarSeleccionada(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+        var lab1 = new Laberinto
+
+        appModel.laberintos = newArrayList(lab1)
+        appModel.laberintoSeleccionado = lab1
+        appModel.nuevaHabitacion = "hab1"
+        appModel.crearHabitacion()
+
+        var habitacionSeleccionadaAntesDeQuitar = appModel.habitacionSeleccionada
+
+        appModel.quitarHabitacion()
+
+        assertFalse(appModel.habitacionSeleccionada == habitacionSeleccionadaAntesDeQuitar )
+    }
+
+    @Test
+    def siQuitoUnaHabitacionDelLaberintoSeleccionadoEstaNoDebeEstarEnEl(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+        var lab1 = new Laberinto
+
+        appModel.laberintos = newArrayList(lab1)
+        appModel.laberintoSeleccionado = lab1
+        appModel.nuevaHabitacion = "hab1"
+        appModel.crearHabitacion()
+
+        var habitacionSeleccionadaAntesDeQuitar = appModel.habitacionSeleccionada
+
+        appModel.quitarHabitacion()
+
+        assertFalse(appModel.laberintoSeleccionado.tieneHabitacion(habitacionSeleccionadaAntesDeQuitar))
+    }
+
 //    def crearLaberinto(){
 //
 //        if(nuevoLaberinto == null)

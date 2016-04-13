@@ -44,7 +44,14 @@ class AcaHayGatoEncerradoAppModel {
     }
 
     def quitarHabitacion(){
+        if(laberintoSeleccionado.habitaciones.isEmpty)
+            throw new UserException("El laberinto seleccionado no tiene habitaciones para quitar")
+
+        if(habitacionSeleccionada == null)
+            throw new UserException("Tiene que haber una habitacion seleccionada para poder quitarla")
+
         laberintoSeleccionado.quitarHabitacion(habitacionSeleccionada)
+        habitacionSeleccionada = null
 
         firePropertyChanged(this, "laberintoSeleccionado", this.laberintoSeleccionado)
     }
