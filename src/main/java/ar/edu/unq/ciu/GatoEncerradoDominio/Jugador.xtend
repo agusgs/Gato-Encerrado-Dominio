@@ -2,13 +2,14 @@ package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.ArrayList
+import java.util.List
 
 @Accessors
 class Jugador {
 	
 	Laberinto laberintoActual
-	ArrayList<Laberinto> laberintosAbandonados
-	ArrayList<Laberinto> laberintosSuperados
+	List<Laberinto> laberintosAbandonados
+	List<Laberinto> laberintosSuperados
 	
 	
 	new(){
