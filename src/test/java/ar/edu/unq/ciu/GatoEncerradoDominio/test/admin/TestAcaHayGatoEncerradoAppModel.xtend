@@ -151,7 +151,59 @@ class TestAcaHayGatoEncerradoAppModel {
         assertFalse(appModel.laberintoSeleccionado.tieneHabitacion(habitacionSeleccionadaAntesDeQuitar))
     }
 
-//    def crearLaberinto(){
+    @Test
+    def noSeDebeCrearUnLaberintoSinNombre(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+
+        var cantidadAntesDeNuevoLaberinto = appModel.laberintos.size
+        var seleccionadoAntesDeNuevoLaberinto = appModel.laberintoSeleccionado
+
+        appModel.nuevoLaberinto = null
+
+        var String exception = null
+
+        try {
+            appModel.crearLaberinto()
+        } catch(UserException e) {
+            exception = e.message
+        }
+
+        assertEquals(exception, "El nombre del laberinto no puede estar vacio")
+        assertEquals(appModel.laberintos.size, cantidadAntesDeNuevoLaberinto)
+        assertEquals(appModel.laberintoSeleccionado, seleccionadoAntesDeNuevoLaberinto)
+    }
+
+    @Test
+    def cuandoCreoUnLaberintoNuevoLaCantidadDeLaberintosDebeAumentarEnUno(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+
+        var cantAntesDeCrearLaberinto = appModel.laberintos.size
+
+        appModel.nuevoLaberinto = "nuevo laberinto 1"
+        appModel.crearLaberinto
+
+        var cantDespuesDeCrearLaberinto = appModel.laberintos.size
+
+        assertEquals((cantDespuesDeCrearLaberinto - cantAntesDeCrearLaberinto), 1)
+    }
+
+    @Test
+    def cuandoCreoUnLaberintoNuevoElLaberintoSeleccionadoDebeSerElCreado(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+
+        var nombreLaberintoNuevo = "laberinto nuevo 2"
+
+        appModel.nuevoLaberinto = nombreLaberintoNuevo
+        appModel.crearLaberinto
+
+        assertEquals(appModel.laberintoSeleccionado.nombre, nombreLaberintoNuevo)
+    }
+
+
+    //    def crearLaberinto(){
 //
 //        if(nuevoLaberinto == null)
 //            throw new UserException("El nombre del laberinto no puede estar vacio")
