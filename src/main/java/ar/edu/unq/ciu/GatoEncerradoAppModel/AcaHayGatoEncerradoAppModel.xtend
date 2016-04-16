@@ -29,11 +29,9 @@ class AcaHayGatoEncerradoAppModel {
 
     def crearHabitacion(){
 
-        if(nuevaHabitacion == null)
-            throw new UserException("El nombre de la habitacion no puede estar vacio")
+        validarNuevaHabitacionNoNula()
 
         var habitacionNueva = new Habitacion
-
         habitacionNueva.setNombre(nuevaHabitacion)
 
         laberintoSeleccionado.agregarHabitacion(habitacionNueva)
@@ -44,11 +42,9 @@ class AcaHayGatoEncerradoAppModel {
     }
 
     def quitarHabitacion(){
-        if(laberintoSeleccionado.habitaciones.isEmpty)
-            throw new UserException("El laberinto seleccionado no tiene habitaciones para quitar")
 
-        if(habitacionSeleccionada == null)
-            throw new UserException("Tiene que haber una habitacion seleccionada para poder quitarla")
+        validarLaberintoSeleccionadoSinHabitaciones()
+        validarHabitacionSeleccionadaNoNula()
 
         laberintoSeleccionado.quitarHabitacion(habitacionSeleccionada)
         habitacionSeleccionada = null
@@ -58,8 +54,7 @@ class AcaHayGatoEncerradoAppModel {
 
     def crearLaberinto(){
 
-        if(nuevoLaberinto == null)
-            throw new UserException("El nombre del laberinto no puede estar vacio")
+        validarNuevoLaberintoNoNulo()
 
         var laberintoNuevo = new Laberinto
         laberintoNuevo.setNombre(nuevoLaberinto)
@@ -71,7 +66,11 @@ class AcaHayGatoEncerradoAppModel {
     }
 
     def quitarLaberinto(){
+
+        validarLaberintoSeleccionadoNoNulo()
+
         laberintos.remove(laberintoSeleccionado)
+        laberintoSeleccionado = null
 
         firePropertyChanged(this, "laberintos", this.laberintos)
     }
@@ -82,4 +81,35 @@ class AcaHayGatoEncerradoAppModel {
         firePropertyChanged(this, "habitacionSeleccionada", this.habitacionSeleccionada)
     }
 
+// VALIDACIONES ...
+
+    def validarNuevaHabitacionNoNula(){
+        val mensajeDeExcepcion = "El nombre de la habitacion no puede estar vacio"
+        validarPropiedadNula(nuevaHabitacion, mensajeDeExcepcion)
+    }
+
+    def validarHabitacionSeleccionadaNoNula(){
+        val mensajeDeExcepcion = "Tiene que haber una habitacion seleccionada para poder quitarla"
+        validarPropiedadNula(habitacionSeleccionada, mensajeDeExcepcion)
+    }
+
+    def validarNuevoLaberintoNoNulo(){
+        val mensajeDeExcepcion = "El nombre del laberinto no puede estar vacio"
+        validarPropiedadNula(nuevoLaberinto, mensajeDeExcepcion)
+    }
+
+    def validarLaberintoSeleccionadoNoNulo(){
+        val mensajeDeExcepcion = "No hay ningun laberinto seleccionado"
+        validarPropiedadNula(laberintoSeleccionado , mensajeDeExcepcion)
+    }
+
+    def validarLaberintoSeleccionadoSinHabitaciones(){
+        if(laberintoSeleccionado.habitaciones.isEmpty)
+        throw new UserException("El laberinto seleccionado no tiene habitaciones para quitar")
+    }
+    
+    def validarPropiedadNula(Object propiedad, String mensajeDeExcepcion){
+        if(propiedad == null)
+            throw new UserException(mensajeDeExcepcion)
+    }
 }

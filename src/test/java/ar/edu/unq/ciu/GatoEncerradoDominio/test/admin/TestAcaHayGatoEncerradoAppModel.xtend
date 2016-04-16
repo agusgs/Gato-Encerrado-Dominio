@@ -202,27 +202,62 @@ class TestAcaHayGatoEncerradoAppModel {
         assertEquals(appModel.laberintoSeleccionado.nombre, nombreLaberintoNuevo)
     }
 
+    @Test
+    def cuandoQuitoUnLaberintoDebeEliminarseElLaberintoSeleccionadoDeLaListaDeLaberintos(){
 
-    //    def crearLaberinto(){
-//
-//        if(nuevoLaberinto == null)
-//            throw new UserException("El nombre del laberinto no puede estar vacio")
-//
-//        var laberintoNuevo = new Laberinto
-//        laberintoNuevo.setNombre(nuevoLaberinto)
-//        laberintos.add(laberintoNuevo)
-//        laberintoSeleccionado = laberintoNuevo
-//        nuevoLaberinto = null
-//
-//        firePropertyChanged(this, "laberintos", this.laberintos)
-//    }
-//
-//    def quitarLaberinto(){
-//        laberintos.remove(laberintoSeleccionado)
-//
-//        firePropertyChanged(this, "laberintos", this.laberintos)
-//    }
-//
+        var appModel = new AcaHayGatoEncerradoAppModel()
+
+        val laberinto = new Laberinto
+        laberinto.nombre = "Laberinto 3"
+
+        appModel.laberintos.add(laberinto)
+        appModel.laberintoSeleccionado = laberinto
+
+        appModel.quitarLaberinto
+
+        assertFalse(appModel.laberintos.exists([lab| lab == laberinto]))
+    }
+
+    @Test
+    def cuandoQuitoUnLaberintoElLaberintoSeleccionadoNoDebeSerElMismoQueSeElimino(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+
+        val laberinto = new Laberinto
+        laberinto.nombre = "Laberinto 3"
+
+        appModel.laberintos.add(laberinto)
+        appModel.laberintoSeleccionado = laberinto
+
+        appModel.quitarLaberinto
+
+        assertTrue(appModel.laberintoSeleccionado != laberinto)
+    }
+
+    @Test
+    def noSePuedeQuitarUnLaberintoSiNoHayNingunoSeleccionado(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+
+        val laberinto = new Laberinto
+        laberinto.nombre = "Laberinto 3"
+
+        appModel.laberintos.add(laberinto)
+
+        var cantidadAntesDeQuitarLaberinto = appModel.laberintos.size
+        var exception = ""
+
+        try {
+            appModel.quitarLaberinto
+        } catch(UserException e) {
+            exception = e.message
+        }
+
+        assertEquals("No hay ningun laberinto seleccionado", exception)
+        assertEquals(cantidadAntesDeQuitarLaberinto, appModel.laberintos.size)
+    }
+
+
 //    def quitarAccion(){
 //        habitacionSeleccionada.quitarAccion(accionSeleccionada)
 //
