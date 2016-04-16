@@ -1,17 +1,19 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
 @Accessors
+@Observable
 class AccionAgarrar extends Accion {
 	
-	Accion item
+	Item item
 
 	new() {
 	}
 
 	new(Accion unItem) {
-		item = unItem
+		//item = unItem
 	}
 	
 	override usarAccion() {

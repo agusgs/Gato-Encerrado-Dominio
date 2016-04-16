@@ -4,18 +4,19 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
+import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
 
 @Observable
 @Accessors
 class MoverAppModel {
 	List<Habitacion> habitaciones
-	ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion habitacionActual
-	ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion habitacionSeleccionada
+	Habitacion habitacionActual
+	Habitacion habitacionSeleccionada
 	
 	new(){
 	}
 	
-	def agregarAccionMover(ar.edu.unq.ciu.GatoEncerradoDominio.Accion accionMover){
+	def agregarAccionMover(Accion accionMover){
 		habitacionActual.agregarAccion(accionMover)
 	}
 	
