@@ -257,6 +257,20 @@ class TestAcaHayGatoEncerradoAppModel {
         assertEquals(cantidadAntesDeQuitarLaberinto, appModel.laberintos.size)
     }
 
+    @Test
+    def noSePuedeQuitarUnLaberintoSiNoHay(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+        var exception = ""
+
+        try {
+            appModel.quitarLaberinto
+        } catch(UserException e) {
+            exception = e.message
+        }
+
+        assertEquals("No hay laberintos. Deberias crear uno antes si queres quitarlo ;)", exception)
+    }
 
 //    def quitarAccion(){
 //        habitacionSeleccionada.quitarAccion(accionSeleccionada)

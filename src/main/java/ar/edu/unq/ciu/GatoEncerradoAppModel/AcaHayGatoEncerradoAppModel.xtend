@@ -67,6 +67,7 @@ class AcaHayGatoEncerradoAppModel {
 
     def quitarLaberinto(){
 
+        validarAppModelSinLaberintos()
         validarLaberintoSeleccionadoNoNulo()
 
         laberintos.remove(laberintoSeleccionado)
@@ -104,10 +105,20 @@ class AcaHayGatoEncerradoAppModel {
     }
 
     def validarLaberintoSeleccionadoSinHabitaciones(){
-        if(laberintoSeleccionado.habitaciones.isEmpty)
-        throw new UserException("El laberinto seleccionado no tiene habitaciones para quitar")
+        val mensajeDeExcepcion = "El laberinto seleccionado no tiene habitaciones para quitar"
+        validarPropiedadListaVacia(laberintoSeleccionado.habitaciones, mensajeDeExcepcion)
     }
-    
+
+    def validarAppModelSinLaberintos(){
+        val mensajeDeExcepcion = "No hay laberintos. Deberias crear uno antes si queres quitarlo ;)"
+        validarPropiedadListaVacia(laberintos, mensajeDeExcepcion)
+    }
+
+    def validarPropiedadListaVacia(List<?> propiedadLista, String mensajeDeExcepcion){
+        if(propiedadLista.isEmpty())
+            throw new UserException(mensajeDeExcepcion)
+    }
+
     def validarPropiedadNula(Object propiedad, String mensajeDeExcepcion){
         if(propiedad == null)
             throw new UserException(mensajeDeExcepcion)
