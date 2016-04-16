@@ -77,25 +77,40 @@ class AcaHayGatoEncerradoAppModel {
     }
 
     def quitarAccion(){
+
+        validarHabitacionSeleccionadalSinAcciones()
+        validarAccionSeleccionadoNoNula()
+
         habitacionSeleccionada.quitarAccion(accionSeleccionada)
+        accionSeleccionada = null
 
         firePropertyChanged(this, "habitacionSeleccionada", this.habitacionSeleccionada)
     }
 
 // VALIDACIONES ...
 
+    def validarHabitacionSeleccionadalSinAcciones(){
+        val mensajeDeExcepcion = "No hay acciones. Deberias crear una antes si queres quitarla ;)"
+        validarPropiedadListaVacia(habitacionSeleccionada.acciones, mensajeDeExcepcion)
+    }
+
+    def validarAccionSeleccionadoNoNula(){
+        val mensajeDeExcepcion = "Deberias seleccionar una accion para poder quitarla"
+        validarPropiedadNula(accionSeleccionada, mensajeDeExcepcion)
+    }
+
     def validarNuevaHabitacionNoNula(){
-        val mensajeDeExcepcion = "El nombre de la habitacion no puede estar vacio"
+        val mensajeDeExcepcion = "¿Vas a crear una habitacion sin nombre?... Naaah ponele un nombre mejor :D"
         validarPropiedadNula(nuevaHabitacion, mensajeDeExcepcion)
     }
 
     def validarHabitacionSeleccionadaNoNula(){
-        val mensajeDeExcepcion = "Tiene que haber una habitacion seleccionada para poder quitarla"
+        val mensajeDeExcepcion = "Deberias seleccionar una habitacion para poder quitarla"
         validarPropiedadNula(habitacionSeleccionada, mensajeDeExcepcion)
     }
 
     def validarNuevoLaberintoNoNulo(){
-        val mensajeDeExcepcion = "El nombre del laberinto no puede estar vacio"
+        val mensajeDeExcepcion = "¿Vas a crear una habitacion sin nombre?... Naaah ponele un nombre mejor :D"
         validarPropiedadNula(nuevoLaberinto, mensajeDeExcepcion)
     }
 
@@ -105,7 +120,7 @@ class AcaHayGatoEncerradoAppModel {
     }
 
     def validarLaberintoSeleccionadoSinHabitaciones(){
-        val mensajeDeExcepcion = "El laberinto seleccionado no tiene habitaciones para quitar"
+        val mensajeDeExcepcion = "No hay habitaciones. Deberias crear una antes si queres quitarla ;)"
         validarPropiedadListaVacia(laberintoSeleccionado.habitaciones, mensajeDeExcepcion)
     }
 

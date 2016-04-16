@@ -2,10 +2,12 @@ package ar.edu.unq.ciu.GatoEncerradoDominio.test.admin
 
 import ar.edu.unq.ciu.GatoEncerradoAppModel.AcaHayGatoEncerradoAppModel
 import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
-import org.uqbar.commons.model.UserException
-import org.junit.Before
-import org.junit.Test
+import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
+import ar.edu.unq.ciu.GatoEncerradoDominio.AccionMover
 
+import org.uqbar.commons.model.UserException
+
+import org.junit.Test
 import static org.junit.Assert.*
 
 class TestAcaHayGatoEncerradoAppModel {
@@ -31,7 +33,7 @@ class TestAcaHayGatoEncerradoAppModel {
             exeption = e.message
         }
 
-        assertEquals(exeption, "El nombre de la habitacion no puede estar vacio")
+        assertEquals(exeption, "¿Vas a crear una habitacion sin nombre?... Naaah ponele un nombre mejor :D")
         assertEquals(appModel.habitacionSeleccionada, habitacionSeleccionadaAntes)
         assertEquals(appModel.laberintoSeleccionado.cantidadDeHabitaciones, cantidadDeHabitacionesAntes)
     }
@@ -89,7 +91,7 @@ class TestAcaHayGatoEncerradoAppModel {
             exeption = e.message
         }
 
-        assertEquals(exeption, "El laberinto seleccionado no tiene habitaciones para quitar")
+        assertEquals(exeption, "No hay habitaciones. Deberias crear una antes si queres quitarla ;)")
     }
 
     @Test
@@ -112,7 +114,7 @@ class TestAcaHayGatoEncerradoAppModel {
             exeption = e.message
         }
 
-        assertEquals(exeption, "Tiene que haber una habitacion seleccionada para poder quitarla")
+        assertEquals(exeption, "Deberias seleccionar una habitacion para poder quitarla")
     }
 
     @Test
@@ -169,7 +171,7 @@ class TestAcaHayGatoEncerradoAppModel {
             exception = e.message
         }
 
-        assertEquals(exception, "El nombre del laberinto no puede estar vacio")
+        assertEquals(exception, "¿Vas a crear una habitacion sin nombre?... Naaah ponele un nombre mejor :D")
         assertEquals(appModel.laberintos.size, cantidadAntesDeNuevoLaberinto)
         assertEquals(appModel.laberintoSeleccionado, seleccionadoAntesDeNuevoLaberinto)
     }
@@ -272,9 +274,116 @@ class TestAcaHayGatoEncerradoAppModel {
         assertEquals("No hay laberintos. Deberias crear uno antes si queres quitarlo ;)", exception)
     }
 
-//    def quitarAccion(){
-//        habitacionSeleccionada.quitarAccion(accionSeleccionada)
-//
-//        firePropertyChanged(this, "habitacionSeleccionada", this.habitacionSeleccionada)
-//    }
+    @Test
+    def cuandoQuitoUnaAccionDebeEliminarseLaAccionSeleccionadaDeLasAccionesDeLaHabiracionSeleccionada(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+
+        val accion1 = new AccionMover
+        accion1.nombre = "accion1"
+
+        var hab1 = new Habitacion
+        hab1.nombre = "hab1"
+        hab1.acciones = newArrayList(accion1)
+
+        var lab1 = new Laberinto
+        lab1.nombre = "lab1"
+        lab1.habitaciones = newArrayList(hab1)
+
+        appModel.laberintos = newArrayList(lab1)
+        appModel.laberintoSeleccionado = lab1
+        appModel.habitacionSeleccionada = hab1
+        appModel.accionSeleccionada = accion1
+
+        appModel.quitarAccion
+
+        assertFalse(appModel.habitacionSeleccionada.acciones.exists([accion| accion == accion1]))
+    }
+
+    @Test
+    def cuandoQuitoUnaAccionLaAccionSeleccionadaNoDebeSerLaMismaQueSeElimino(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+
+        val accion1 = new AccionMover
+        accion1.nombre = "accion1"
+
+        var hab1 = new Habitacion
+        hab1.nombre = "hab1"
+        hab1.acciones = newArrayList(accion1)
+
+        var lab1 = new Laberinto
+        lab1.nombre = "lab1"
+        lab1.habitaciones = newArrayList(hab1)
+
+        appModel.laberintos = newArrayList(lab1)
+        appModel.laberintoSeleccionado = lab1
+        appModel.habitacionSeleccionada = hab1
+        appModel.accionSeleccionada = accion1
+
+        appModel.quitarAccion
+
+        assertTrue(appModel.accionSeleccionada!= accion1)
+    }
+
+    @Test
+    def noSePuedeQuitarUnaAccionSiNoHayNingunaSeleccionada(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+
+        val accion1 = new AccionMover
+        accion1.nombre = "accion1"
+
+        var hab1 = new Habitacion
+        hab1.nombre = "hab1"
+        hab1.acciones = newArrayList(accion1)
+
+        var lab1 = new Laberinto
+        lab1.nombre = "lab1"
+        lab1.habitaciones = newArrayList(hab1)
+
+        appModel.laberintos = newArrayList(lab1)
+        appModel.laberintoSeleccionado = lab1
+        appModel.habitacionSeleccionada = hab1
+
+        var cantidadAntesDeQuitarAccion = appModel.habitacionSeleccionada.acciones.size
+        var exception = ""
+
+        try {
+            appModel.quitarAccion
+        } catch(UserException e) {
+            exception = e.message
+        }
+
+        assertEquals("Deberias seleccionar una accion para poder quitarla", exception)
+        assertEquals(cantidadAntesDeQuitarAccion, appModel.habitacionSeleccionada.acciones.size)
+    }
+
+    @Test
+    def noSePuedeQuitarUnaAccionSiNoHay(){
+
+        var appModel = new AcaHayGatoEncerradoAppModel()
+
+        var hab1 = new Habitacion
+        hab1.nombre = "hab1"
+
+        var lab1 = new Laberinto
+        lab1.nombre = "lab1"
+        lab1.habitaciones = newArrayList(hab1)
+
+        appModel.laberintos = newArrayList(lab1)
+        appModel.laberintoSeleccionado = lab1
+        appModel.habitacionSeleccionada = hab1
+
+        var exception = ""
+
+        try {
+            appModel.quitarAccion
+        } catch(UserException e) {
+            exception = e.message
+        }
+
+        assertEquals("No hay acciones. Deberias crear una antes si queres quitarla ;)", exception)
+    }
+
 }
