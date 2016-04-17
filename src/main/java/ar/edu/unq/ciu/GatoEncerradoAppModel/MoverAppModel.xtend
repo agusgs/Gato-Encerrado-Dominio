@@ -24,7 +24,7 @@ class MoverAppModel {
 	}
 	
 	def validacionSeleccionadaDistintaALaActual(){
-		val mensajeDeExcepcion = "No es posible moverte en la misma habitaciòn en la que te encontras."
+		val mensajeDeExcepcion = "No es posible moverte a la misma habitaciòn en la que te encontras."
         if(habitacionActual.equals(habitacionSeleccionada))
         	throw new UserException(mensajeDeExcepcion)
 	}
