@@ -1,23 +1,23 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio.test.admin
 
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
-import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
 import org.junit.Before
 import ar.edu.unq.ciu.GatoEncerradoDominio.AccionUsar
-import ar.edu.unq.ciu.GatoEncerradoDominio.AccionMover
 import static org.junit.Assert.*;
 import org.junit.Test
+import ar.edu.unq.ciu.GatoEncerradoDominio.Item
 
 class TestCrearAccionUsarItem {
 		
 	Habitacion unaHabitacion;
-	Accion unaAccionUsarElem;
-	Accion unItemLlave
+	AccionUsar unaAccionUsarElem;
+	Item unItemLlave
 	
 	@Before
 	def void setUp(){
-		unItemLlave = new AccionMover()
-		unaAccionUsarElem = new AccionUsar(unItemLlave)
+		unItemLlave = new Item()
+		unaAccionUsarElem = new AccionUsar()
+		unaAccionUsarElem.item = unItemLlave
 		unaHabitacion = new Habitacion("unaHabitacion")
 	}
 	
