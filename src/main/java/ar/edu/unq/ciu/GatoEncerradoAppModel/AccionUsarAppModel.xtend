@@ -13,7 +13,7 @@ class AccionUsarAppModel {
 	
 	Laberinto laberinto
 	Habitacion habitacionActual
-	
+
 	def ArrayList<Accion> listadoCompletoDeAcciones(){
 		val lista = new ArrayList<Accion>
 		for(Habitacion habitacion: laberinto.habitaciones){

@@ -4,6 +4,7 @@ import ar.edu.unq.ciu.GatoEncerradoAppModel.AcaHayGatoEncerradoAppModel
 import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 import ar.edu.unq.ciu.GatoEncerradoDominio.AccionMover
+import ar.edu.unq.ciu.GatoEncerradoDominio.Usuario
 
 import org.uqbar.commons.model.UserException
 
@@ -16,9 +17,10 @@ class TestAcaHayGatoEncerradoAppModel {
     def noSeDebePoderCrearUnaHabitacionSinNombre(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
         var lab1 = new Laberinto
 
-        appModel.laberintos = newArrayList(lab1)
+        appModel.usuario.laberintos = newArrayList(lab1)
         appModel.laberintoSeleccionado = lab1
         appModel.nuevaHabitacion = null
 
@@ -42,9 +44,10 @@ class TestAcaHayGatoEncerradoAppModel {
     def cuandoCreoUnaHabitacionNuevaLaCantidadDeHabitacionesDelLaberintoSeleccionadoDebeAumentarEnUno(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
         var lab1 = new Laberinto
 
-        appModel.laberintos = newArrayList(lab1)
+        appModel.usuario.laberintos = newArrayList(lab1)
         appModel.laberintoSeleccionado = lab1
 
         var cantAntesDeCrearHabitacion = appModel.getLaberintoSeleccionado.cantidadDeHabitaciones()
@@ -61,9 +64,10 @@ class TestAcaHayGatoEncerradoAppModel {
     def cuandoCreoUnaHabitacionNuevaLaHabitacionSeleccionadaDebeCambiarPorUnaNueva(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
         var lab1 = new Laberinto
 
-        appModel.laberintos = newArrayList(lab1)
+        appModel.usuario.laberintos = newArrayList(lab1)
         appModel.laberintoSeleccionado = lab1
 
         var habitacionSeleccionadaAntes = appModel.habitacionSeleccionada
@@ -78,9 +82,10 @@ class TestAcaHayGatoEncerradoAppModel {
     def noSeDebePoderQuitarUnaHabitacionDeUnLaberintoQueNoTenga(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
         var lab1 = new Laberinto
 
-        appModel.laberintos = newArrayList(lab1)
+        appModel.usuario.laberintos = newArrayList(lab1)
         appModel.laberintoSeleccionado = lab1
 
         var String exeption = null
@@ -98,9 +103,10 @@ class TestAcaHayGatoEncerradoAppModel {
     def noSeDebePoderQuitarUnaHabitacionSiNoHayUnaHabitacionSeleccionada(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
         var lab1 = new Laberinto
 
-        appModel.laberintos = newArrayList(lab1)
+        appModel.usuario.laberintos = newArrayList(lab1)
         appModel.laberintoSeleccionado = lab1
         appModel.nuevaHabitacion = "hab1"
         appModel.crearHabitacion()
@@ -121,9 +127,10 @@ class TestAcaHayGatoEncerradoAppModel {
     def siQuitoUnaHabitacionDelLaberintoSeleccionadoEstaNoDebeQuedarSeleccionada(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
         var lab1 = new Laberinto
 
-        appModel.laberintos = newArrayList(lab1)
+        appModel.usuario.laberintos = newArrayList(lab1)
         appModel.laberintoSeleccionado = lab1
         appModel.nuevaHabitacion = "hab1"
         appModel.crearHabitacion()
@@ -139,9 +146,10 @@ class TestAcaHayGatoEncerradoAppModel {
     def siQuitoUnaHabitacionDelLaberintoSeleccionadoEstaNoDebeEstarEnEl(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
         var lab1 = new Laberinto
 
-        appModel.laberintos = newArrayList(lab1)
+        appModel.usuario.laberintos = newArrayList(lab1)
         appModel.laberintoSeleccionado = lab1
         appModel.nuevaHabitacion = "hab1"
         appModel.crearHabitacion()
@@ -157,8 +165,9 @@ class TestAcaHayGatoEncerradoAppModel {
     def noSeDebeCrearUnLaberintoSinNombre(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
 
-        var cantidadAntesDeNuevoLaberinto = appModel.laberintos.size
+        var cantidadAntesDeNuevoLaberinto = appModel.usuario.laberintos.size
         var seleccionadoAntesDeNuevoLaberinto = appModel.laberintoSeleccionado
 
         appModel.nuevoLaberinto = null
@@ -172,7 +181,7 @@ class TestAcaHayGatoEncerradoAppModel {
         }
 
         assertEquals(exception, "¿Vas a crear una habitacion sin nombre?... Naaah ponele un nombre mejor :D")
-        assertEquals(appModel.laberintos.size, cantidadAntesDeNuevoLaberinto)
+        assertEquals(appModel.usuario.laberintos.size, cantidadAntesDeNuevoLaberinto)
         assertEquals(appModel.laberintoSeleccionado, seleccionadoAntesDeNuevoLaberinto)
     }
 
@@ -180,13 +189,14 @@ class TestAcaHayGatoEncerradoAppModel {
     def cuandoCreoUnLaberintoNuevoLaCantidadDeLaberintosDebeAumentarEnUno(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
 
-        var cantAntesDeCrearLaberinto = appModel.laberintos.size
+        var cantAntesDeCrearLaberinto = appModel.usuario.laberintos.size
 
         appModel.nuevoLaberinto = "nuevo laberinto 1"
         appModel.crearLaberinto
 
-        var cantDespuesDeCrearLaberinto = appModel.laberintos.size
+        var cantDespuesDeCrearLaberinto = appModel.usuario.laberintos.size
 
         assertEquals((cantDespuesDeCrearLaberinto - cantAntesDeCrearLaberinto), 1)
     }
@@ -195,6 +205,7 @@ class TestAcaHayGatoEncerradoAppModel {
     def cuandoCreoUnLaberintoNuevoElLaberintoSeleccionadoDebeSerElCreado(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
 
         var nombreLaberintoNuevo = "laberinto nuevo 2"
 
@@ -208,27 +219,29 @@ class TestAcaHayGatoEncerradoAppModel {
     def cuandoQuitoUnLaberintoDebeEliminarseElLaberintoSeleccionadoDeLaListaDeLaberintos(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
 
         val laberinto = new Laberinto
         laberinto.nombre = "Laberinto 3"
 
-        appModel.laberintos.add(laberinto)
+        appModel.usuario.laberintos.add(laberinto)
         appModel.laberintoSeleccionado = laberinto
 
         appModel.quitarLaberinto
 
-        assertFalse(appModel.laberintos.exists([lab| lab == laberinto]))
+        assertFalse(appModel.usuario.laberintos.exists([lab| lab == laberinto]))
     }
 
     @Test
     def cuandoQuitoUnLaberintoElLaberintoSeleccionadoNoDebeSerElMismoQueSeElimino(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
 
         val laberinto = new Laberinto
         laberinto.nombre = "Laberinto 3"
 
-        appModel.laberintos.add(laberinto)
+        appModel.usuario.laberintos.add(laberinto)
         appModel.laberintoSeleccionado = laberinto
 
         appModel.quitarLaberinto
@@ -240,13 +253,14 @@ class TestAcaHayGatoEncerradoAppModel {
     def noSePuedeQuitarUnLaberintoSiNoHayNingunoSeleccionado(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
 
         val laberinto = new Laberinto
         laberinto.nombre = "Laberinto 3"
 
-        appModel.laberintos.add(laberinto)
+        appModel.usuario.laberintos.add(laberinto)
 
-        var cantidadAntesDeQuitarLaberinto = appModel.laberintos.size
+        var cantidadAntesDeQuitarLaberinto = appModel.usuario.laberintos.size
         var exception = ""
 
         try {
@@ -256,13 +270,14 @@ class TestAcaHayGatoEncerradoAppModel {
         }
 
         assertEquals("No hay ningun laberinto seleccionado", exception)
-        assertEquals(cantidadAntesDeQuitarLaberinto, appModel.laberintos.size)
+        assertEquals(cantidadAntesDeQuitarLaberinto, appModel.usuario.laberintos.size)
     }
 
     @Test
     def noSePuedeQuitarUnLaberintoSiNoHay(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
         var exception = ""
 
         try {
@@ -278,6 +293,7 @@ class TestAcaHayGatoEncerradoAppModel {
     def cuandoQuitoUnaAccionDebeEliminarseLaAccionSeleccionadaDeLasAccionesDeLaHabiracionSeleccionada(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
 
         val accion1 = new AccionMover
         accion1.nombre = "accion1"
@@ -290,7 +306,7 @@ class TestAcaHayGatoEncerradoAppModel {
         lab1.nombre = "lab1"
         lab1.habitaciones = newArrayList(hab1)
 
-        appModel.laberintos = newArrayList(lab1)
+        appModel.usuario.laberintos = newArrayList(lab1)
         appModel.laberintoSeleccionado = lab1
         appModel.habitacionSeleccionada = hab1
         appModel.accionSeleccionada = accion1
@@ -304,6 +320,7 @@ class TestAcaHayGatoEncerradoAppModel {
     def cuandoQuitoUnaAccionLaAccionSeleccionadaNoDebeSerLaMismaQueSeElimino(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
 
         val accion1 = new AccionMover
         accion1.nombre = "accion1"
@@ -316,7 +333,7 @@ class TestAcaHayGatoEncerradoAppModel {
         lab1.nombre = "lab1"
         lab1.habitaciones = newArrayList(hab1)
 
-        appModel.laberintos = newArrayList(lab1)
+        appModel.usuario.laberintos = newArrayList(lab1)
         appModel.laberintoSeleccionado = lab1
         appModel.habitacionSeleccionada = hab1
         appModel.accionSeleccionada = accion1
@@ -330,6 +347,7 @@ class TestAcaHayGatoEncerradoAppModel {
     def noSePuedeQuitarUnaAccionSiNoHayNingunaSeleccionada(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
 
         val accion1 = new AccionMover
         accion1.nombre = "accion1"
@@ -342,7 +360,7 @@ class TestAcaHayGatoEncerradoAppModel {
         lab1.nombre = "lab1"
         lab1.habitaciones = newArrayList(hab1)
 
-        appModel.laberintos = newArrayList(lab1)
+        appModel.usuario.laberintos = newArrayList(lab1)
         appModel.laberintoSeleccionado = lab1
         appModel.habitacionSeleccionada = hab1
 
@@ -363,6 +381,7 @@ class TestAcaHayGatoEncerradoAppModel {
     def noSePuedeQuitarUnaAccionSiNoHay(){
 
         var appModel = new AcaHayGatoEncerradoAppModel()
+        appModel.usuario = new Usuario
 
         var hab1 = new Habitacion
         hab1.nombre = "hab1"
@@ -371,7 +390,7 @@ class TestAcaHayGatoEncerradoAppModel {
         lab1.nombre = "lab1"
         lab1.habitaciones = newArrayList(hab1)
 
-        appModel.laberintos = newArrayList(lab1)
+        appModel.usuario.laberintos = newArrayList(lab1)
         appModel.laberintoSeleccionado = lab1
         appModel.habitacionSeleccionada = hab1
 
