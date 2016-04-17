@@ -2,26 +2,30 @@ package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.UserException
+
+import java.util.List
+import java.util.ArrayList
 
 @Accessors
 @Observable
 class Login {
-	String usuario
-	String password
-	boolean passwordOk
-	String passwordValida
-	String aQueAposto
-	
+
+    List<Usuario> usuarios
+	String nombreUsuario
+	String passwordUsuario
+
 	new() {
-		passwordValida = "interfaces"	
+        usuarios = new ArrayList<Usuario>()
 	}
-	
-	new(String unaPassword) {
-		passwordValida = unaPassword	
-	}
-		
-	def void setPassword(String unaPassword) {
-		passwordOk = unaPassword == passwordValida
-	}
-	
+
+    def validarIngreso(){
+        if(!macheaConAlgunUsuario())
+            throw new UserException("Usuario o contraseña invalidos")
+
+    }
+
+    def macheaConAlgunUsuario(){
+        return usuarios.exists[usuario|usuario.macheaCon(nombreUsuario, passwordUsuario)]
+    }
 }
