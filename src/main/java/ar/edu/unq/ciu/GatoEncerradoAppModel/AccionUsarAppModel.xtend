@@ -12,13 +12,17 @@ import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
 class AccionUsarAppModel {
 	
 	Laberinto laberinto
-	Habitacion habitacionActual
+	Habitacion habitacion
+    Accion accionSeleccionada
 
 	def ArrayList<Accion> listadoCompletoDeAcciones(){
-		val lista = new ArrayList<Accion>
+
+        val lista = new ArrayList<Accion>
+
 		for(Habitacion habitacion: laberinto.habitaciones){
 			lista.addAll(habitacion.acciones)
-			}
+		}
+
 		lista
 	}
 	
