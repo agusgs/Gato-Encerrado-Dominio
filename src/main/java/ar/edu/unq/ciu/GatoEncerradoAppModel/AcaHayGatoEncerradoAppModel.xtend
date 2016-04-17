@@ -7,16 +7,16 @@ import static org.uqbar.commons.model.ObservableUtils.*
 import org.uqbar.commons.model.UserException
 
 import java.util.List
-import java.util.ArrayList
 import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
+import ar.edu.unq.ciu.GatoEncerradoDominio.Usuario
 
 @Accessors
 @Observable
 class AcaHayGatoEncerradoAppModel {
 
-    List<Laberinto> laberintos
+    Usuario usuario
     Laberinto laberintoSeleccionado
     Habitacion habitacionSeleccionada
     Accion accionSeleccionada
@@ -24,7 +24,6 @@ class AcaHayGatoEncerradoAppModel {
     String nuevoLaberinto
 
     new(){
-        laberintos = new ArrayList<Laberinto>()
     }
 
     def crearHabitacion(){
@@ -58,11 +57,11 @@ class AcaHayGatoEncerradoAppModel {
 
         var laberintoNuevo = new Laberinto
         laberintoNuevo.setNombre(nuevoLaberinto)
-        laberintos.add(laberintoNuevo)
+        usuario.laberintos.add(laberintoNuevo)
         laberintoSeleccionado = laberintoNuevo
         nuevoLaberinto = null
 
-        firePropertyChanged(this, "laberintos", this.laberintos)
+        firePropertyChanged(this, "usuario.laberintos", this.usuario.laberintos)
     }
 
     def quitarLaberinto(){
@@ -70,10 +69,10 @@ class AcaHayGatoEncerradoAppModel {
         validarAppModelSinLaberintos()
         validarLaberintoSeleccionadoNoNulo()
 
-        laberintos.remove(laberintoSeleccionado)
+        usuario.laberintos.remove(laberintoSeleccionado)
         laberintoSeleccionado = null
 
-        firePropertyChanged(this, "laberintos", this.laberintos)
+        firePropertyChanged(this, "usuario.laberintos", this.usuario.laberintos)
     }
 
     def quitarAccion(){
@@ -126,7 +125,7 @@ class AcaHayGatoEncerradoAppModel {
 
     def validarAppModelSinLaberintos(){
         val mensajeDeExcepcion = "No hay laberintos. Deberias crear uno antes si queres quitarlo ;)"
-        validarPropiedadListaVacia(laberintos, mensajeDeExcepcion)
+        validarPropiedadListaVacia(usuario.laberintos, mensajeDeExcepcion)
     }
 
     def validarPropiedadListaVacia(List<?> propiedadLista, String mensajeDeExcepcion){
