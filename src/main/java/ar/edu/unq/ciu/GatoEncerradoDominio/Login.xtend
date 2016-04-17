@@ -22,10 +22,14 @@ class Login {
     def validarIngreso(){
         if(!macheaConAlgunUsuario())
             throw new UserException("Usuario o contraseña invalidos")
-
     }
 
     def macheaConAlgunUsuario(){
         return usuarios.exists[usuario|usuario.macheaCon(nombreUsuario, passwordUsuario)]
+    }
+
+    def usuarioQueMachea(){
+        validarIngreso
+        return usuarios.findFirst[usuario|usuario.macheaCon(nombreUsuario, passwordUsuario)]
     }
 }
