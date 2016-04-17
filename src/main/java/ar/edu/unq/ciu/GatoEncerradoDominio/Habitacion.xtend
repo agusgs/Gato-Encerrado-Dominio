@@ -15,9 +15,11 @@ class Habitacion {
 	Boolean isFinal
 	Boolean isActual
 	List<Accion> acciones
+	List<Item> items
 
 	new(){
-		acciones = new ArrayList
+		acciones = new ArrayList<Accion>
+        items = new ArrayList<Item>
 		isFinal = false
 		isInicial = false
 		isActual = false 
