@@ -7,25 +7,22 @@ import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
 import ar.edu.unq.ciu.GatoEncerradoDominio.Item
+import org.uqbar.commons.utils.Transactional
 
 @Accessors
 @Observable
+@Transactional
 class AccionUsarAppModel {
 	
 	Laberinto laberinto
 	Habitacion habitacion
-    Accion accionSeleccionada
     Item itemSeleccionado
 
-	def ArrayList<Accion> listadoCompletoDeAcciones(){
+	def items(){
+        val items = new ArrayList<Accion>
+        laberinto.habitaciones.forEach[habitacion| items.addAll(habitacion.acciones)]
 
-        val lista = new ArrayList<Accion>
-
-		for(Habitacion habitacion: laberinto.habitaciones){
-			lista.addAll(habitacion.acciones)
-		}
-
-		lista
+		items
 	}
 	
 }

@@ -9,6 +9,4 @@ class Item {
 	String nombre
 	
 	new() {	}
-	
-	
 }

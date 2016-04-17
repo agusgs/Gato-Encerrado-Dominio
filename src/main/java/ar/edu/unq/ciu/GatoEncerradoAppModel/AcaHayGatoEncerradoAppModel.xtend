@@ -22,8 +22,24 @@ class AcaHayGatoEncerradoAppModel {
     Accion accionSeleccionada
     String nuevaHabitacion
     String nuevoLaberinto
+    Boolean isHabitacionSeleccionadaNoNula
+    Boolean isAccionSeleccionadaNoNula
+    Boolean isLaberintoSeleccionadoNoNulo
 
     new(){
+        laberintoSeleccionado = null
+        habitacionSeleccionada = null
+        accionSeleccionada = null
+
+        isHabitacionSeleccionadaNoNula = false
+        isAccionSeleccionadaNoNula = false
+        isLaberintoSeleccionadoNoNulo = false
+    }
+
+    def setLaberintoSeleccionado(Laberinto laberinto){
+        laberintoSeleccionado = laberinto
+        isHabitacionSeleccionadaNoNula = false
+        isAccionSeleccionadaNoNula = false
     }
 
     def crearHabitacion(){
@@ -36,6 +52,7 @@ class AcaHayGatoEncerradoAppModel {
         laberintoSeleccionado.agregarHabitacion(habitacionNueva)
         habitacionSeleccionada = habitacionNueva
         nuevaHabitacion = null
+        isHabitacionSeleccionadaNoNula = true
 
         firePropertyChanged(this, "laberintoSeleccionado", this.laberintoSeleccionado)
     }
@@ -47,6 +64,7 @@ class AcaHayGatoEncerradoAppModel {
 
         laberintoSeleccionado.quitarHabitacion(habitacionSeleccionada)
         habitacionSeleccionada = null
+        isHabitacionSeleccionadaNoNula = false
 
         firePropertyChanged(this, "laberintoSeleccionado", this.laberintoSeleccionado)
     }
@@ -60,6 +78,7 @@ class AcaHayGatoEncerradoAppModel {
         usuario.laberintos.add(laberintoNuevo)
         laberintoSeleccionado = laberintoNuevo
         nuevoLaberinto = null
+        isLaberintoSeleccionadoNoNulo = true
 
         firePropertyChanged(this, "usuario.laberintos", this.usuario.laberintos)
     }
@@ -71,6 +90,7 @@ class AcaHayGatoEncerradoAppModel {
 
         usuario.laberintos.remove(laberintoSeleccionado)
         laberintoSeleccionado = null
+        isLaberintoSeleccionadoNoNulo = false
 
         firePropertyChanged(this, "usuario.laberintos", this.usuario.laberintos)
     }
@@ -82,11 +102,21 @@ class AcaHayGatoEncerradoAppModel {
 
         habitacionSeleccionada.quitarAccion(accionSeleccionada)
         accionSeleccionada = null
+        isAccionSeleccionadaNoNula = false
 
         firePropertyChanged(this, "habitacionSeleccionada", this.habitacionSeleccionada)
     }
 
-// VALIDACIONES ...
+    def agregarAccionAppModel(){
+        var agregarAccionAppModel = new AgregarAccionAppModel()
+
+        agregarAccionAppModel.laberinto = laberintoSeleccionado
+        agregarAccionAppModel.habitacion = habitacionSeleccionada
+
+        return agregarAccionAppModel
+    }
+
+    // VALIDACIONES ...
 
     def validarHabitacionSeleccionadalSinAcciones(){
         val mensajeDeExcepcion = "No hay acciones. Deberias crear una antes si queres quitarla ;)"
