@@ -6,7 +6,6 @@ import org.uqbar.commons.utils.Observable
 @Accessors
 @Observable
 class Item {
-	Accion accion
 	String nombre
 	
 	new() {	}

@@ -6,6 +6,7 @@ import java.util.ArrayList
 import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
+import ar.edu.unq.ciu.GatoEncerradoDominio.Item
 
 @Accessors
 @Observable
@@ -14,6 +15,7 @@ class AccionUsarAppModel {
 	Laberinto laberinto
 	Habitacion habitacion
     Accion accionSeleccionada
+    Item itemSeleccionado
 
 	def ArrayList<Accion> listadoCompletoDeAcciones(){
 
