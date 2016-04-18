@@ -30,10 +30,11 @@ class TestAccionAgarrarAppModel {
 		assertEquals(appModel.habitacion.acciones.size, 0)
 		assertEquals(appModel.habitacion.items.size, 0)
 		appModel.agregarAccion
+
 		assertEquals(appModel.habitacion.acciones.size, 1)
 		assertEquals(appModel.habitacion.items.size, 1)
 		assertEquals(appModel.habitacion.items.get(0).nombre, "plato")
-		assertEquals(appModel.habitacion.acciones.get(0).nombre, "Elemento - plato")
+		assertEquals(appModel.habitacion.acciones.get(0).nombre, "Agarrar plato")
 	}
 	
 	@Test
