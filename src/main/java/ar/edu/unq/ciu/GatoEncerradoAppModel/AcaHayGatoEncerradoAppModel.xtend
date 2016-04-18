@@ -36,12 +36,6 @@ class AcaHayGatoEncerradoAppModel {
         isLaberintoSeleccionadoNoNulo = false
     }
 
-    def setLaberintoSeleccionado(Laberinto laberinto){
-        laberintoSeleccionado = laberinto
-        isHabitacionSeleccionadaNoNula = false
-        isAccionSeleccionadaNoNula = false
-    }
-
     def crearHabitacion(){
 
         validarNuevaHabitacionNoNula()

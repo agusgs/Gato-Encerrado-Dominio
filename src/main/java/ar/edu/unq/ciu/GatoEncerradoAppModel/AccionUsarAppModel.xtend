@@ -7,11 +7,9 @@ import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
 import ar.edu.unq.ciu.GatoEncerradoDominio.Item
-import org.uqbar.commons.utils.Transactional
 
 @Accessors
 @Observable
-@Transactional
 class AccionUsarAppModel {
 	
 	Laberinto laberinto

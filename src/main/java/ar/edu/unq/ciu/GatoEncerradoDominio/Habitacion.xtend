@@ -5,6 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import java.util.List
 import static org.uqbar.commons.model.ObservableUtils.*
+import org.uqbar.commons.model.UserException
 
 @Accessors
 @Observable
@@ -32,7 +33,15 @@ class Habitacion {
 		isInicial = false
 		isActual = false 
 	}
-	
+
+	def setNombre(String nombreNuevo){
+		if (nombreNuevo == "")
+			throw new UserException("Debe completar el nombre de la Habitacion")
+
+		this.nombre = nombreNuevo
+		firePropertyChanged(this, "nombre", this.nombre)
+	}
+
 	def agregarAccion(Accion accion) {
 		acciones.add(accion)		
 		firePropertyChanged(this, "acciones", this.acciones)
