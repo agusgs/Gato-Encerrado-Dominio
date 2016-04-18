@@ -25,8 +25,8 @@ class AccionUsarAppModel {
 	}
 
 	def items(){
-        val items = new ArrayList<Accion>
-        laberinto.habitaciones.forEach[habitacion| items.addAll(habitacion.acciones)]
+        val items = new ArrayList<Item>
+        laberinto.habitaciones.forEach[habitacion| items.addAll(habitacion.items)]
 
 		items
 	}
