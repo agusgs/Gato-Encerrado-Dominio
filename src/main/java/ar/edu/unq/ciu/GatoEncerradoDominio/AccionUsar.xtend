@@ -16,4 +16,11 @@ class AccionUsar extends Accion{
     override usarAccion() {
         throw new UnsupportedOperationException()
     }
+    
+    override getNombre() {
+    	val name = super.nombre + item.nombre
+    	if (accion != null){
+    		name + accion.nombre
+    	}
+	}
 }

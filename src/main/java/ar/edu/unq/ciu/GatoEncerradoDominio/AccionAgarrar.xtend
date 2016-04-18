@@ -19,5 +19,9 @@ class AccionAgarrar extends Accion {
 	override usarAccion() {
 
 	}
+	
+	override getNombre() {
+		super.nombre + item.nombre
+	}
 
 }
