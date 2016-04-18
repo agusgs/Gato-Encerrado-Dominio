@@ -15,6 +15,13 @@ class AccionUsarAppModel {
 	Laberinto laberinto
 	Habitacion habitacion
     Item itemSeleccionado
+    Accion accionUsar
+    boolean tieneAccion
+
+	new (){
+		accionUsar = null
+		tieneAccion = false
+	}
 
 	def items(){
         val items = new ArrayList<Accion>
@@ -23,4 +30,15 @@ class AccionUsarAppModel {
 		items
 	}
 	
+	def agregarAccion(){
+
+        var nuevaAccion = new AccionUsar
+        nuevaAccion.nombre = "Usar "
+        habitacion.acciones.add(nuevaAccion)
+    }
+
+    def hayAccion(){
+    	tieneAccion = accionUsar != null
+    }
+
 }
