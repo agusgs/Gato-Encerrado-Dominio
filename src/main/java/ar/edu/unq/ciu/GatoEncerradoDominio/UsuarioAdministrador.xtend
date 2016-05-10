@@ -8,7 +8,7 @@ import java.util.List
 
 @Accessors
 @Observable
-class Usuario {
+class UsuarioAdministrador {
 
     String nombre
     String password

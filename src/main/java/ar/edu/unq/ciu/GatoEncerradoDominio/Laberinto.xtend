@@ -11,7 +11,8 @@ import java.util.List
 @Accessors
 @Observable
 class Laberinto {
-	
+
+	Integer id
 	String nombre
 	List<Habitacion> habitaciones
 	Inventario inventario
