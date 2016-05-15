@@ -4,15 +4,17 @@ import org.uqbar.commons.model.UserException
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.json.JSONUtils
 import org.uqbar.xtrest.api.annotation.Get
-import ar.edu.unq.ciu.errores.NoExisteElUsuario
 import org.uqbar.xtrest.api.XTRest
+import ar.edu.unq.ciu.appHelpers.AppRepoDeObjetos
+import ar.edu.unq.ciu.appHelpers.Minificador
 
 @Controller
 class LaberintosController {
 
     extension JSONUtils = new JSONUtils
 
-    GatoEncerradoRepoDeObjetos repoDeObjetos
+    AppRepoDeObjetos repoDeObjetos
+    Minificador minificador
 
     @Get('/laberintos/:id')
     def laberintos(){
@@ -28,20 +30,16 @@ class LaberintosController {
     }
 
     def laberintosParaUsuario(Integer usuarioId){
-        validarUsuarioExistente(usuarioId)
-        // TODO renderear laberintos, depende de la implementacion de repo de objetos y del minificador
-//        repoDeObjetos.laberintos
-        1 // para que no rompa // TODO borrar!!!!
+        minificador.minificar(laberintosDelUsuario(usuarioId))
     }
 
     new(){
-        repoDeObjetos = new GatoEncerradoRepoDeObjetos
+        repoDeObjetos = new AppRepoDeObjetos
+        minificador = new Minificador
     }
 
-    def validarUsuarioExistente(Integer id){
-        if(!(repoDeObjetos.existeElUsuario(id))){
-            throw new NoExisteElUsuario
-        }
+    def laberintosDelUsuario(Integer id){
+        repoDeObjetos.laberintosDe(id)
     }
 
     def static void main(String[] args) {
