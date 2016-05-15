@@ -68,5 +68,11 @@
 			<artifactId>mockito-all</artifactId>
 			<version>1.10.19</version>	
 		</dependency>
+		
+		<dependency>
+			<groupId>org.uqbar</groupId>
+			<artifactId>xtrest</artifactId>
+			<version>0.1.4</version>
+		</dependency>
 	</dependencies>
 </project>
