@@ -3,24 +3,24 @@ package ar.edu.unq.ciu.GatoEncerradoDominio.test.admin
 import org.junit.Before
 import org.junit.Test
 import ar.edu.unq.ciu.GatoEncerradoDominio.Login
-import ar.edu.unq.ciu.GatoEncerradoDominio.Usuario
+import ar.edu.unq.ciu.GatoEncerradoDominio.UsuarioAdministrador
 import static org.junit.Assert.*
 
 class TestLogin {
 	
 	Login login
-	Usuario agsmith
-	Usuario malvarenga
+	UsuarioAdministrador agsmith
+	UsuarioAdministrador malvarenga
 	
 	@Before
 	def void setUp(){
 		login = new Login
 
-		agsmith = new Usuario
+		agsmith = new UsuarioAdministrador
 		agsmith.nombre = "agsmith"
 		agsmith.password = "agsmith"
 		
-		malvarenga = new Usuario
+		malvarenga = new UsuarioAdministrador
 		malvarenga.nombre = "malvarenga"
 		malvarenga.password = "malvarenga"
 		

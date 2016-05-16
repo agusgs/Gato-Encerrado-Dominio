@@ -33,6 +33,19 @@ class IniciarLaberintoController {
 		
 	}
 	
+	/*
+	@Get("/realizarAccion/:idHabitacion/:idAccion")
+	def Result realizarAccionHabitacion() {
+		
+		response.contentType = "application/json"
+		
+		val Integer idHab = Integer.valueOf(idHabitacion)
+		val Integer idAcc = Integer.valueOf(idAccion)
+		
+	}
+	* 
+	*/
+	
 	def validarExisteLaberintoParaUsuario(Integer idUser, Integer idLab){
 		if (!RepoUsuarios.getInstance.existeElLaberinto(idUser,idLab))
 			throw new NoExisteLaberintoParaUsuario(idLab, idUser)

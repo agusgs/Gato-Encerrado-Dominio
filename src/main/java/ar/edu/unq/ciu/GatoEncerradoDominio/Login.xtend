@@ -11,12 +11,12 @@ import java.util.ArrayList
 @Observable
 class Login {
 
-    List<Usuario> usuarios
+    List<UsuarioAdministrador> usuarios
 	String nombreUsuario
 	String passwordUsuario
 
 	new() {
-        usuarios = new ArrayList<Usuario>()
+        usuarios = new ArrayList<UsuarioAdministrador>()
 	}
 
     def validarIngreso(){

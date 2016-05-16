@@ -11,11 +11,12 @@ import java.util.List
 @Accessors
 @Observable
 class Laberinto {
-	
+
 	Integer id
 	String nombre
 	List<Habitacion> habitaciones
 	Inventario inventario
+	String pathImagen
 
     new(){
         this.habitaciones = new ArrayList<Habitacion>()
@@ -25,6 +26,14 @@ class Laberinto {
 		this.nombre = n
 		this.habitaciones = new ArrayList()
 		this.inventario = null
+	}
+
+	new (Integer id, String nombre, String pathImagen){
+        this.id = id
+		this.nombre = nombre
+		this.habitaciones = new ArrayList()
+		this.inventario = null
+		this.pathImagen = pathImagen
 	}
 
     def setNombre(String nombreNuevo){
