@@ -7,6 +7,7 @@ import org.uqbar.commons.utils.Observable
 @Observable
 abstract class Accion {
 
+	Integer id
     String nombre
 
 	abstract def void usarAccion()

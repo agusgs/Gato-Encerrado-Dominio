@@ -7,6 +7,9 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class Inventario {
 	
+	Integer id
+	String nombre
+	String descripcion
 	List<Accion> items
 	int maxCantidad
 	

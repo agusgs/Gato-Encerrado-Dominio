@@ -74,5 +74,6 @@
 			<artifactId>xtrest</artifactId>
 			<version>0.1.4</version>
 		</dependency>
+		
 	</dependencies>
 </project>

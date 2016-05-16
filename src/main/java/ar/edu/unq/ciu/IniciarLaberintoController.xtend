@@ -7,6 +7,7 @@ import org.uqbar.xtrest.api.Result
 import ar.edu.unq.ciu.repo.RepoUsuarios
 import org.uqbar.xtrest.api.XTRest
 import org.uqbar.commons.model.UserException
+import ar.edu.unq.ciu.errores.NoExisteLaberintoParaUsuario
 
 @Controller
 class IniciarLaberintoController {
@@ -20,25 +21,33 @@ class IniciarLaberintoController {
 		
 		val Integer idUsuario = Integer.valueOf(idUser)
 		val idLaberinto = Integer.valueOf(idLab)
-		
+
 		try{
-			ok(RepoUsuarios.getInstance.buscarUsuario(idUsuario).toJson)
-		} catch (UserException e) {
-			notFound("No existe el usuario con id " + idUser + "");
-		}
-		
-		try{
+			validarExisteUsuario(idUsuario)
+			validarExisteLaberintoParaUsuario(idUsuario, idLaberinto)
 			ok(RepoUsuarios.getInstance.buscarLaberinto(idUsuario,idLaberinto).toJson)
 		} catch (UserException e) {
-			notFound("No existe el laberinto " + idLab + " para el usuario con id " + idUser + "");
+			notFound(e.message);
 		}
- 
+		
 	}
 	
+	def validarExisteLaberintoParaUsuario(Integer idUser, Integer idLab){
+		if (!RepoUsuarios.getInstance.existeElLaberinto(idUser,idLab))
+			throw new NoExisteLaberintoParaUsuario(idLab, idUser)
+	}
+	
+	def validarExisteUsuario(Integer idUsuario){
+		if (!RepoUsuarios.getInstance.existeElUsuario(idUsuario))
+			//Modificar cuando Agus mergee lo suyo
+			throw new UserException("No existe el usuario con id " + idUsuario + "")
+	}
+	
+	// NO FUNCIONA pero tampoco se pide
 	@Get("/usuarios")
 	def Result usuarios() {
 		val usuarios = RepoUsuarios.getInstance
-		//response.contentType = ContentType.APPLICATION_JSON
+		response.contentType = "application/json"
 		ok(usuarios.toJson)
 	}
 	
