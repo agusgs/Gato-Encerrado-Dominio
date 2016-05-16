@@ -1,14 +1,14 @@
 package ar.edu.unq.ciu.repo
 
-import ar.edu.unq.ciu.GatoEncerradoDominio.Usuario
 import java.util.ArrayList
-import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
-import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
-import ar.edu.unq.ciu.GatoEncerradoDominio.Inventario
+import ar.edu.unq.ciu.minificados.InventarioMini
+import ar.edu.unq.ciu.minificados.LaberintoMini
+import ar.edu.unq.ciu.minificados.HabitacionMini
+import ar.edu.unq.ciu.minificados.UsuarioMini
 
 class RepoUsuarios{
 	
-	ArrayList<Usuario> usuarios
+	ArrayList<UsuarioMini> usuarios
 
 	static public RepoUsuarios repoUsuarios
 
@@ -27,12 +27,12 @@ class RepoUsuarios{
         agregarInventarioALaberinto(usuarios.get(0).laberintos.get(0), crearInventario(31, "inventario", "descripcionInventario"))
     }
 	
-	def agregarInventarioALaberinto(Laberinto lab, Inventario inv) {
+	def agregarInventarioALaberinto(LaberintoMini lab, InventarioMini inv) {
 		lab.inventario = inv
 	}
 	
 	def crearInventario(Integer id, String nombre, String descripcion){
-		var Inventario inv = new Inventario
+		var InventarioMini inv = new InventarioMini
 		inv.id = id
 		inv.nombre = nombre
 		inv.descripcion = descripcion
@@ -41,20 +41,18 @@ class RepoUsuarios{
     
     def crearUsuario(String nombre, Integer id){
     	
-    	var Usuario user = new Usuario
+    	var UsuarioMini user = new UsuarioMini
 		user.id = id
 		user.nombre = nombre
-		user.password = nombre
-		//user.laberintos.addAll(crearLaberinto("edificio",11), crearLaberinto("mansion",12))
 		user
     }
     
-    def agregarLaberintoAUsuario(Usuario usu, Laberinto lab){
+    def agregarLaberintoAUsuario(UsuarioMini usu, LaberintoMini lab){
     	usu.laberintos.add(lab)
     }
     
     def crearLaberinto(String nombre, Integer id){
-    	var Laberinto lab = new Laberinto
+    	var LaberintoMini lab = new LaberintoMini
     	lab.id = id
     	lab.nombre = nombre
     	lab.habitaciones.addAll(crearHabitacion("cocina",21), crearHabitacion("dormitorio",22), crearHabitacion("comedor",23))
@@ -62,7 +60,7 @@ class RepoUsuarios{
     }
     
     def crearHabitacion(String nombre, Integer id){
-    	var Habitacion hab = new Habitacion
+    	var HabitacionMini hab = new HabitacionMini
     	hab.id = id
     	hab.nombre = nombre
     	hab.acciones.addAll()
