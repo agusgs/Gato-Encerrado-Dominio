@@ -18,7 +18,7 @@ class InventarioMini {
 	}
 		
 	new(Integer idI, String n, String d){
-		items = new ArrayList
+		items = new ArrayList<Accion>
 		id = idI
 		nombre = n
 		descripcion = d

@@ -14,7 +14,7 @@ class Inventario {
 	int maxCantidad
 	
 	new(){
-		this.items = new ArrayList()
+		this.items = new ArrayList<Accion>()
 		this.maxCantidad = 15
 	}
 	
