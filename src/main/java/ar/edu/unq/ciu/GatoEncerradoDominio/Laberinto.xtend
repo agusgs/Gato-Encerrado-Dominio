@@ -7,7 +7,6 @@ import static org.uqbar.commons.model.ObservableUtils.*
 
 import java.util.ArrayList
 import java.util.List
-import java.util.HashMap
 
 @Accessors
 @Observable

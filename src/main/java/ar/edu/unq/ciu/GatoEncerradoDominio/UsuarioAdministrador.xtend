@@ -10,6 +10,7 @@ import java.util.List
 @Observable
 class UsuarioAdministrador {
 
+	Integer id
     String nombre
     String password
     List<Laberinto> laberintos

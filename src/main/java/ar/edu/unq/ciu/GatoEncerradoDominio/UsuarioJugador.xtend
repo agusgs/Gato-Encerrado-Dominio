@@ -1,6 +1,7 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.ArrayList
 
 @Accessors
 class UsuarioJugador {
@@ -10,6 +11,7 @@ class UsuarioJugador {
     List<Laberinto> laberintos
 
     new(){
+    	laberintos = new ArrayList<Laberinto>
     }
 
     new(Integer id, String nombre, List<Laberinto> laberintos){

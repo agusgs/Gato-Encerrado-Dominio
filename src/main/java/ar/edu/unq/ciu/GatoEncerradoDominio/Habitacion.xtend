@@ -11,6 +11,7 @@ import org.uqbar.commons.model.UserException
 @Observable
 class Habitacion {
 	
+	Integer id
 	String nombre
 	Boolean isInicial
 	Boolean isFinal

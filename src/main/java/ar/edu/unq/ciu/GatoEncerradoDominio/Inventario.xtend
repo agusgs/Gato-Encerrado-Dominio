@@ -7,11 +7,14 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class Inventario {
 	
+	Integer id
+	String nombre
+	String descripcion
 	List<Accion> items
 	int maxCantidad
 	
 	new(){
-		this.items = new ArrayList()
+		this.items = new ArrayList<Accion>()
 		this.maxCantidad = 15
 	}
 	
