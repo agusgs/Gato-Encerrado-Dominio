@@ -8,9 +8,7 @@ import org.uqbar.xtrest.api.XTRest
 import ar.edu.unq.ciu.appHelpers.AppRepoDeObjetos
 import ar.edu.unq.ciu.appHelpers.Minificador
 import ar.edu.unq.ciu.appHelpers.RepoUsuarios
-import ar.edu.unq.ciu.errores.NoExisteLaberintoParaUsuario
 import org.uqbar.xtrest.api.Result
-import ar.edu.unq.ciu.errores.NoExisteElUsuario
 
 @Controller
 class LaberintosController {
@@ -55,10 +53,9 @@ class LaberintosController {
 		val idLaberinto = Integer.valueOf(idLab)
 
 		try{
-			validarExisteUsuario(idUsuario)
-			validarExisteLaberintoParaUsuario(idUsuario, idLaberinto)
+			RepoUsuarios.getInstance.validarExisteUsuario(idUsuario)
+			RepoUsuarios.getInstance.validarExisteLaberintoParaUsuario(idUsuario, idLaberinto)
 			ok(iniciarLaberintoBusquedaLabYUser(idUsuario,idLaberinto).toJson)
-			//ok(RepoUsuarios.getInstance.buscarLaberinto(idUsuario,idLaberinto).toJson)
 		} catch (UserException e) {
 			notFound(e.message);
 		}
@@ -68,15 +65,7 @@ class LaberintosController {
 		minificador.minicarLaberintoCompleto(RepoUsuarios.getInstance.buscarLaberinto(idUsuario,idLaberinto))
 	}
 	
-	def validarExisteLaberintoParaUsuario(Integer idUser, Integer idLab){
-		if (!RepoUsuarios.getInstance.existeElLaberinto(idUser,idLab))
-			throw new NoExisteLaberintoParaUsuario(idLab, idUser)
-	}
-	
-	def validarExisteUsuario(Integer idUsuario){
-		if (!RepoUsuarios.getInstance.existeElUsuario(idUsuario))
-			throw new NoExisteElUsuario
-	}
+
 
 
     def static void main(String[] args) {

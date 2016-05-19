@@ -5,6 +5,8 @@ import ar.edu.unq.ciu.GatoEncerradoDominio.UsuarioJugador
 import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
 import ar.edu.unq.ciu.GatoEncerradoDominio.Inventario
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
+import ar.edu.unq.ciu.errores.NoExisteLaberintoParaUsuario
+import ar.edu.unq.ciu.errores.NoExisteElUsuario
 
 class RepoUsuarios{
 	
@@ -93,6 +95,16 @@ class RepoUsuarios{
 	def existeElLaberinto(Integer idUser, Integer idLab) {
 		var usuario = buscarUsuario(idUser)
 		usuario.laberintos.exists[l| l.id == idLab]
+	}
+	
+	def validarExisteLaberintoParaUsuario(Integer idUser, Integer idLab){
+		if (!RepoUsuarios.getInstance.existeElLaberinto(idUser,idLab))
+			throw new NoExisteLaberintoParaUsuario(idLab, idUser)
+	}
+	
+	def validarExisteUsuario(Integer idUsuario){
+		if (!existeElUsuario(idUsuario))
+			throw new NoExisteElUsuario
 	}
 
 }
