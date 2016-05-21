@@ -8,12 +8,17 @@ import org.uqbar.xtrest.api.XTRest
 import ar.edu.unq.ciu.appHelpers.AppRepoDeObjetos
 import ar.edu.unq.ciu.appHelpers.Minificador
 import ar.edu.unq.ciu.appHelpers.RepoUsuarios
+import ar.edu.unq.ciu.appHelpers.JSONPropertyUtils
 import org.uqbar.xtrest.api.Result
+import org.uqbar.xtrest.api.annotation.Post
+import org.uqbar.xtrest.api.annotation.Body
+import ar.edu.unq.ciu.GatoEncerradoDominio.Login
 
 @Controller
 class LaberintosController {
 
     extension JSONUtils = new JSONUtils
+    extension JSONPropertyUtils = new JSONPropertyUtils
 
     AppRepoDeObjetos repoDeObjetos
     Minificador minificador
@@ -65,6 +70,41 @@ class LaberintosController {
 		minificador.minicarLaberintoCompleto(RepoUsuarios.getInstance.buscarLaberinto(idUsuario,idLaberinto))
 	}
 	
+	@Get("/realizarAccion/:idHab/:idAccion")
+	def Result realizarAccionEnHabitacion() {
+		
+		response.contentType = "application/json"
+		
+		val idHabitacion = Integer.valueOf(idHab)
+		val idAction = Integer.valueOf(idAccion)
+
+		try{
+			//No se si esta validacion esta buena
+			RepoUsuarios.getInstance.validarExisteAccionEnHabitacion(idHabitacion, idAction)
+			val accionRealizada = RepoUsuarios.getInstance.RealizarAccionEnHabitacion(idHabitacion, idAction)
+			
+			ok(accionRealizada.toJson)
+		} catch (UserException e) {
+			notFound(e.message);
+		}
+	}
+		
+	
+	
+	@Post('/login/')
+	def Result loguear(@Body String body) {
+	//Disculpe la molestia, gente trabajando..
+		try {
+			val login = body.fromJson(Login)
+
+			val usuario = body.getPropertyValue("nombreUsuario")
+			val pass = body.getPropertyValue("password")
+
+			ok('{ "status" : "OK" }');
+		} catch (UserException e) {
+			notFound(e.message)
+		}
+	}
 
 
 

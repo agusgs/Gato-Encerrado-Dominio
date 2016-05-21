@@ -106,5 +106,13 @@ class RepoUsuarios{
 		if (!existeElUsuario(idUsuario))
 			throw new NoExisteElUsuario
 	}
+	
+	def validarExisteAccionEnHabitacion(Integer integer, Integer integer2) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def RealizarAccionEnHabitacion(Integer integer, Integer integer2) {
+		null
+	}
 
 }
