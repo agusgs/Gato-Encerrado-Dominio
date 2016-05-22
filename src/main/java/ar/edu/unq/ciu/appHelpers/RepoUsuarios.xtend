@@ -7,15 +7,19 @@ import ar.edu.unq.ciu.GatoEncerradoDominio.Inventario
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 import ar.edu.unq.ciu.errores.NoExisteLaberintoParaUsuario
 import ar.edu.unq.ciu.errores.NoExisteElUsuario
+import ar.edu.unq.ciu.errores.NoExisteHabitacion
+import ar.edu.unq.ciu.errores.NoExisteAccionParaHabitacion
 
 class RepoUsuarios{
 	
 	ArrayList<UsuarioJugador> usuarios
+	ArrayList<Habitacion> habitaciones
 
 	static public RepoUsuarios repoUsuarios
 
     new(){
-    	
+    	habitaciones = new ArrayList<Habitacion>
+    	 
 		usuarios = newArrayList
 		
 		(
@@ -67,6 +71,7 @@ class RepoUsuarios{
     	hab.id = id
     	hab.nombre = nombre
     	hab.acciones.addAll()
+    	habitaciones.add(hab)
     	hab
     }
     
@@ -107,11 +112,33 @@ class RepoUsuarios{
 			throw new NoExisteElUsuario
 	}
 	
-	def validarExisteAccionEnHabitacion(Integer integer, Integer integer2) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	/**
+	 * PRE: existe la habitacion que se recibe
+	 */
+	def existeAccionEnHabitacion(Integer idHabitacion, Integer idAccion) {
+		var habitacion = buscarHabitacion(idHabitacion)
+		habitacion.acciones.exists[a| a.id == idAccion]
 	}
 	
-	def RealizarAccionEnHabitacion(Integer integer, Integer integer2) {
+	def validarExisteAccionEnHabitacion(Integer idHabitacion, Integer idAccion) {
+		if (!RepoUsuarios.getInstance.existeAccionEnHabitacion(idHabitacion,idAccion))
+			throw new NoExisteAccionParaHabitacion(idHabitacion, idAccion)
+	}
+	
+	def buscarHabitacion(Integer id) {
+		habitaciones.findFirst[it.id.equals(id)]
+	}
+	
+	def validarExisteHabitacion(Integer id) {
+		if (!existeHabitacion(id))
+			throw new NoExisteHabitacion
+	}
+	
+	def existeHabitacion(Integer id){
+		habitaciones.exists[hab| hab.id == id]
+	}
+	
+	def realizarAccionEnHabitacion(Integer integer, Integer integer2) {
 		null
 	}
 

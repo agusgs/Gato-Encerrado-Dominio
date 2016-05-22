@@ -43,23 +43,6 @@ class Habitacion {
 		firePropertyChanged(this, "nombre", this.nombre)
 	}
 
-//	def setIsInicial(Boolean inicial){
-//        validarSiEsInicialYFinal
-//		isInicial = true
-//		firePropertyChanged(this, "isInicial", this.isInicial)
-//	}
-//
-//	def setIsFinal(Boolean inicial){
-//        validarSiEsInicialYFinal
-//        isFinal = true
-//		firePropertyChanged(this, "isFinal", this.isFinal)
-//	}
-//
-//    def validarSiEsInicialYFinal(){
-//        if(isFinal && isInicial)
-//            throw new UserException("La habitacion no puede ser final e iniciala la vez")
-//    }
-
 	def agregarAccion(Accion accion) {
 		acciones.add(accion)		
 		firePropertyChanged(this, "acciones", this.acciones)

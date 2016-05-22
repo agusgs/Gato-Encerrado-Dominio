@@ -79,9 +79,10 @@ class LaberintosController {
 		val idAction = Integer.valueOf(idAccion)
 
 		try{
-			//No se si esta validacion esta buena
+			RepoUsuarios.getInstance.validarExisteHabitacion(idHabitacion)
 			RepoUsuarios.getInstance.validarExisteAccionEnHabitacion(idHabitacion, idAction)
-			val accionRealizada = RepoUsuarios.getInstance.RealizarAccionEnHabitacion(idHabitacion, idAction)
+			
+			val accionRealizada = RepoUsuarios.getInstance.realizarAccionEnHabitacion(idHabitacion, idAction)
 			
 			ok(accionRealizada.toJson)
 		} catch (UserException e) {
