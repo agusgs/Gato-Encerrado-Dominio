@@ -9,17 +9,20 @@ import ar.edu.unq.ciu.errores.NoExisteLaberintoParaUsuario
 import ar.edu.unq.ciu.errores.NoExisteElUsuario
 import ar.edu.unq.ciu.errores.NoExisteHabitacion
 import ar.edu.unq.ciu.errores.NoExisteAccionParaHabitacion
+import ar.edu.unq.ciu.GatoEncerradoDominio.AccionMover
+import ar.edu.unq.ciu.GatoEncerradoDominio.AccionAgarrar
+import ar.edu.unq.ciu.GatoEncerradoDominio.Item
 
 class RepoUsuarios{
 	
 	ArrayList<UsuarioJugador> usuarios
 	ArrayList<Habitacion> habitaciones
-
+	ArrayList<Laberinto> laberintos
 	static public RepoUsuarios repoUsuarios
 
     new(){
     	habitaciones = new ArrayList<Habitacion>
-    	 
+    	laberintos = new ArrayList<Laberinto> 
 		usuarios = newArrayList
 		
 		(
@@ -63,6 +66,7 @@ class RepoUsuarios{
     	lab.id = id
     	lab.nombre = nombre
     	lab.habitaciones.addAll(crearHabitacion("cocina",21), crearHabitacion("dormitorio",22), crearHabitacion("comedor",23))
+    	laberintos.add(lab)
     	lab
     }
     
@@ -70,9 +74,26 @@ class RepoUsuarios{
     	var Habitacion hab = new Habitacion
     	hab.id = id
     	hab.nombre = nombre
-    	hab.acciones.addAll()
+    	hab.acciones.addAll(crearAccionMover("ir a patio", 31), crearAccionAgarrar("usar", 32))
     	habitaciones.add(hab)
     	hab
+    }
+    
+    def crearAccionMover(String nombre, Integer id){
+    	var acc = new AccionMover
+    	acc.id = id
+    	acc.nombre = nombre
+    	acc
+    }
+    
+	def crearAccionAgarrar(String nombre, Integer id){
+    	var acc = new AccionAgarrar
+    	acc.id = id
+    	acc.nombre = nombre
+    	var item = new Item
+    	item.nombre = "martillo"
+    	acc.item = item
+    	acc
     }
     
     static val INSTANCE = new RepoUsuarios
@@ -138,8 +159,16 @@ class RepoUsuarios{
 		habitaciones.exists[hab| hab.id == id]
 	}
 	
-	def realizarAccionEnHabitacion(Integer integer, Integer integer2) {
-		null
+	def buscarAccion(Habitacion h, Integer id) {
+		h.acciones.findFirst[it.id.equals(id)]
+	}
+	
+	/**
+	 * PRE: los idHabitacion son unicos y no se repiten entre laberintos distintos
+	 */
+	def buscarInventario(Habitacion habitacion) {
+		var lab = laberintos.findFirst[it.habitaciones.contains(habitacion)]
+		lab.inventario
 	}
 
 }

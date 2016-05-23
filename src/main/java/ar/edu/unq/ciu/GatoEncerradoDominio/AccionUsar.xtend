@@ -11,6 +11,7 @@ class AccionUsar extends Accion{
 	Accion accion
 
 	new(){
+		tipo = "usar"
 	}
 
     override usarAccion() {
@@ -22,5 +23,10 @@ class AccionUsar extends Accion{
     	if (accion != null){
     		name + accion.nombre
     	}
+	}
+		
+	override usarAccion(Habitacion h) {
+		h.acciones.remove(accion)
+		this.usarAccion
 	}
 }

@@ -10,6 +10,7 @@ class AccionAgarrar extends Accion {
 	Item item
 
 	new() {
+		tipo = "agarrar"
 	}
 
 	new(Accion unItem) {
@@ -18,6 +19,11 @@ class AccionAgarrar extends Accion {
 	
 	override usarAccion() {
 
+	}
+	
+	override usarAccion(Habitacion h) {
+		h.acciones.add(this)
+		this.usarAccion
 	}
 	
 	override getNombre() {

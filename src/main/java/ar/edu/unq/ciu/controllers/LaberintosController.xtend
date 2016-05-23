@@ -13,6 +13,8 @@ import org.uqbar.xtrest.api.Result
 import org.uqbar.xtrest.api.annotation.Post
 import org.uqbar.xtrest.api.annotation.Body
 import ar.edu.unq.ciu.GatoEncerradoDominio.Login
+import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
+import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 
 @Controller
 class LaberintosController {
@@ -82,7 +84,13 @@ class LaberintosController {
 			RepoUsuarios.getInstance.validarExisteHabitacion(idHabitacion)
 			RepoUsuarios.getInstance.validarExisteAccionEnHabitacion(idHabitacion, idAction)
 			
-			val accionRealizada = RepoUsuarios.getInstance.realizarAccionEnHabitacion(idHabitacion, idAction)
+			val habitacion = RepoUsuarios.getInstance.buscarHabitacion(idHabitacion)
+			val accion = RepoUsuarios.getInstance.buscarAccion(habitacion, idAction)
+			
+			//definir si esto va acà o donde !!!!!!!!
+			habitacion.usarAccion(accion)
+			
+			val accionRealizada = realizarAccionEnHabitacion(habitacion, accion)
 			
 			ok(accionRealizada.toJson)
 		} catch (UserException e) {
@@ -90,7 +98,9 @@ class LaberintosController {
 		}
 	}
 		
-	
+	def realizarAccionEnHabitacion(Habitacion hab, Accion acc){
+		minificador.minicarRespuestaAcciones(hab, RepoUsuarios.getInstance.buscarInventario(hab), acc)
+	}
 	
 	@Post('/login/')
 	def Result loguear(@Body String body) {

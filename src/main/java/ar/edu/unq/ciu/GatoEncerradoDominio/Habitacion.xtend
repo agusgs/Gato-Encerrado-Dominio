@@ -52,7 +52,7 @@ class Habitacion {
 		accion.usarAccion
 		acciones.add(accion)
 	}
-	
+
 	def usarAccionMover(Accion accion){
 		setIsActual(false)
 		accion.usarAccion
@@ -62,6 +62,10 @@ class Habitacion {
 	def usarAccionUsar(Accion accion){
 		accion.usarAccion
 		acciones.remove(accion)
+	}
+	
+	def usarAccion(Accion accion){
+		accion.usarAccion(this)
 	}
 
 	def quitarAccion(Accion unaAccion){

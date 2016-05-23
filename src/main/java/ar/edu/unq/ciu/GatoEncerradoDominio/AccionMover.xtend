@@ -10,9 +10,12 @@ class AccionMover extends Accion{
 	Habitacion habitacion
 
 	new() {
+		tipo = "mover"
+		habitacion = new Habitacion
 	}
 
 	new(Habitacion unaHabitacion) {
+		tipo = "mover"
 		habitacion = unaHabitacion
 	}
 	
@@ -22,6 +25,12 @@ class AccionMover extends Accion{
 
 	override usarAccion() {
 		habitacion.setIsActual(true)
+	}
+	
+	override usarAccion(Habitacion h) {
+		h.setIsActual(false)
+		h.acciones.remove(this)
+		this.usarAccion
 	}
 	
 }
