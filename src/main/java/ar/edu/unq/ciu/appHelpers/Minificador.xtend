@@ -9,8 +9,6 @@ import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 import ar.edu.unq.ciu.minificados.HabitacionMini
 import ar.edu.unq.ciu.GatoEncerradoDominio.Inventario
 import ar.edu.unq.ciu.minificados.InventarioMini
-import ar.edu.unq.ciu.minificados.RespuestaUsarAccion
-import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
 
 class Minificador {
 
@@ -52,13 +50,5 @@ class Minificador {
     	inventarioMinificado.items.addAll(inv.items)
     	inventarioMinificado
     }
-	
-	def minicarRespuestaAcciones(Habitacion hab, Inventario inv, Accion a) {
-		var resp = new RespuestaUsarAccion
-		resp.hab = minificarHabitacion(hab)
-		resp.inv = minificarInventario(inv)
-		resp.tipo = a.tipo
-		resp
-	}
 	
 }

@@ -15,7 +15,7 @@ class AccionUsar extends Accion{
 	}
 
     override usarAccion() {
-        throw new UnsupportedOperationException()
+        accion.usarAccion
     }
     
     override getNombre() {

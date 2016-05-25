@@ -72,34 +72,29 @@ class LaberintosController {
 		minificador.minicarLaberintoCompleto(RepoUsuarios.getInstance.buscarLaberinto(idUsuario,idLaberinto))
 	}
 	
-	@Get("/realizarAccion/:idHab/:idAccion")
+	@Get("/realizarAccion/:idUser/:idHab/:idAccion")
 	def Result realizarAccionEnHabitacion() {
 		
 		response.contentType = "application/json"
 		
 		val idHabitacion = Integer.valueOf(idHab)
 		val idAction = Integer.valueOf(idAccion)
+		val idUsuario = Integer.valueOf(idUser)
 
 		try{
-			RepoUsuarios.getInstance.validarExisteHabitacion(idHabitacion)
-			RepoUsuarios.getInstance.validarExisteAccionEnHabitacion(idHabitacion, idAction)
+			RepoUsuarios.getInstance.validarExisteUsuario(idUsuario)
+			RepoUsuarios.getInstance.validarExisteHabitacionParaUsuario(idHabitacion, idUsuario)
+			RepoUsuarios.getInstance.validarExisteAccionEnHabitacion(idHabitacion, idAction, idUsuario)
 			
-			val habitacion = RepoUsuarios.getInstance.buscarHabitacion(idHabitacion)
+			val habitacion = RepoUsuarios.getInstance.buscarHabitacion(idHabitacion, idUsuario)
 			val accion = RepoUsuarios.getInstance.buscarAccion(habitacion, idAction)
 			
-			//definir si esto va acà o donde !!!!!!!!
-			habitacion.usarAccion(accion)
-			
-			val accionRealizada = realizarAccionEnHabitacion(habitacion, accion)
+			val accionRealizada = RepoUsuarios.getInstance.respuestaRealizarAccion(habitacion, accion, idUsuario)
 			
 			ok(accionRealizada.toJson)
 		} catch (UserException e) {
 			notFound(e.message);
 		}
-	}
-		
-	def realizarAccionEnHabitacion(Habitacion hab, Accion acc){
-		minificador.minicarRespuestaAcciones(hab, RepoUsuarios.getInstance.buscarInventario(hab), acc)
 	}
 	
 	@Post('/login/')
