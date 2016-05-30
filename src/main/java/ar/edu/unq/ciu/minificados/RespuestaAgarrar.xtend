@@ -5,7 +5,7 @@ import ar.edu.unq.ciu.GatoEncerradoDominio.Inventario
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 
 @Accessors
-class RespuestaAgarrar {
+class RespuestaAgarrar extends Respuesta{
 	//String tipo
 	Inventario inv
 	Habitacion hab

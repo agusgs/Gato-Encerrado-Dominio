@@ -13,8 +13,7 @@ import org.uqbar.xtrest.api.Result
 import org.uqbar.xtrest.api.annotation.Post
 import org.uqbar.xtrest.api.annotation.Body
 import ar.edu.unq.ciu.GatoEncerradoDominio.Login
-import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
-import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
+
 
 @Controller
 class LaberintosController {

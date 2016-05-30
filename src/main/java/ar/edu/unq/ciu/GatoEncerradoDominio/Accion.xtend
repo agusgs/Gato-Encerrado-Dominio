@@ -13,4 +13,5 @@ abstract class Accion {
 
 	abstract def void usarAccion()
 	abstract def void usarAccion(Habitacion hab)
+	abstract def Object respuesta(Habitacion hab, UsuarioJugador us, Inventario inv)
 }

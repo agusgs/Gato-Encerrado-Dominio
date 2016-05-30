@@ -2,6 +2,7 @@ package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import ar.edu.unq.ciu.minificados.RespuestaUsar
 
 @Accessors
 @Observable
@@ -29,4 +30,11 @@ class AccionUsar extends Accion{
 		h.acciones.remove(accion)
 		this.usarAccion
 	}
+	
+	override respuesta(Habitacion hab, UsuarioJugador us, Inventario inv) {
+		var resp = new RespuestaUsar
+		resp.inv = inv
+		resp
+	}
+	
 }
