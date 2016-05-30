@@ -17,4 +17,8 @@ class AccionGanar extends Accion {
 	override usarAccion(Habitacion hab) {
 	}
 	
+	override respuesta(Habitacion hab, UsuarioJugador us, Inventario inv) {
+		new String("Ganaste")
+	}
+	
 }

@@ -12,9 +12,6 @@ import ar.edu.unq.ciu.GatoEncerradoDominio.AccionMover
 import ar.edu.unq.ciu.GatoEncerradoDominio.AccionAgarrar
 import ar.edu.unq.ciu.GatoEncerradoDominio.Item
 import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
-import ar.edu.unq.ciu.minificados.RespuestaAgarrar
-import ar.edu.unq.ciu.minificados.RespuestaMover
-import ar.edu.unq.ciu.minificados.RespuestaUsar
 import ar.edu.unq.ciu.GatoEncerradoDominio.AccionUsar
 import ar.edu.unq.ciu.errores.NoExisteHabitacionParaElUsuario
 import ar.edu.unq.ciu.GatoEncerradoDominio.AccionGanar
@@ -199,41 +196,12 @@ class RepoUsuarios{
 	 */
 	def respuestaRealizarAccion(Habitacion habitacion, Accion acc, Integer idUsuario) {
 		
-		habitacion.usarAccion(acc)
-		
 		var usuario = buscarUsuario(idUsuario)
-		if (acc.tipo.equals("agarrar"))
-			return respuestaAccionAgarrar(habitacion, usuario)
-		else if(acc.tipo.equals("mover"))
-				return respuestaAccionMover(habitacion, usuario)
-				else if(acc.tipo.equals("usar"))
-						return respuestaAccionUsar(habitacion, usuario)
-						else return respuestaAccionGanar()
+		var inv = buscarInventario(usuario, habitacion)
+		habitacion.usarAccion(acc)
+		return acc.respuesta(habitacion, usuario, inv) 
 	}
-	
-	def respuestaAccionUsar(Habitacion habitacion, UsuarioJugador jugador) {
-		var resp = new RespuestaUsar
-		resp.inv = buscarInventario(jugador, habitacion)
-		resp
-	}
-	
-	def respuestaAccionMover(Habitacion habitacion, UsuarioJugador jugador) {
-		var resp = new RespuestaMover
-		resp.habitacion = habitacion
-		resp
-	}
-	
-	def respuestaAccionGanar() {
-		new String("Ganaste")
-	}
-	
-	def respuestaAccionAgarrar(Habitacion habitacion, UsuarioJugador jugador) {
-		var resp = new RespuestaAgarrar
-		resp.hab = habitacion
-		resp.inv = buscarInventario(jugador, habitacion)
-		resp
-	}
-	
+
 	def buscarInventario(UsuarioJugador jugador, Habitacion habitacion) {
 		var lab = jugador.laberintos.findFirst[ l | l.habitaciones.contains(habitacion) ]
 		lab.inventario
