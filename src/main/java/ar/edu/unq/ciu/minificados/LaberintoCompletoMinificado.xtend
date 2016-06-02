@@ -5,7 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.ArrayList
 
 @Accessors
-class LaberintoMini {
+class LaberintoCompletoMinificado {
 	
 	Integer id
 	String nombre

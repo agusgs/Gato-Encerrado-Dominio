@@ -24,7 +24,12 @@ class LaberintosController {
     AppRepoDeObjetos repoDeObjetos
     Minificador minificador
 
-    @Get('/laberintos/:id')
+	new(){
+		repoDeObjetos = new AppRepoDeObjetos
+		minificador = new Minificador
+	}
+
+	@Get('/laberintos/:id')
     def laberintos(){
         response.contentType = "application/json"
         val iId = Integer.valueOf(id)
@@ -35,16 +40,12 @@ class LaberintosController {
         catch (UserException e) {
             notFound(e.message);
         }
-    }
+	}
 
-    def laberintosParaUsuario(Integer usuarioId){
-        minificador.minificar(laberintosDelUsuario(usuarioId))
-    }
+	def laberintosParaUsuario(Integer usuarioId){
+		minificador.minificar(laberintosDelUsuario(usuarioId))
+	}
 
-    new(){
-        repoDeObjetos = new AppRepoDeObjetos
-        minificador = new Minificador
-    }
 
     def laberintosDelUsuario(Integer id){
         repoDeObjetos.laberintosDe(id)
@@ -59,18 +60,21 @@ class LaberintosController {
 		val idLaberinto = Integer.valueOf(idLab)
 
 		try{
-			RepoUsuarios.getInstance.validarExisteUsuario(idUsuario)
-			RepoUsuarios.getInstance.validarExisteLaberintoParaUsuario(idUsuario, idLaberinto)
-			ok(iniciarLaberintoBusquedaLabYUser(idUsuario,idLaberinto).toJson)
+			ok(iniciarLaberinto(idUsuario,idLaberinto).toJson)
 		} catch (UserException e) {
 			notFound(e.message);
 		}
 	}
 	
-	def iniciarLaberintoBusquedaLabYUser(Integer idUsuario, Integer idLaberinto){
-		minificador.minicarLaberintoCompleto(RepoUsuarios.getInstance.buscarLaberinto(idUsuario,idLaberinto))
+	def iniciarLaberinto(Integer idUsuario, Integer idLaberinto){
+		minificador.minificar(laberinto(idUsuario,idLaberinto))
 	}
-	
+
+    def laberinto(Integer idUsuario, Integer idLaberinto){
+        repoDeObjetos.laberinto(idUsuario, idLaberinto)
+        // TODO implementar este metodo en laberinto
+    }
+
 	@Get("/realizarAccion/:idUser/:idHab/:idAccion")
 	def Result realizarAccionEnHabitacion() {
 		
@@ -110,8 +114,6 @@ class LaberintosController {
 			notFound(e.message)
 		}
 	}
-
-
 
     def static void main(String[] args) {
         XTRest.start(LaberintosController, 9000)

@@ -1,12 +1,12 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
-import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
-import org.uqbar.commons.model.UserException
-import static org.uqbar.commons.model.ObservableUtils.*
-
 import java.util.ArrayList
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.UserException
+import org.uqbar.commons.utils.Observable
+
+import static org.uqbar.commons.model.ObservableUtils.*
 
 @Accessors
 @Observable

@@ -1,14 +1,14 @@
 package ar.edu.unq.ciu.appHelpers
 
-import java.util.ArrayList
-import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
-import java.util.List
-import ar.edu.unq.ciu.minificados.LaberintoMinificado
-import ar.edu.unq.ciu.minificados.LaberintoMini
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
-import ar.edu.unq.ciu.minificados.HabitacionMini
 import ar.edu.unq.ciu.GatoEncerradoDominio.Inventario
+import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
+import ar.edu.unq.ciu.minificados.HabitacionMini
 import ar.edu.unq.ciu.minificados.InventarioMini
+import ar.edu.unq.ciu.minificados.LaberintoCompletoMinificado
+import ar.edu.unq.ciu.minificados.LaberintoMinificado
+import java.util.ArrayList
+import java.util.List
 
 class Minificador {
 
@@ -21,7 +21,7 @@ class Minificador {
     }
     
 	def minicarLaberintoCompleto(Laberinto laberinto){
-        var labMini = new LaberintoMini(laberinto.id, laberinto.nombre)
+        var labMini = new LaberintoCompletoMinificado(laberinto.id, laberinto.nombre)
         labMini.habitaciones.addAll(minificarHabitaciones(laberinto.habitaciones))
         labMini.inventario = minificarInventario(laberinto.inventario)
         labMini

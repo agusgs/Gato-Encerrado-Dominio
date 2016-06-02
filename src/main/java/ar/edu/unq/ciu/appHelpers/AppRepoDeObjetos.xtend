@@ -25,6 +25,7 @@ class AppRepoDeObjetos {
     }
 
     private def laberintosDePepe(){
+
         var labCastillo = new HashMap<String, String>
         var labPiramide = new HashMap<String, String>
         var labTuberias = new HashMap<String, String>
@@ -32,6 +33,7 @@ class AppRepoDeObjetos {
         labCastillo.put('id', '1')
         labCastillo.put('nombre', 'castillo')
         labCastillo.put('pathImg', 'un/path')
+        labCastillo.put('habitaciones', habitacionesDelCastillo())
 
         labPiramide.put('id', '2')
         labPiramide.put('nombre', 'piramide')
@@ -42,6 +44,36 @@ class AppRepoDeObjetos {
         labTuberias.put('pathImg', 'un/path')
 
         armarLaberintos(newArrayList(labCastillo, labPiramide, labTuberias))
+
+        var labCastillo = LaberintoFactory.para(labCastilloJson).construir
+        var labPiramide = LaberintoFactory.para(labPiramideJson).construir
+        var labTuberias = LaberintoFactory.para(labTuberiasJson).construir
+
+        // TODO terminar implementacion de los factorys para reemplazar toda esta bosta repetida
+
+    }
+
+    def habitacionesDelCastillo(){
+        var habitacionInicial = new HashMap<String, String>
+        var pasilloOscuro = new HashMap<String, String>
+        var habitacionFInal = new HashMap<String, String>
+
+        habitacionInicial.put('id', '1')
+        habitacionInicial.put('nombre', 'habitacion inicial')
+        habitacionInicial.put('isInicial', 'true')
+        habitacionInicial.put('isFinal', 'false')
+        habitacionInicial.put('acciones', accionesDeHabitacionInicial
+        List<Item> items
+
+        pasilloOscuro.put('id', '2')
+        pasilloOscuro.put('nombre', 'piramide')
+        pasilloOscuro.put('pathImg', 'un/path')
+
+        habitacionFInal.put('id', '3')
+        habitacionFInal.put('nombre', 'tuberias')
+        habitacionFInal.put('pathImg', 'un/path')
+
+        armarHabitaciones(newArrayList(habitacionInicial, pasilloOscuro, habitacionFinal))
     }
 
     private def laberintosDePepo(){
