@@ -5,11 +5,11 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class RespuestaUsarAccion {
 	String tipo
-	InventarioMini inv
-	HabitacionMini hab
+	InventarioMini inventario
+	HabitacionMinificada habitacion
 	
 	new(){
-		inv = new InventarioMini
-		hab = new HabitacionMini
+		inventario = new InventarioMini
+		habitacion = new HabitacionMinificada
 	}
 }

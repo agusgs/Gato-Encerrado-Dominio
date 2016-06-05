@@ -9,18 +9,9 @@ class LaberintoCompletoMinificado {
 	
 	Integer id
 	String nombre
-	List<HabitacionMini> habitaciones
-	InventarioMini inventario
-	
+	List<HabitacionMinificada> habitacionesMinificadas
+
 	new(){
-		habitaciones = new ArrayList
-		inventario = new InventarioMini
-	}
-	
-	new (Integer idLab, String n){
-		id = idLab
-		nombre = n
-		habitaciones = new ArrayList
-		inventario = new InventarioMini
+		habitacionesMinificadas = new ArrayList
 	}
 }

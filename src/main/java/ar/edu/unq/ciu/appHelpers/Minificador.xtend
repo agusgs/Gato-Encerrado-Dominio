@@ -1,9 +1,11 @@
 package ar.edu.unq.ciu.appHelpers
 
+import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 import ar.edu.unq.ciu.GatoEncerradoDominio.Inventario
 import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
-import ar.edu.unq.ciu.minificados.HabitacionMini
+import ar.edu.unq.ciu.minificados.AccionMinificada
+import ar.edu.unq.ciu.minificados.HabitacionMinificada
 import ar.edu.unq.ciu.minificados.InventarioMini
 import ar.edu.unq.ciu.minificados.LaberintoCompletoMinificado
 import ar.edu.unq.ciu.minificados.LaberintoMinificado
@@ -19,36 +21,63 @@ class Minificador {
             )]
         laberintosMinificados
     }
-    
-	def minicarLaberintoCompleto(Laberinto laberinto){
-        var labMini = new LaberintoCompletoMinificado(laberinto.id, laberinto.nombre)
-        labMini.habitaciones.addAll(minificarHabitaciones(laberinto.habitaciones))
-        labMini.inventario = minificarInventario(laberinto.inventario)
-        labMini
+
+	def minificar(Laberinto laberinto){
+        var laberintoMinificado = new LaberintoCompletoMinificado()
+
+        laberintoMinificado.id = laberinto.id
+        laberintoMinificado.nombre = laberinto.nombre
+        laberintoMinificado.habitacionesMinificadas = minificarHabitaciones(laberinto.habitaciones)
+
+        laberintoMinificado
     }
 
     def minificarHabitaciones(List<Habitacion> habitaciones){
-    	val habitacionesMinificadas = new ArrayList<HabitacionMini>
+    	val habitacionesMinificadas = new ArrayList<HabitacionMinificada>
+
     	habitaciones.forEach[habitacion |
 			habitacionesMinificadas.add(minificarHabitacion(habitacion))
     	]
+
 		habitacionesMinificadas
     }
     
     def minificarHabitacion(Habitacion habitacion){
-    	var habMini = new HabitacionMini()
-    	habMini.id = habitacion.id
-		habMini.nombre = habitacion.nombre
-		habMini.acciones.addAll(habitacion.acciones)
-		habMini.isFinal = habitacion.isFinal
-		habMini.isInicial = habitacion.isInicial
-		habMini
+    	var habitacionMinificada = new HabitacionMinificada()
+
+    	habitacionMinificada.id = habitacion.id
+		habitacionMinificada.nombre = habitacion.nombre
+		habitacionMinificada.acciones = minificarAcciones(habitacion.acciones)
+		habitacionMinificada.isFinal = habitacion.isFinal
+		habitacionMinificada.isInicial = habitacion.isInicial
+        habitacionMinificada.pathImagen = habitacion.pathImagen
+
+		habitacionMinificada
     }
-    
+
+    def minificarAcciones(List<Accion> acciones){
+        val accionesMinificadas = new ArrayList<AccionMinificada>
+
+        acciones.forEach[accion |
+            accionesMinificadas.add(minificarAccion(accion))
+        ]
+
+        accionesMinificadas
+    }
+
+    def minificarAccion(Accion accion){
+        val accionMinificada = new AccionMinificada()
+
+        accionMinificada.id = accion.id
+        accionMinificada.nombre = accion.nombre
+
+        accionMinificada
+    }
+
     def minificarInventario(Inventario inv){
     	val inventarioMinificado = new InventarioMini(inv.id, inv.nombre, inv.descripcion)
+
     	inventarioMinificado.items.addAll(inv.items)
     	inventarioMinificado
     }
-	
 }

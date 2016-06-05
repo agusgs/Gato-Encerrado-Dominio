@@ -6,6 +6,7 @@ import org.uqbar.commons.utils.Observable
 @Accessors
 @Observable
 class Item {
+	Integer id
 	String nombre
 	
 	new() {	}

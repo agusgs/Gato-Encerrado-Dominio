@@ -1,35 +1,65 @@
 package ar.edu.unq.ciu.appHelpers
 
+import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
+import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
+import java.util.ArrayList
 import java.util.HashMap
-import com.sun.xml.internal.bind.v2.TODO
 import java.util.List
+import ar.edu.unq.ciu.GatoEncerradoDominio.Item
 
 class HabitacionFactory {
 
-    static HashMap<String, String> habitacionHash
+    HashMap<String, Object> habitacionHash
 
-    def static para(HashMap<String, String> habitacion){
-        habitacionHash = habitacion
+    def static para(HashMap<String, Object> habitacion){
+        val factory = new HabitacionFactory
+        factory.habitacionHash = habitacion
+        factory
     }
 
     def construir(){
         var habitacionConstruida = new Habitacion
 
-        habitacionConstruida.setId(Integer.parseInt(habitacionHash.get('id')))
-        habitacionConstruida.setNombre(habitacionHash.get('nombre'))
-        habitacionConstruida.setPathImagen(habitacionHash.get('isInicial'))
-        habitacionConstruida.setPathImagen(habitacionHash.get('isFinal'))
-        habitacionConstruida.setPathImagen(habitacionHash.get('isFinal'))
-        habitacionConstruida.setHabitaciones(construirAcciones(habitacionHash.get('acciones')))
-        habitacionConstruida.setHabitaciones(construirItems(habitacionHash.get('items')))
+        habitacionConstruida.setId(Integer.parseInt(habitacionHash.get('id').toString))
+        habitacionConstruida.nombre = (habitacionHash.get('nombre').toString)
+        habitacionConstruida.isInicial = contruirComoBooleano(habitacionHash.get('isInicial').toString)
+        habitacionConstruida.isFinal = contruirComoBooleano(habitacionHash.get('isFinal').toString)
+        habitacionConstruida.acciones = (construirAcciones(habitacionHash.get('acciones')))
+        habitacionConstruida.items = (construitItems(habitacionHash.get('items')))
 
+        habitacionConstruida
     }
 
-    def construirAcciones(List<HashMap<String, String>> accionesHashList){
-        // TODO implementar este metodo y el factory
+    def contruirComoBooleano(String booleanString){
+        if(booleanString == 'false'){
+            return false
+        }
+        if(booleanString == 'true'){
+            true
+        }
     }
 
-    def construitItems(List<HashMap<String, String>> itemsHashList){
-        // TODO implementar este metodo y el factory
+    def construirAcciones(Object accionesObject){
+        val accionesHashList = accionesObject as List<HashMap<String, Object>>
+        val acciones = new ArrayList<Accion>
+
+        accionesHashList.forEach[
+            accionHash |
+            acciones.add(AccionFactory.para(accionHash).construir)
+        ]
+
+        acciones
+    }
+
+    def construitItems(Object itemsObject){
+        val itemsHashList = itemsObject as List<HashMap<String, Object>>
+        val items = new ArrayList<Item>
+
+        itemsHashList.forEach[
+            itemHash |
+            items.add(ItemFactory.para(itemHash).construir)
+        ]
+
+        items
     }
 }

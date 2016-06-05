@@ -14,9 +14,9 @@ class AccionAgarrar extends Accion {
 		tipo = "agarrar"
 	}
 
-	new(Accion unItem) {
-		//item = unItem
-	}
+//	new(Accion unItem) {
+//		//item = unItem
+//	}
 	
 	override usarAccion() {
 
@@ -27,9 +27,9 @@ class AccionAgarrar extends Accion {
 		this.usarAccion
 	}
 	
-	override getNombre() {
-		super.nombre + item.nombre
-	}
+//	override getNombre() {
+//		super.nombre + item.nombre
+//	}
 	
 	override respuesta(Habitacion hab, UsuarioJugador u, Inventario i) {
 		var resp = new RespuestaUsar

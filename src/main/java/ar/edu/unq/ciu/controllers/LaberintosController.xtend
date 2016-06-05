@@ -72,37 +72,30 @@ class LaberintosController {
 
     def laberinto(Integer idUsuario, Integer idLaberinto){
         repoDeObjetos.laberinto(idUsuario, idLaberinto)
-        // TODO implementar este metodo en laberinto
     }
 
-	@Get("/realizarAccion/:idUser/:idHab/:idAccion")
+	@Get("/realizarAccion/:idUser/:idHab/:idAcc")
 	def Result realizarAccionEnHabitacion() {
 		
 		response.contentType = "application/json"
 		
 		val idHabitacion = Integer.valueOf(idHab)
-		val idAction = Integer.valueOf(idAccion)
+		val idAccion = Integer.valueOf(idAcc)
 		val idUsuario = Integer.valueOf(idUser)
 
 		try{
-			RepoUsuarios.getInstance.validarExisteUsuario(idUsuario)
-			RepoUsuarios.getInstance.validarExisteHabitacionParaUsuario(idHabitacion, idUsuario)
-			RepoUsuarios.getInstance.validarExisteAccionEnHabitacion(idHabitacion, idAction, idUsuario)
-			
-			val habitacion = RepoUsuarios.getInstance.buscarHabitacion(idHabitacion, idUsuario)
-			val accion = RepoUsuarios.getInstance.buscarAccion(habitacion, idAction)
-			
-			val accionRealizada = RepoUsuarios.getInstance.respuestaRealizarAccion(habitacion, accion, idUsuario)
-			
-			ok(accionRealizada.toJson)
+			ok(realizarAccion(idUsuario, idHabitacion, idAccion).toJson)
 		} catch (UserException e) {
 			notFound(e.message);
 		}
 	}
+
+    def realizarAccion(Integer idUsuario, Integer idHabitacion, Integer idAccion){
+        repoDeObjetos.accion(idUsuario, idHabitacion, idAccion)
+    }
 	
 	@Post('/login/')
 	def Result loguear(@Body String body) {
-	//Disculpe la molestia, gente trabajando..
 		try {
 			val login = body.fromJson(Login)
 
@@ -113,6 +106,7 @@ class LaberintosController {
 		} catch (UserException e) {
 			notFound(e.message)
 		}
+        //TODO implementar esto
 	}
 
     def static void main(String[] args) {

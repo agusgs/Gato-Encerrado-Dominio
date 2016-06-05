@@ -19,12 +19,12 @@ class AccionUsar extends Accion{
         accion.usarAccion
     }
     
-    override getNombre() {
-    	val name = super.nombre + item.nombre
-    	if (accion != null){
-    		name + accion.nombre
-    	}
-	}
+//    override getNombre() {
+//    	val name = super.nombre + item.nombre
+//    	if (accion != null){
+//    		name + accion.nombre
+//    	}
+//	}
 		
 	override usarAccion(Habitacion h) {
 		h.acciones.remove(accion)

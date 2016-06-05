@@ -16,6 +16,7 @@ class Habitacion {
 	Boolean isInicial
 	Boolean isFinal
 	Boolean isActual
+	String pathImagen
 	List<Accion> acciones
 	List<Item> items
 

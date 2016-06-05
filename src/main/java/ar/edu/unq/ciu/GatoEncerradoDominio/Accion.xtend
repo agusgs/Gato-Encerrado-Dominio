@@ -8,8 +8,8 @@ import org.uqbar.commons.utils.Observable
 abstract class Accion {
 
 	Integer id
-    String nombre
-    String tipo
+	String nombre
+	String tipo
 
 	abstract def void usarAccion()
 	abstract def void usarAccion(Habitacion hab)
