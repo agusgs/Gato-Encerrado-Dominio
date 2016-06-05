@@ -1,64 +1,121 @@
 package ar.edu.unq.ciu.appHelpers
 
-import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
+import ar.edu.unq.ciu.GatoEncerradoDominio.Juego
 import ar.edu.unq.ciu.GatoEncerradoDominio.UsuarioJugador
+import ar.edu.unq.ciu.errores.NoExisteAccionParaHabitacion
 import ar.edu.unq.ciu.errores.NoExisteElUsuario
-import java.util.ArrayList
-import java.util.HashMap
+import ar.edu.unq.ciu.errores.NoExisteHabitacionParaElUsuario
+import ar.edu.unq.ciu.errores.NoExisteLaberintoParaUsuario
+import ar.edu.unq.ciu.errores.UsuarioYaTieneJuegoActivo
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import ar.edu.unq.ciu.errores.NoExisteLaberintoParaUsuario
 
 @Accessors
 class AppRepoDeObjetos {
 
     List<UsuarioJugador> usuarios
+    List<Juego> juegos
 
-    def laberinto(Integer idUsuario, Integer idLaberinto){
+    def iniciarJuego(Integer idUsuario, Integer idLaberinto){
         validarExistenciaDeUsuario(idUsuario)
         validarExistenciaDeLaberintoParaUsuario(idUsuario, idLaberinto)
 
-        laberintosDe(idUsuario).findFirst[laberinto | laberinto.id == idLaberinto]
+        juegoNuevoParaUsuarioLaberinto(idUsuario, idLaberinto)
     }
+
+    def juegoNuevoParaUsuarioLaberinto(Integer idUsuario, Integer idLaberinto){
+        validarJuegoYaIniciadoParaUsuario(idUsuario)
+
+        var usuario = getUsuarioById(idUsuario)
+        var laberinto = getLaberintoByUsuarioIdLaberintoId(idUsuario, idLaberinto)
+
+        juegos.add(new Juego(usuario, laberinto))
+
+        laberinto
+    }
+
 
     def laberintosDe(Integer usuarioId){
         validarExistenciaDeUsuario(usuarioId)
-        usuarios.findFirst[usuario | usuario.id == usuarioId].laberintos
+        getLaberintosByUsuarioId(usuarioId)
+    }
+
+    def accion(Integer idUsuario, Integer idHabitacion, Integer idAccion){
+        validarExistenciaDeUsuario(idUsuario)
+        validarExistenciaDeHabitacionParaUsuario(idHabitacion, idUsuario)
+        validarExistenciaDeAccionEnHabitacion(idUsuario, idHabitacion, idAccion)
+
+        getJuegoByUsuarioId(idUsuario).realizarAccion(idHabitacion, idAccion)
+    }
+
+    def getJuegoByUsuarioId(Integer idUsuario){
+        juegos.findFirst[juego | juego.usuario.id == idUsuario]
+    }
+
+    def validarExistenciaDeUsuario(Integer usuarioId){
+        if(!(existeElUsuario(usuarioId))) {
+            throw new NoExisteElUsuario
+        }
+    }
+
+    def validarExistenciaDeLaberintoParaUsuario(Integer idUsuario, Integer idLaberinto){
+        if(!(existeElLaberinto(idUsuario, idLaberinto))) {
+            throw new NoExisteLaberintoParaUsuario(idUsuario, idLaberinto)
+        }
+    }
+
+    def validarExistenciaDeHabitacionParaUsuario(Integer idHabitacion, Integer idUsuario){
+        if(!(existeLaHabitacion(idHabitacion, idUsuario))) {
+            throw new NoExisteHabitacionParaElUsuario(idHabitacion, idUsuario)
+        }
+
+    }
+
+    def validarExistenciaDeAccionEnHabitacion(Integer idUsuario, Integer idHabitacion, Integer idAccion){
+        if(!(existeLaAccion(idUsuario, idHabitacion, idAccion))){
+            throw new NoExisteAccionParaHabitacion(idHabitacion, idAccion)
+        }
+    }
+
+    def validarJuegoYaIniciadoParaUsuario(Integer idUsuario){
+        if(existeJuegoParUsuario(idUsuario)){
+            throw new UsuarioYaTieneJuegoActivo()
+        }
+    }
+
+    def existeJuegoParUsuario(Integer idUsuario){
+        juegos.exists[juego | juego.usuario.id == idUsuario]
     }
 
     def existeElUsuario(Integer idDeUsuario){
         usuarios.exists[usuario| usuario.id == idDeUsuario]
     }
 
-    def validarExistenciaDeLaberintoParaUsuario(Integer idUsuario, Integer idLaberinto){
-        if(!(existeElLaberinto(idUsuario, idLaberinto))){
-            throw new NoExisteLaberintoParaUsuario(idUsuario, idLaberinto)
-        }
-    }
-
     def existeElLaberinto(Integer idUsuario, Integer idLaberinto){
-        laberintosDe(idUsuario).exists[laberinto| laberinto.id == idLaberinto]
+        getLaberintosByUsuarioId(idUsuario).exists[laberinto| laberinto.id == idLaberinto]
     }
 
-    def validarExistenciaDeUsuario(Integer usuarioId){
-        if(!(existeElUsuario(usuarioId))){
-            throw new NoExisteElUsuario
-        }
+    def existeLaHabitacion(Integer idHabitacion, Integer idUsuario){
+        false
+        // TODO implementar
     }
 
-
-    def accion(Integer idUsuario, Integer idHabitacion, Integer idAccion){
-//        RepoUsuarios.getInstance.validarExisteUsuario(idUsuario)
-//        RepoUsuarios.getInstance.validarExisteHabitacionParaUsuario(idHabitacion, idUsuario)
-//        RepoUsuarios.getInstance.validarExisteAccionEnHabitacion(idHabitacion, idAction, idUsuario)
-//
-//        val habitacion = RepoUsuarios.getInstance.buscarHabitacion(idHabitacion, idUsuario)
-//        val accion = RepoUsuarios.getInstance.buscarAccion(habitacion, idAction)
-//
-//        val accionRealizada = RepoUsuarios.getInstance.respuestaRealizarAccion(habitacion, accion, idUsuario)
-        //TODO implementar correctamente esto
+    def existeLaAccion(Integer idUsuario, Integer idHabitacion, Integer idAccion){
+        false
+        // TODO implementar
     }
 
+    def getLaberintosByUsuarioId(Integer idUsuario){
+        usuarios.findFirst[usuario | usuario.id == idUsuario].laberintos
+    }
+
+    def getLaberintoByUsuarioIdLaberintoId(Integer idUsuario, Integer idLaberinto){
+        getLaberintosByUsuarioId(idUsuario).findFirst[laberinto | laberinto.id == idLaberinto]
+    }
+
+    def getUsuarioById(Integer idUsuario){
+        usuarios.findFirst[usuario| usuario.id == idUsuario]
+    }
 
     new(){
         usuarios = armarUsuarios()
@@ -70,18 +127,6 @@ class AppRepoDeObjetos {
     }
 
     private def laberintosDePepe(){
-        armarLaberintos(new LaberintosDePepe().LABERINTOS)
-    }
-
-
-    private def armarLaberintos(List<HashMap<String, Object>> laberintosListMap){
-        val laberintos = new ArrayList<Laberinto>()
-
-        laberintosListMap.forEach[
-            laberintoMap |
-
-            laberintos.add(LaberintoFactory.para(laberintoMap).construir)
-        ]
-        laberintos
+        newArrayList(new CastilloLaberinto().CASTILLO)
     }
 }

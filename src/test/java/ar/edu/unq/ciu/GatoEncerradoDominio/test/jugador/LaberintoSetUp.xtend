@@ -66,10 +66,10 @@ abstract class LaberintoSetUp {
 		habitacionUnica.isFinal = true
 		otroLaberinto.agregarHabitacion(habitacionUnica)
 		
-		accionAgarrarUno = new AccionAgarrar(unItemCuchillo)
-		accionAgarrarDos = new AccionAgarrar(unItemPala)
-		accionAgarrarCinco = new AccionAgarrar(unItemMadera)
-		accionAgarrarSiete = new AccionAgarrar(unItemPiedra)
+//		accionAgarrarUno = new AccionAgarrar(unItemCuchillo)
+//		accionAgarrarDos = new AccionAgarrar(unItemPala)
+//		accionAgarrarCinco = new AccionAgarrar(unItemMadera)
+//		accionAgarrarSiete = new AccionAgarrar(unItemPiedra)
 		accionMoverTres = new AccionMover
 		accionMoverTres.setHabitacion(habitacionTres)
 		habitacionCero.agregarAccion(accionMoverTres)

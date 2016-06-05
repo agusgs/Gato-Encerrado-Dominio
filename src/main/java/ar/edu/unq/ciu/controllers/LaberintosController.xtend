@@ -71,7 +71,7 @@ class LaberintosController {
 	}
 
     def laberinto(Integer idUsuario, Integer idLaberinto){
-        repoDeObjetos.laberinto(idUsuario, idLaberinto)
+        repoDeObjetos.iniciarJuego(idUsuario, idLaberinto)
     }
 
 	@Get("/realizarAccion/:idUser/:idHab/:idAcc")

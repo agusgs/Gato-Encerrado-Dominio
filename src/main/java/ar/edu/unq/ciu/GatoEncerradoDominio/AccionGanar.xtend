@@ -20,5 +20,10 @@ class AccionGanar extends Accion {
 	override respuesta(Habitacion hab, UsuarioJugador us, Inventario inv) {
 		new String("Ganaste")
 	}
-	
+
+	// TODO a partir de aca lo nuevo
+	def override ejecutar(Juego juego){
+		super.ejecutar(juego)
+		juego.ganar
+	}
 }

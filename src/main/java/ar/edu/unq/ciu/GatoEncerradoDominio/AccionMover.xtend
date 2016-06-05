@@ -20,9 +20,9 @@ class AccionMover extends Accion{
 		habitacion = unaHabitacion
 	}
 	
-	override getNombre() {
-		"Ir a " + habitacion.nombre
-	}
+//	override getNombre() {
+//		"Ir a " + habitacion.nombre
+//	}
 
 	override usarAccion() {
 		habitacion.setIsActual(true)
@@ -39,5 +39,10 @@ class AccionMover extends Accion{
 		resp.habitacion = habitacion
 		resp
 	}
-	
+
+	//TODO a partir de aca lo nuevo
+    def override ejecutar(Juego juego){
+        super.ejecutar(juego)
+		juego.pasarAHabitacion(habitacion)
+	}
 }

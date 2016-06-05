@@ -1,8 +1,9 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
+import ar.edu.unq.ciu.exceptions.NoTieneItemParaAccion
+import ar.edu.unq.ciu.minificados.RespuestaUsar
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import ar.edu.unq.ciu.minificados.RespuestaUsar
 
 @Accessors
 @Observable
@@ -36,5 +37,19 @@ class AccionUsar extends Accion{
 		resp.inv = inv
 		resp
 	}
-	
+
+	// TODO a partir de aca lo nuevo
+	def override ejecutar(Juego juego){
+        super.ejecutar(juego)
+		validarJuegoTieneItem(juego)
+        accion.habilitar
+        juego.nuevaAccionHabilitada(accion)
+        juego.itemUsado(item)
+	}
+
+    def validarJuegoTieneItem(Juego juego){
+        if(!(juego.tieneItem(item))){
+            throw new NoTieneItemParaAccion
+        }
+    }
 }

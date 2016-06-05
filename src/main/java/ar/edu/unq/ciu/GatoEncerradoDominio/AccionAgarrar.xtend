@@ -1,8 +1,8 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
+import ar.edu.unq.ciu.minificados.RespuestaUsar
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import ar.edu.unq.ciu.minificados.RespuestaUsar
 
 @Accessors
 @Observable
@@ -35,6 +35,12 @@ class AccionAgarrar extends Accion {
 		var resp = new RespuestaUsar
 		resp.inv = i
 		resp
+	}
+
+	// TODO a partir de aca lo nuevo
+	def override ejecutar(Juego juego){
+		super.ejecutar(juego)
+		juego.itemNuevo(item)
 	}
 
 }

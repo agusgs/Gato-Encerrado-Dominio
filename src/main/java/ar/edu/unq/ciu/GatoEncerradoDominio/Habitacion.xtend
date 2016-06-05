@@ -6,6 +6,8 @@ import org.uqbar.commons.utils.Observable
 import java.util.List
 import static org.uqbar.commons.model.ObservableUtils.*
 import org.uqbar.commons.model.UserException
+import ar.edu.unq.ciu.errores.NoExisteAccion
+import ar.edu.unq.ciu.exceptions.NoExisteItem
 
 @Accessors
 @Observable
@@ -72,4 +74,26 @@ class Habitacion {
 	def quitarAccion(Accion unaAccion){
 		acciones.remove(unaAccion)
 	}
+
+	def accion(Integer idAccion){
+		if(!(existeAccion(idAccion))){
+			throw new NoExisteAccion
+		}
+        acciones.findFirst[accion | accion.id == idAccion]
+	}
+
+    def existeAccion(Integer idAccion){
+        acciones.exists[accion | accion.id == idAccion]
+    }
+
+    def item(Integer idItem){
+        if(!(existeItem(idItem))){
+            throw new NoExisteItem
+        }
+        items.findFirst[item | item.id == idItem]
+    }
+
+    def existeItem(Integer idItem){
+        items.exists[item | item.id == idItem]
+    }
 }

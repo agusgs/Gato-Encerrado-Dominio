@@ -10,16 +10,23 @@ class Inventario {
 	Integer id
 	String nombre
 	String descripcion
-	List<Accion> items
+	List<Item> items
 	int maxCantidad
 	
 	new(){
-		this.items = new ArrayList<Accion>()
-		this.maxCantidad = 15
+		this.items = new ArrayList<Item>()
 	}
 	
-	def agregarItem(Accion i) {
-		this.items.add(i)
+	def agregarItem(Item item) {
+		items.add(item)
+	}
+
+	def quitarItem(Item item){
+		items.remove(item)
+	}
+
+	def tieneItem(Item item){
+		items.exists[itemExistente | itemExistente.id == item.id]
 	}
 	
 }
