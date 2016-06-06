@@ -4,15 +4,19 @@ import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
 import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 import ar.edu.unq.ciu.GatoEncerradoDominio.Inventario
 import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
+import ar.edu.unq.ciu.GatoEncerradoDominio.Resultado
 import ar.edu.unq.ciu.minificados.AccionMinificada
 import ar.edu.unq.ciu.minificados.HabitacionMinificada
-import ar.edu.unq.ciu.minificados.InventarioMini
 import ar.edu.unq.ciu.minificados.LaberintoCompletoMinificado
 import ar.edu.unq.ciu.minificados.LaberintoMinificado
 import java.util.ArrayList
 import java.util.List
 
 class Minificador {
+
+    def minificar(Resultado resultado){
+        // TODO implementar minificador
+    }
 
     def minificar(List<Laberinto> laberintos){
         val laberintosMinificados = new ArrayList<LaberintoMinificado>
@@ -75,9 +79,9 @@ class Minificador {
     }
 
     def minificarInventario(Inventario inv){
-    	val inventarioMinificado = new InventarioMini(inv.id, inv.nombre, inv.descripcion)
-
-    	inventarioMinificado.items.addAll(inv.items)
-    	inventarioMinificado
+//    	val inventarioMinificado = new InventarioMini(inv.id, inv.nombre, inv.descripcion)
+//
+//    	inventarioMinificado.items.addAll(inv.items)
+//    	inventarioMinificado
     }
 }

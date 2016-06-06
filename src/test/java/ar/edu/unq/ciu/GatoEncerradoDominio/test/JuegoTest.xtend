@@ -100,12 +100,4 @@ class JuegoTest {
 
         assertThat(juego.resultado.ganar)equals("Ganaste")
     }
-//    realizarAccion(Integer idHabitacion, Integer idAccion)
-//
-//    itemNuevo(Item item)
-//    ganar()
-//    pasarAHabitacion(Habitacion habitacion)
-//    nuevaAccionHabilitada(Accion accion)
-//    tieneItem(Item item)
-
 }

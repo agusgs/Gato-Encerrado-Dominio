@@ -8,6 +8,7 @@ class UsuarioJugador {
 
     Integer id
     String nombre
+    String password
     List<Laberinto> laberintos
     List<Laberinto> laberintosGanados
 

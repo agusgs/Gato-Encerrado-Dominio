@@ -1,6 +1,5 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
-import ar.edu.unq.ciu.exceptions.Ganaste
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
@@ -18,6 +17,7 @@ class Juego {
     }
 
     def realizarAccion(Integer idHabitacion, Integer idAccion){
+
         laberinto.habitacion(idHabitacion).accion(idAccion).ejecutar(this)
         resultado
     }

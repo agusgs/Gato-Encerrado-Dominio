@@ -1,25 +1,20 @@
 package ar.edu.unq.ciu.controllers
 
-import org.uqbar.commons.model.UserException
-import org.uqbar.xtrest.api.annotation.Controller
-import org.uqbar.xtrest.json.JSONUtils
-import org.uqbar.xtrest.api.annotation.Get
-import org.uqbar.xtrest.api.XTRest
 import ar.edu.unq.ciu.appHelpers.AppRepoDeObjetos
 import ar.edu.unq.ciu.appHelpers.Minificador
-import ar.edu.unq.ciu.appHelpers.RepoUsuarios
-import ar.edu.unq.ciu.appHelpers.JSONPropertyUtils
+import org.uqbar.commons.model.UserException
 import org.uqbar.xtrest.api.Result
-import org.uqbar.xtrest.api.annotation.Post
+import org.uqbar.xtrest.api.XTRest
 import org.uqbar.xtrest.api.annotation.Body
-import ar.edu.unq.ciu.GatoEncerradoDominio.Login
-
+import org.uqbar.xtrest.api.annotation.Controller
+import org.uqbar.xtrest.api.annotation.Get
+import org.uqbar.xtrest.api.annotation.Post
+import org.uqbar.xtrest.json.JSONUtils
 
 @Controller
 class LaberintosController {
 
     extension JSONUtils = new JSONUtils
-    extension JSONPropertyUtils = new JSONPropertyUtils
 
     AppRepoDeObjetos repoDeObjetos
     Minificador minificador
@@ -91,22 +86,20 @@ class LaberintosController {
 	}
 
     def realizarAccion(Integer idUsuario, Integer idHabitacion, Integer idAccion){
-        repoDeObjetos.accion(idUsuario, idHabitacion, idAccion)
+        minificador.minificar(repoDeObjetos.accion(idUsuario, idHabitacion, idAccion))
     }
 	
-	@Post('/login/')
+	@Post('/login/:nombreUsuario/:password')
 	def Result loguear(@Body String body) {
 		try {
-			val login = body.fromJson(Login)
+			val usuario = String.valueOf("nombreUsuario")
+			val pass = String.valueOf("password")
 
-			val usuario = body.getPropertyValue("nombreUsuario")
-			val pass = body.getPropertyValue("password")
-
-			ok('{ "status" : "OK" }');
+			repoDeObjetos.login(usuario, pass)
+			ok();
 		} catch (UserException e) {
-			notFound(e.message)
+			forbidden(e.message)
 		}
-        //TODO implementar esto
 	}
 
     def static void main(String[] args) {

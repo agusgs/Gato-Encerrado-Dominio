@@ -2,19 +2,30 @@ package ar.edu.unq.ciu.appHelpers
 
 import ar.edu.unq.ciu.GatoEncerradoDominio.Juego
 import ar.edu.unq.ciu.GatoEncerradoDominio.UsuarioJugador
-import ar.edu.unq.ciu.errores.NoExisteAccionParaHabitacion
 import ar.edu.unq.ciu.errores.NoExisteElUsuario
-import ar.edu.unq.ciu.errores.NoExisteHabitacionParaElUsuario
 import ar.edu.unq.ciu.errores.NoExisteLaberintoParaUsuario
-import ar.edu.unq.ciu.errores.UsuarioYaTieneJuegoActivo
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import ar.edu.unq.ciu.exceptions.ContraseniaIncorrecta
 
 @Accessors
 class AppRepoDeObjetos {
 
     List<UsuarioJugador> usuarios
     List<Juego> juegos
+
+    def login(String usuario, String password){
+        validarPassword(getUsuarioByName(usuario), password)
+    }
+
+    def validarPassword(UsuarioJugador usuario, String password){
+        if(!(usuario.password == password)){
+            throw new ContraseniaIncorrecta
+        }
+    }
+    def getUsuarioByName(String nombreUsuario){
+        usuarios.findFirst[usuario | usuario.nombre == nombreUsuario]
+    }
 
     def iniciarJuego(Integer idUsuario, Integer idLaberinto){
         validarExistenciaDeUsuario(idUsuario)
@@ -24,8 +35,6 @@ class AppRepoDeObjetos {
     }
 
     def juegoNuevoParaUsuarioLaberinto(Integer idUsuario, Integer idLaberinto){
-        validarJuegoYaIniciadoParaUsuario(idUsuario)
-
         var usuario = getUsuarioById(idUsuario)
         var laberinto = getLaberintoByUsuarioIdLaberintoId(idUsuario, idLaberinto)
 
@@ -42,9 +51,6 @@ class AppRepoDeObjetos {
 
     def accion(Integer idUsuario, Integer idHabitacion, Integer idAccion){
         validarExistenciaDeUsuario(idUsuario)
-        validarExistenciaDeHabitacionParaUsuario(idHabitacion, idUsuario)
-        validarExistenciaDeAccionEnHabitacion(idUsuario, idHabitacion, idAccion)
-
         getJuegoByUsuarioId(idUsuario).realizarAccion(idHabitacion, idAccion)
     }
 
@@ -64,25 +70,6 @@ class AppRepoDeObjetos {
         }
     }
 
-    def validarExistenciaDeHabitacionParaUsuario(Integer idHabitacion, Integer idUsuario){
-        if(!(existeLaHabitacion(idHabitacion, idUsuario))) {
-            throw new NoExisteHabitacionParaElUsuario(idHabitacion, idUsuario)
-        }
-
-    }
-
-    def validarExistenciaDeAccionEnHabitacion(Integer idUsuario, Integer idHabitacion, Integer idAccion){
-        if(!(existeLaAccion(idUsuario, idHabitacion, idAccion))){
-            throw new NoExisteAccionParaHabitacion(idHabitacion, idAccion)
-        }
-    }
-
-    def validarJuegoYaIniciadoParaUsuario(Integer idUsuario){
-        if(existeJuegoParUsuario(idUsuario)){
-            throw new UsuarioYaTieneJuegoActivo()
-        }
-    }
-
     def existeJuegoParUsuario(Integer idUsuario){
         juegos.exists[juego | juego.usuario.id == idUsuario]
     }
@@ -95,15 +82,6 @@ class AppRepoDeObjetos {
         getLaberintosByUsuarioId(idUsuario).exists[laberinto| laberinto.id == idLaberinto]
     }
 
-    def existeLaHabitacion(Integer idHabitacion, Integer idUsuario){
-        false
-        // TODO implementar
-    }
-
-    def existeLaAccion(Integer idUsuario, Integer idHabitacion, Integer idAccion){
-        false
-        // TODO implementar
-    }
 
     def getLaberintosByUsuarioId(Integer idUsuario){
         usuarios.findFirst[usuario | usuario.id == idUsuario].laberintos
@@ -119,10 +97,15 @@ class AppRepoDeObjetos {
 
     new(){
         usuarios = armarUsuarios()
+        juegos = newArrayList()
     }
 
     private def armarUsuarios(){
-        var pepe = new UsuarioJugador(1, 'pepe', laberintosDePepe)
+        var pepe = new UsuarioJugador()
+        pepe.setId(1)
+        pepe.setNombre("pepe")
+        pepe.setPassword("pass")
+        pepe.setLaberintos(laberintosDePepe)
         newArrayList(pepe)
     }
 
