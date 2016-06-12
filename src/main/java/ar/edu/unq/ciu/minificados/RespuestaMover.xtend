@@ -6,8 +6,10 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class RespuestaMover extends Respuesta{
 	Habitacion habitacion
-	
-	new(){
-		habitacion = new Habitacion
+
+    new(){ }
+
+	new(Habitacion habitacion){
+		this.habitacion = habitacion
 	}
 }

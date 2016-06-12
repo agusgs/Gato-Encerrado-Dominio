@@ -1,17 +1,16 @@
 package ar.edu.unq.ciu.minificados
 
+import ar.edu.unq.ciu.GatoEncerradoDominio.Item
 import org.eclipse.xtend.lib.annotations.Accessors
-import ar.edu.unq.ciu.GatoEncerradoDominio.Inventario
-import ar.edu.unq.ciu.GatoEncerradoDominio.Habitacion
 
 @Accessors
 class RespuestaAgarrar extends Respuesta{
-	//String tipo
-	Inventario inv
-	Habitacion hab
-	
-	new(){
-		inv = new Inventario
-		hab = new Habitacion
+
+	Item item
+
+	new(){}
+
+	new(Item item){
+		this.item = item
 	}
 }
