@@ -10,4 +10,9 @@ class Item {
 	String nombre
 	
 	new() {	}
+
+	new(Integer id, String nombre){
+        this.id = id
+        this.nombre = nombre
+    }
 }

@@ -5,7 +5,6 @@ import ar.edu.unq.ciu.appHelpers.Minificador
 import org.uqbar.commons.model.UserException
 import org.uqbar.xtrest.api.Result
 import org.uqbar.xtrest.api.XTRest
-import org.uqbar.xtrest.api.annotation.Body
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.api.annotation.Post

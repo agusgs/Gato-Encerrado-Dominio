@@ -9,13 +9,14 @@ class AccionAgarrar extends Accion {
 	
 	Item item
 
-	new() {
-		tipo = "agarrar"
-	}
+	new() { }
 
-//	new(Accion unItem) {
-//		//item = unItem
-//	}
+	new(Integer id, String nombre, Boolean habilitada, Item unItem) {
+		item = unItem
+        this.id = id
+        this.nombre = nombre
+        this.habilitada = habilitada
+	}
 	
 	override usarAccion() {
 
@@ -25,11 +26,7 @@ class AccionAgarrar extends Accion {
 		h.acciones.add(this)
 		this.usarAccion
 	}
-	
-//	override getNombre() {
-//		super.nombre + item.nombre
-//	}
-	
+
 	override respuesta(Habitacion hab, UsuarioJugador u, Inventario i) {
 //		var resp = new RespuestaUsar
 //		resp.inv = i
