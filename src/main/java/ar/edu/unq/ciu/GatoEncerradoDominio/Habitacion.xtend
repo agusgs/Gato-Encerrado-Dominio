@@ -51,26 +51,6 @@ class Habitacion {
 		firePropertyChanged(this, "acciones", this.acciones)
 	}
 	
-	def usarAccionAgarrar(Accion accion){
-		accion.usarAccion
-		acciones.add(accion)
-	}
-
-	def usarAccionMover(Accion accion){
-		setIsActual(false)
-		accion.usarAccion
-		acciones.remove(accion)
-	}
-	
-	def usarAccionUsar(Accion accion){
-		accion.usarAccion
-		acciones.remove(accion)
-	}
-	
-	def usarAccion(Accion accion){
-		accion.usarAccion(this)
-	}
-
 	def quitarAccion(Accion unaAccion){
 		acciones.remove(unaAccion)
 	}

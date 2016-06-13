@@ -16,29 +16,6 @@ class AccionUsar extends Accion{
 		tipo = "usar"
 	}
 
-    override usarAccion() {
-        accion.usarAccion
-    }
-    
-//    override getNombre() {
-//    	val name = super.nombre + item.nombre
-//    	if (accion != null){
-//    		name + accion.nombre
-//    	}
-//	}
-		
-	override usarAccion(Habitacion h) {
-		h.acciones.remove(accion)
-		this.usarAccion
-	}
-	
-	override respuesta(Habitacion hab, UsuarioJugador us, Inventario inv) {
-		var resp = new RespuestaUsar
-		resp.inv = inv
-		resp
-	}
-
-	// TODO a partir de aca lo nuevo
 	def override ejecutar(Juego juego){
         super.ejecutar(juego)
 		validarJuegoTieneItem(juego)

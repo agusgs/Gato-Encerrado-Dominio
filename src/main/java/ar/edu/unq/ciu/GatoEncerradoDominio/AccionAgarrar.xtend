@@ -17,23 +17,7 @@ class AccionAgarrar extends Accion {
         this.nombre = nombre
         this.habilitada = habilitada
 	}
-	
-	override usarAccion() {
 
-	}
-	
-	override usarAccion(Habitacion h) {
-		h.acciones.add(this)
-		this.usarAccion
-	}
-
-	override respuesta(Habitacion hab, UsuarioJugador u, Inventario i) {
-//		var resp = new RespuestaUsar
-//		resp.inv = i
-//		resp
-	}
-
-	// TODO a partir de aca lo nuevo
 	def override ejecutar(Juego juego){
 		super.ejecutar(juego)
 		juego.itemNuevo(item)

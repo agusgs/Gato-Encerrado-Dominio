@@ -17,10 +17,6 @@ abstract class Accion {
         this.habilitada = false
     }
 
-	abstract def void usarAccion()
-	abstract def void usarAccion(Habitacion hab)
-	abstract def Object respuesta(Habitacion hab, UsuarioJugador us, Inventario inv)
-
     def ejecutar(Juego juego){
         if(!(this.habilitada)){
             throw new AccionNoHabilitada
