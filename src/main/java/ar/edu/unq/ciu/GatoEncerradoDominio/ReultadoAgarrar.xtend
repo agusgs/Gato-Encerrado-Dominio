@@ -1,6 +1,7 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import ar.edu.unq.ciu.minificados.RespuestaAgarrar
 
 @Accessors
 class ResultadoAgarrar extends Resultado{
@@ -15,5 +16,9 @@ class ResultadoAgarrar extends Resultado{
 
     def override getItemAgarrado(){
         this.itemAgarrado
+    }
+
+    override minificate() {
+        return new RespuestaAgarrar(itemAgarrado)
     }
 }

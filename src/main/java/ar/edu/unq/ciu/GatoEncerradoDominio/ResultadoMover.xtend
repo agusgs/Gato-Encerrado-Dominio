@@ -1,6 +1,7 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import ar.edu.unq.ciu.minificados.RespuestaMover
 
 @Accessors
 class ResultadoMover extends Resultado{
@@ -15,4 +16,9 @@ class ResultadoMover extends Resultado{
     def override getHabitacionAMoverse(){
         this.habitacionAMoverse
     }
+
+    override minificate() {
+        return new RespuestaMover(habitacionAMoverse)
+    }
+
 }

@@ -11,30 +11,11 @@ import ar.edu.unq.ciu.minificados.LaberintoCompletoMinificado
 import ar.edu.unq.ciu.minificados.LaberintoMinificado
 import java.util.ArrayList
 import java.util.List
-import ar.edu.unq.ciu.GatoEncerradoDominio.ResultadoGanar
-import ar.edu.unq.ciu.GatoEncerradoDominio.ResultadoAgarrar
-import ar.edu.unq.ciu.GatoEncerradoDominio.ResultadoMover
-import ar.edu.unq.ciu.GatoEncerradoDominio.ResultadoUsar
-import ar.edu.unq.ciu.minificados.RespuestaGanar
-import ar.edu.unq.ciu.minificados.RespuestaAgarrar
-import ar.edu.unq.ciu.minificados.RespuestaMover
-import ar.edu.unq.ciu.minificados.RespuestaUsar
 
 class Minificador {
 
     def minificar(Resultado resultado){
-        if(resultado instanceof ResultadoGanar){
-            return new RespuestaGanar(resultado.getGanaste)
-        }
-        if(resultado instanceof ResultadoAgarrar){
-            return new RespuestaAgarrar(resultado.getItemAgarrado)
-        }
-        if(resultado instanceof ResultadoMover){
-            return new RespuestaMover(resultado.getHabitacionAMoverse)
-        }
-        if(resultado instanceof ResultadoUsar){
-            return new RespuestaUsar(resultado.getAccionHabilitada)
-        }
+        resultado.minificate
     }
 
     def minificar(List<Laberinto> laberintos){

@@ -1,5 +1,7 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
+import ar.edu.unq.ciu.minificados.Respuesta
+
 abstract class Resultado {
 
     def Habitacion getHabitacionAMoverse(){
@@ -17,4 +19,6 @@ abstract class Resultado {
     def String ganar(){
         throw new UnsupportedOperationException
     }
+
+    abstract def Respuesta minificate()
 }

@@ -1,6 +1,7 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import ar.edu.unq.ciu.minificados.RespuestaUsar
 
 @Accessors
 class ResultadoUsar extends Resultado{
@@ -16,5 +17,10 @@ class ResultadoUsar extends Resultado{
     def override getAccionHabilitada(){
         accionHabilitada
     }
+
+    override minificate() {
+        return new RespuestaUsar(accionHabilitada)
+    }
+
 
 }
