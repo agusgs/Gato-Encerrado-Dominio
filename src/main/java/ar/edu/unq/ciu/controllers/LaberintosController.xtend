@@ -90,10 +90,11 @@ class LaberintosController {
     }
 	
 	@Post('/login/:nombreUsuario/:password')
-	def Result loguear(@Body String body) {
+	def Result login() {
+		val usuario = String.valueOf(nombreUsuario)
+		val pass = String.valueOf(password)
+
 		try {
-			val usuario = String.valueOf("nombreUsuario")
-			val pass = String.valueOf("password")
 
 			repoDeObjetos.login(usuario, pass)
 			ok();
