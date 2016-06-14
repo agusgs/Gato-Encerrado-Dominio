@@ -8,11 +8,13 @@ import org.uqbar.commons.utils.Observable
 class Item {
 	Integer id
 	String nombre
+	String pathImagen
 	
 	new() {	}
 
-	new(Integer id, String nombre){
+	new(Integer id, String nombre, String pathImagen){
         this.id = id
         this.nombre = nombre
+		this.pathImagen = pathImagen
     }
 }

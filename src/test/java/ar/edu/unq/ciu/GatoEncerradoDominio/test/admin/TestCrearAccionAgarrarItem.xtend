@@ -17,7 +17,7 @@ class TestCrearAccionAgarrarItem {
 	
 	@Before
 	def void setUp(){
-		unItemLlave = new Item(1, "llave")
+		unItemLlave = new Item(1, "llave", "path")
 		unaAccionAgarrarElem = new AccionAgarrar(1, "lala", false, unItemLlave)
 		unaHabitacion = new Habitacion("cocina")
 	}

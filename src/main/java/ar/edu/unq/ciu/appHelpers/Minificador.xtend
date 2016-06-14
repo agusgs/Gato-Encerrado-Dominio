@@ -9,9 +9,9 @@ import ar.edu.unq.ciu.minificados.AccionMinificada
 import ar.edu.unq.ciu.minificados.HabitacionMinificada
 import ar.edu.unq.ciu.minificados.LaberintoCompletoMinificado
 import ar.edu.unq.ciu.minificados.LaberintoMinificado
+import ar.edu.unq.ciu.minificados.LaberintoMinificadoDetalle
 import java.util.ArrayList
 import java.util.List
-import ar.edu.unq.ciu.minificados.LaberintoMinificadoDetalle
 
 class Minificador {
 
