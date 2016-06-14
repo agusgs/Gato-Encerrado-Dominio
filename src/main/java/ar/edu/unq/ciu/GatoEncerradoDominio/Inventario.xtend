@@ -16,7 +16,11 @@ class Inventario {
 	new(){
 		this.items = new ArrayList<Item>()
 	}
-	
+
+	def vaciar(){
+		items = newArrayList()
+	}
+
 	def agregarItem(Item item) {
 		items.add(item)
 	}

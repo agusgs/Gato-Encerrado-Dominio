@@ -9,6 +9,7 @@ import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.api.annotation.Post
 import org.uqbar.xtrest.json.JSONUtils
+import org.uqbar.xtrest.api.annotation.Put
 
 @Controller
 class LaberintosController {
@@ -125,6 +126,25 @@ class LaberintosController {
 
 	def inventario(Integer idUsuario){
 		repoDeObjetos.inventario(idUsuario)
+	}
+
+	@Put('tirarInventario/:idUsuario')
+	def tirarInventario(){
+		response.contentType = "application/json"
+
+		val iIdUsuario = Integer.valueOf(idUsuario)
+
+		try{
+			tirarInventario(iIdUsuario)
+			ok()
+		} catch (UserException e) {
+			notFound(e.message);
+		}
+
+	}
+
+	def tirarInventario(Integer idUsuario){
+		repoDeObjetos.tirarInventario(idUsuario)
 	}
 
 	@Post('/login/:nombreUsuario/:password')
