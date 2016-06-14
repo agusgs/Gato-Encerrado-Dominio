@@ -27,6 +27,13 @@ class AppRepoDeObjetos {
         usuarios.findFirst[usuario | usuario.nombre == nombreUsuario]
     }
 
+    def laberintoDeUsuario(Integer idUsuario, Integer idLaberinto){
+        validarExistenciaDeUsuario(idUsuario)
+        validarExistenciaDeLaberintoParaUsuario(idUsuario, idLaberinto)
+
+        getLaberintoByUsuarioIdLaberintoId(idUsuario, idLaberinto)
+    }
+
     def iniciarJuego(Integer idUsuario, Integer idLaberinto){
         validarExistenciaDeUsuario(idUsuario)
         validarExistenciaDeLaberintoParaUsuario(idUsuario, idLaberinto)

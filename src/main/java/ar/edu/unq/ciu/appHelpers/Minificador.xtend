@@ -11,6 +11,7 @@ import ar.edu.unq.ciu.minificados.LaberintoCompletoMinificado
 import ar.edu.unq.ciu.minificados.LaberintoMinificado
 import java.util.ArrayList
 import java.util.List
+import ar.edu.unq.ciu.minificados.LaberintoMinificadoDetalle
 
 class Minificador {
 
@@ -24,6 +25,16 @@ class Minificador {
                     new LaberintoMinificado(laberinto.id, laberinto.nombre, laberinto.pathImagen)
             )]
         laberintosMinificados
+    }
+
+    def minificarDetalleLaberinto(Laberinto laberinto){
+        var detalleLaberinto = new LaberintoMinificadoDetalle()
+
+        detalleLaberinto.nombre = laberinto.nombre
+        detalleLaberinto.pathImagen = laberinto.pathImagen
+        detalleLaberinto.descripcion = laberinto.descripcion
+
+        detalleLaberinto
     }
 
 	def minificar(Laberinto laberinto){

@@ -19,6 +19,7 @@ class Laberinto {
 	List<Habitacion> habitaciones
 	Inventario inventario
 	String pathImagen
+	String descripcion
 
     new(){
         this.habitaciones = new ArrayList<Habitacion>()
@@ -30,12 +31,13 @@ class Laberinto {
 		this.inventario = null
 	}
 
-	new (Integer id, String nombre, String pathImagen){
+	new (Integer id, String nombre, String pathImagen, String descripcion){
         this.id = id
 		this.nombre = nombre
 		this.habitaciones = new ArrayList()
 		this.inventario = null
 		this.pathImagen = pathImagen
+		this.descripcion = descripcion
 	}
 
     def setNombre(String nombreNuevo){

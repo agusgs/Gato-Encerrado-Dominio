@@ -118,6 +118,7 @@ class CastilloLaberinto {
         castillo.nombre = "Castillo"
         castillo.habitaciones = habitacionesDelCastillo
         castillo.pathImagen = "un/path"
+        castillo.descripcion = "Este es el laberinto del castillo bien piola"
 
         this.CASTILLO = castillo
     }
