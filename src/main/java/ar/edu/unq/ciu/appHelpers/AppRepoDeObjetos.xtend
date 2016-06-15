@@ -2,8 +2,8 @@ package ar.edu.unq.ciu.appHelpers
 
 import ar.edu.unq.ciu.GatoEncerradoDominio.Juego
 import ar.edu.unq.ciu.GatoEncerradoDominio.UsuarioJugador
-import ar.edu.unq.ciu.errores.NoExisteElUsuario
-import ar.edu.unq.ciu.errores.NoExisteLaberintoParaUsuario
+import ar.edu.unq.ciu.exceptions.NoExisteElUsuario
+import ar.edu.unq.ciu.exceptions.NoExisteLaberintoParaUsuario
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.unq.ciu.exceptions.ContraseniaIncorrecta

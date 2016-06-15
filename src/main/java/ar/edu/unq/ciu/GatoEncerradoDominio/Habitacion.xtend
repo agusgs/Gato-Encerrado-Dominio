@@ -6,7 +6,7 @@ import org.uqbar.commons.utils.Observable
 import java.util.List
 import static org.uqbar.commons.model.ObservableUtils.*
 import org.uqbar.commons.model.UserException
-import ar.edu.unq.ciu.errores.NoExisteAccion
+import ar.edu.unq.ciu.exceptions.NoExisteAccion
 import ar.edu.unq.ciu.exceptions.NoExisteItem
 
 @Accessors

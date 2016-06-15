@@ -8,8 +8,8 @@ import org.junit.Test
 import static org.assertj.core.api.Assertions.*
 
 import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
-import ar.edu.unq.ciu.errores.NoExisteAccion
-import ar.edu.unq.ciu.errores.NoExisteHabitacion
+import ar.edu.unq.ciu.exceptions.NoExisteAccion
+import ar.edu.unq.ciu.exceptions.NoExisteHabitacion
 import ar.edu.unq.ciu.exceptions.AccionNoHabilitada
 import ar.edu.unq.ciu.exceptions.NoTieneItemParaAccion
 

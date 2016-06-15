@@ -7,8 +7,7 @@ import org.uqbar.commons.model.UserException
 import org.uqbar.commons.utils.Observable
 
 import static org.uqbar.commons.model.ObservableUtils.*
-import ar.edu.unq.ciu.errores.NoExisteHabitacion
-import ar.edu.unq.ciu.exceptions.NoExisteItem
+import ar.edu.unq.ciu.exceptions.NoExisteHabitacion
 
 @Accessors
 @Observable

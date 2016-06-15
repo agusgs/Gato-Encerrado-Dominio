@@ -1,4 +1,4 @@
-package ar.edu.unq.ciu.errores
+package ar.edu.unq.ciu.exceptions
 
 import org.uqbar.commons.model.UserException
 

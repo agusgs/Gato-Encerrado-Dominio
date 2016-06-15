@@ -1,7 +1,6 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
 import ar.edu.unq.ciu.exceptions.NoTieneItemParaAccion
-import ar.edu.unq.ciu.minificados.RespuestaUsar
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 
