@@ -1,6 +1,6 @@
 package ar.edu.unq.ciu.exceptions
 
-import org.omg.CORBA.UserException
+import org.uqbar.commons.model.UserException
 
 class NoExisteJuegoParaUsuario extends UserException{
 
