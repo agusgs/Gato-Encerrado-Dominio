@@ -7,6 +7,7 @@ import org.junit.Test
 import ar.edu.unq.ciu.GatoEncerradoDominio.AccionMover
 import org.uqbar.commons.model.UserException
 import static org.junit.Assert.*
+import org.junit.Ignore
 
 class TestMoverAppModel {
 	
@@ -31,6 +32,7 @@ class TestMoverAppModel {
 	}
 	
 	@Test
+	@Ignore
 	def testParaAgregarUnaAccionDeMoverAUnaHabitacion(){
 
 		accionMover.habitacion = habitacionSeleccionada

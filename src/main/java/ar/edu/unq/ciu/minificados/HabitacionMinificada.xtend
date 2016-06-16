@@ -1,18 +1,17 @@
 package ar.edu.unq.ciu.minificados
 
-import org.eclipse.xtend.lib.annotations.Accessors
-import ar.edu.unq.ciu.GatoEncerradoDominio.Accion
-import java.util.List
 import java.util.ArrayList
+import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
-class HabitacionMini {
+class HabitacionMinificada {
 	
 	Integer id
 	String nombre
 	Boolean isInicial
 	Boolean isFinal
-	List<Accion> acciones
+	List<AccionMinificada> acciones
 	String pathImagen
 	
 	new(){

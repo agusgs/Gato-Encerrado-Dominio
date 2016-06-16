@@ -1,12 +1,13 @@
 package ar.edu.unq.ciu.GatoEncerradoDominio
 
-import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
-import org.uqbar.commons.model.UserException
-import static org.uqbar.commons.model.ObservableUtils.*
-
 import java.util.ArrayList
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.UserException
+import org.uqbar.commons.utils.Observable
+
+import static org.uqbar.commons.model.ObservableUtils.*
+import ar.edu.unq.ciu.exceptions.NoExisteHabitacion
 
 @Accessors
 @Observable
@@ -44,6 +45,16 @@ class Laberinto {
         firePropertyChanged(this, "nombre", this.nombre)
     }
 
+	def habitacion(Integer idHabitacion){
+		if(!(existeHabitacion(idHabitacion))){
+			throw new NoExisteHabitacion
+		}
+		habitaciones.findFirst[habitacion | habitacion.id == idHabitacion]
+	}
+
+	def existeHabitacion(Integer idHabiacion){
+		habitaciones.exists[habitacion | habitacion.id == idHabiacion]
+	}
 	def agregarHabitacion(Habitacion unaHabitacion) {
 		this.habitaciones.add(unaHabitacion)
 	}

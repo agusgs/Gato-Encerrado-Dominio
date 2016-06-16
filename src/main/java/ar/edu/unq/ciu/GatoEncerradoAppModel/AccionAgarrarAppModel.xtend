@@ -20,7 +20,7 @@ class AccionAgarrarAppModel {
         item.nombre = nombreNuevoItem
 
         var nuevaAccion = new AccionAgarrar
-        nuevaAccion.nombre = "Agarrar "
+        nuevaAccion.nombre = "Agarrar"
         nuevaAccion.item = item
 
 		validacionItemDuplicado(item)

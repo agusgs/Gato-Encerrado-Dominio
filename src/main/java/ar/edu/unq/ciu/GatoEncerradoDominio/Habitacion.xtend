@@ -6,6 +6,8 @@ import org.uqbar.commons.utils.Observable
 import java.util.List
 import static org.uqbar.commons.model.ObservableUtils.*
 import org.uqbar.commons.model.UserException
+import ar.edu.unq.ciu.exceptions.NoExisteAccion
+import ar.edu.unq.ciu.exceptions.NoExisteItem
 
 @Accessors
 @Observable
@@ -16,6 +18,7 @@ class Habitacion {
 	Boolean isInicial
 	Boolean isFinal
 	Boolean isActual
+	String pathImagen
 	List<Accion> acciones
 	List<Item> items
 
@@ -48,27 +51,29 @@ class Habitacion {
 		firePropertyChanged(this, "acciones", this.acciones)
 	}
 	
-	def usarAccionAgarrar(Accion accion){
-		accion.usarAccion
-		acciones.add(accion)
-	}
-
-	def usarAccionMover(Accion accion){
-		setIsActual(false)
-		accion.usarAccion
-		acciones.remove(accion)
-	}
-	
-	def usarAccionUsar(Accion accion){
-		accion.usarAccion
-		acciones.remove(accion)
-	}
-	
-	def usarAccion(Accion accion){
-		accion.usarAccion(this)
-	}
-
 	def quitarAccion(Accion unaAccion){
 		acciones.remove(unaAccion)
 	}
+
+	def accion(Integer idAccion){
+		if(!(existeAccion(idAccion))){
+			throw new NoExisteAccion
+		}
+        acciones.findFirst[accion | accion.id == idAccion]
+	}
+
+    def existeAccion(Integer idAccion){
+        acciones.exists[accion | accion.id == idAccion]
+    }
+
+    def item(Integer idItem){
+        if(!(existeItem(idItem))){
+            throw new NoExisteItem
+        }
+        items.findFirst[item | item.id == idItem]
+    }
+
+    def existeItem(Integer idItem){
+        items.exists[item | item.id == idItem]
+    }
 }

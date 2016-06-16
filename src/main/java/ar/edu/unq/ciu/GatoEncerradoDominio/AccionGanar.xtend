@@ -11,14 +11,8 @@ class AccionGanar extends Accion {
 		tipo = "ganar"
 	}
 	
-	override usarAccion() {
+	def override ejecutar(Juego juego){
+		super.ejecutar(juego)
+		juego.ganar
 	}
-	
-	override usarAccion(Habitacion hab) {
-	}
-	
-	override respuesta(Habitacion hab, UsuarioJugador us, Inventario inv) {
-		new String("Ganaste")
-	}
-	
 }
