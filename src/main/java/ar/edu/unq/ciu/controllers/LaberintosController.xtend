@@ -45,6 +45,28 @@ class LaberintosController {
         repoDeObjetos.laberintosDe(id)
     }
 
+	@Get('/detalleLaberinto/:id/:idLab')
+	def detalleLaberinto(){
+		response.contentType = "application/json"
+		val idUsuario = Integer.valueOf(id)
+		val idLaberinto = Integer.valueOf(idLab)
+
+		try {
+			ok(minificadoDetalleLaberintosParaUsuario(idUsuario, idLaberinto).toJson)
+		}
+		catch (UserException e) {
+			notFound(e.message);
+		}
+	}
+
+	def minificadoDetalleLaberintosParaUsuario(Integer idUsuario, Integer idLaberinto){
+		minificador.minificarDetalleLaberinto(detalleLaberintoUsuario(idUsuario, idLaberinto))
+	}
+
+	def detalleLaberintoUsuario(Integer idUsuario, Integer idLaberinto){
+		repoDeObjetos.laberintoDeUsuario(idUsuario, idLaberinto)
+	}
+
 	@Get("/iniciarLaberinto/:idUser/:idLab")
 	def Result iniciarLaberinto() {
 		
