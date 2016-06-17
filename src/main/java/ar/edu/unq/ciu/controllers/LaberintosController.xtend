@@ -109,7 +109,24 @@ class LaberintosController {
     def realizarAccion(Integer idUsuario, Integer idHabitacion, Integer idAccion){
         minificador.minificar(repoDeObjetos.accion(idUsuario, idHabitacion, idAccion))
     }
-	
+
+	@Get('/inventario/:idUsuario')
+	def inventario(){
+		response.contentType = "application/json"
+
+		val iIdUsuario = Integer.valueOf(idUsuario)
+
+		try{
+			ok(inventario(iIdUsuario).toJson)
+		} catch (UserException e) {
+			notFound(e.message);
+		}
+	}
+
+	def inventario(Integer idUsuario){
+		repoDeObjetos.inventario(idUsuario)
+	}
+
 	@Post('/login/:nombreUsuario/:password')
 	def Result login() {
 		val usuario = String.valueOf(nombreUsuario)

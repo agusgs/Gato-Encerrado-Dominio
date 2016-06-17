@@ -45,6 +45,7 @@ class CastilloLaberinto {
 
         hierro.id = 1
         hierro.nombre = 'Hierro largo'
+        hierro.pathImagen = 'un/path'
 
         var itemsDeHabitacionInicial = newArrayList(hierro)
 

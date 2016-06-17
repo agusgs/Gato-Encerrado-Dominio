@@ -34,6 +34,12 @@ class AppRepoDeObjetos {
         getLaberintoByUsuarioIdLaberintoId(idUsuario, idLaberinto)
     }
 
+    def inventario(Integer idUsuario){
+        validarExistenciaDeUsuario(idUsuario)
+
+        getJuegoByUsuarioId(idUsuario).inventario.items
+    }
+
     def iniciarJuego(Integer idUsuario, Integer idLaberinto){
         validarExistenciaDeUsuario(idUsuario)
         validarExistenciaDeLaberintoParaUsuario(idUsuario, idLaberinto)
