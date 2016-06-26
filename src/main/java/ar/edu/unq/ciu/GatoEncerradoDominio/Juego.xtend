@@ -47,4 +47,8 @@ class Juego {
     def itemUsado(Item item){
         inventario.quitarItem(item)
     }
+
+    def clearInventario(){
+        inventario.vaciar()
+    }
 }

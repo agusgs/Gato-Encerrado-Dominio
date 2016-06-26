@@ -7,6 +7,7 @@ import ar.edu.unq.ciu.exceptions.NoExisteLaberintoParaUsuario
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.unq.ciu.exceptions.ContraseniaIncorrecta
+import ar.edu.unq.ciu.exceptions.NoExisteJuegoParaUsuario
 
 @Accessors
 class AppRepoDeObjetos {
@@ -36,8 +37,18 @@ class AppRepoDeObjetos {
 
     def inventario(Integer idUsuario){
         validarExistenciaDeUsuario(idUsuario)
+        validarJuegoDeUsuario(idUsuario)
 
-        getJuegoByUsuarioId(idUsuario).inventario.items
+        getJuegoByUsuarioId(idUsuario).inventario
+    }
+
+    def tirarInventario(Integer idUsuario){
+        validarExistenciaDeUsuario(idUsuario)
+        validarJuegoDeUsuario(idUsuario)
+
+        var juego = getJuegoByUsuarioId(idUsuario)
+
+        juego.clearInventario()
     }
 
     def iniciarJuego(Integer idUsuario, Integer idLaberinto){
@@ -83,7 +94,13 @@ class AppRepoDeObjetos {
         }
     }
 
-    def existeJuegoParUsuario(Integer idUsuario){
+    def validarJuegoDeUsuario(Integer idUsuario){
+        if(!(existeJuegoParaUsuario(idUsuario))) {
+            throw new NoExisteJuegoParaUsuario(idUsuario)
+        }
+    }
+
+    def existeJuegoParaUsuario(Integer idUsuario){
         juegos.exists[juego | juego.usuario.id == idUsuario]
     }
 
