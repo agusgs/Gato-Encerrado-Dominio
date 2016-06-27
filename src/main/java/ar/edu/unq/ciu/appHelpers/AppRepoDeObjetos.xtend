@@ -123,6 +123,6 @@ class AppRepoDeObjetos {
     }
 
     private def laberintosDePepe(){
-        newArrayList(new CastilloLaberinto().CASTILLO)
+        newArrayList(new CastilloLaberinto().CASTILLO, new OtroLaberinto().CASTILLO)
     }
 }

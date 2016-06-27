@@ -30,6 +30,7 @@ class Minificador {
     def minificarDetalleLaberinto(Laberinto laberinto){
         var detalleLaberinto = new LaberintoMinificadoDetalle()
 
+        detalleLaberinto.id = laberinto.id
         detalleLaberinto.nombre = laberinto.nombre
         detalleLaberinto.pathImagen = laberinto.pathImagen
         detalleLaberinto.descripcion = laberinto.descripcion

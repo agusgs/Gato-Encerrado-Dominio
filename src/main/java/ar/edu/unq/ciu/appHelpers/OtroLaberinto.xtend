@@ -10,7 +10,7 @@ import ar.edu.unq.ciu.GatoEncerradoDominio.Item
 import ar.edu.unq.ciu.GatoEncerradoDominio.Laberinto
 import java.util.List
 
-class CastilloLaberinto {
+class OtroLaberinto {
 
     public Laberinto CASTILLO
 
@@ -115,11 +115,11 @@ class CastilloLaberinto {
 
         // Laberinto
         var castillo = new Laberinto
-        castillo.id = 1
-        castillo.nombre = "Castillo"
+        castillo.id = 2
+        castillo.nombre = "Otro laberinto"
         castillo.habitaciones = habitacionesDelCastillo
-        castillo.pathImagen = "https://i.ytimg.com/vi/Om1OlQEMjz8/maxresdefault.jpg"
-        castillo.descripcion = "Este es el laberinto del castillo bien piola"
+        castillo.pathImagen = "https://image.freepik.com/iconos-gratis/contorno-dibujado-el-signo-de-pregunta-mano_318-52053.png"
+        castillo.descripcion = "maasdaslfksafglkjsfgkjnadfglkasjdf vasfkljvgfsadkj"
 
         this.CASTILLO = castillo
     }
