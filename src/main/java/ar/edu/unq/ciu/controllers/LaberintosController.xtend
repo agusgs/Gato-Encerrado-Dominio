@@ -2,13 +2,14 @@ package ar.edu.unq.ciu.controllers
 
 import ar.edu.unq.ciu.appHelpers.AppRepoDeObjetos
 import ar.edu.unq.ciu.appHelpers.Minificador
-import org.uqbar.commons.model.UserException
 import org.uqbar.xtrest.api.Result
 import org.uqbar.xtrest.api.XTRest
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.api.annotation.Post
 import org.uqbar.xtrest.json.JSONUtils
+import org.uqbar.xtrest.api.annotation.Put
+import org.uqbar.commons.model.UserException
 
 @Controller
 class LaberintosController {
@@ -125,6 +126,25 @@ class LaberintosController {
 
 	def inventario(Integer idUsuario){
 		repoDeObjetos.inventario(idUsuario)
+	}
+
+	@Put('/tirarInventario/:idUsuario')
+	def tirarInventario(){
+		response.contentType = "application/json"
+
+		val iIdUsuario = Integer.valueOf(idUsuario)
+
+		try{
+			tirarInventario(iIdUsuario)
+			ok()
+		} catch (UserException e) {
+			notFound(e.message);
+		}
+
+	}
+
+	def tirarInventario(Integer idUsuario){
+		repoDeObjetos.tirarInventario(idUsuario)
 	}
 
 	@Post('/login/:nombreUsuario/:password')
