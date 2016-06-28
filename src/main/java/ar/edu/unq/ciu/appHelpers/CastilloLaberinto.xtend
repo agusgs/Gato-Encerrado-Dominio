@@ -44,10 +44,16 @@ class CastilloLaberinto {
         var hierro = new Item
 
         hierro.id = 1
-        hierro.nombre = 'Hierro largo'
-        hierro.pathImagen = 'un/path'
+        hierro.nombre = 'Barreta'
+        hierro.pathImagen = 'https://cuernavilla.com/4446-thickbox_default/hacha-de-batalla-de-gimli-escala-1-1-the-noble-collection.jpg'
 
-        var itemsDeHabitacionInicial = newArrayList(hierro)
+        var cosa = new Item
+
+        cosa.id = 2
+        cosa.nombre = 'Hacha'
+        cosa.pathImagen = ''
+
+        var itemsDeHabitacionInicial = newArrayList(hierro, cosa)
 
         // Acciones del pasillo oscuro
         var usarHierro = new AccionUsar
@@ -84,6 +90,7 @@ class CastilloLaberinto {
         // Acciones de habitacion inicial
         var moverseAPasilloOscuro = new AccionMover()
         var agarrarHierro = new AccionAgarrar()
+        var agarrarHacha = new AccionAgarrar()
 
         moverseAPasilloOscuro.id = 1
         moverseAPasilloOscuro.nombre = 'Pasar a siguiente habitacion'
@@ -97,7 +104,13 @@ class CastilloLaberinto {
         agarrarHierro.habilitar
         agarrarHierro.item = hierro
 
-        var accionesDeHabitacionInicial = newArrayList(moverseAPasilloOscuro, agarrarHierro)
+        agarrarHacha.id = 3
+        agarrarHacha.nombre = 'Agarrar Hacha'
+        agarrarHacha.tipo = 'agarrar'
+        agarrarHacha.habilitar
+        agarrarHacha.item = cosa
+
+        var accionesDeHabitacionInicial = newArrayList(moverseAPasilloOscuro, agarrarHierro, agarrarHacha)
 
         // Habitaciones Inicial
         var habitacionInicial = new Habitacion()

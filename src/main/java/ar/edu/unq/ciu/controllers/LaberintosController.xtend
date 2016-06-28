@@ -118,7 +118,7 @@ class LaberintosController {
 		val iIdUsuario = Integer.valueOf(idUsuario)
 
 		try{
-			ok(inventario(iIdUsuario).toJson)
+			ok(inventario(iIdUsuario).getItems().toJson)
 		} catch (UserException e) {
 			notFound(e.message);
 		}
